@@ -92,4 +92,70 @@ Questi algoritmi non aderiscono al principio SJF. Soluzione: SPTF (Shortest Posi
 
 La scelta tra richieste più vicine o più lontane dipende dal rapporto tra il tempo di ricerca e il ritardo di rotazione. Se il tempo di ricerca è molto più alto del ritardo di rotazione, algoritmi come SSTF sono adatti, ma se la ricerca è notevolmente più veloce della rotazione, può essere preferibile servire richieste più lontane.
 
+=== Formulario per i dischi rigidi
+
+*Tempo di I/O totale*
+
+$ T_("I/O") = T_"seek" + T_"rotation" + T_"transfer" $
+
+Dove:
+- $T_"seek"$ è il tempo di seek (posizionamento della testina sulla traccia corretta).
+- $T_"rotation"$ è il tempo di rotazione (attesa che il settore passi sotto la testina).
+- $T_"transfer"$ è il tempo di trasferimento (lettura/scrittura dei dati).
+
+*Throughput*
+
+$ "Throughput" = "Size"_"Transfer"/T_"I/O" $
+
+Misura la quantità di dati trasferiti per unità di tempo.
+
+*Tempo Medio di Seek*
+
+$ T_{"seek"} = 1/3 T_"seek"^"max" $
+
+Dove $T_"seek"^"max"$ è il tempo massimo per muoversi tra le tracce più distanti.
+
+*Tempo di Rotazione Medio*
+
+$ T_"rotation" = 1/2 T_"rotation"^"max" $
+
+Dove il tempo di rotazione massimo è dato da:
+
+$ T_"rotation"^"max" = 60000/"RPM" "(in ms)" $
+
+*Tempo di Trasferimento*
+
+$ T_"transfer" = "Size"_"Transfer"/"Transfer Rate" $
+
+Dove:
+- $"Size"_"Transfer"$ è la dimensione del trasferimento dei dati.
+- $"Transfer Rate"$ è la velocità di trasferimento del disco.
+
+Velocità di Trasferimento Massima
+
+$ "Max Transfer Rate" =\ ("Settori per traccia" times "Dimensione settore" times "RPM") /  60 $
+
+Dove:
+- "Settori per traccia" è il numero di settori per traccia.
+- "Dimensione settore" è tipicamente 512B o 4KB.
+- "RPM" indica le rotazioni per minuto.
+
+*Distanza Media di Seek*
+
+$ 1/(N^2) sum_(x=0)^N sum_(y=0)^N |x - y| = N/3 $
+
+Dove $N$ è il numero totale di tracce.
+
+*Rateo di I/O*
+
+$ R_"I/O" = "Size"_"Transfer"/T_"I/O" $
+
+Indica la velocità con cui le operazioni di I/O vengono eseguite.
+
+*Utilizzo del Disco*
+
+$ U = T_"I/O" / T_"cycle" $
+
+Dove $T_"cycle"$ è il tempo totale tra due richieste consecutive.
+
 #colbreak()
