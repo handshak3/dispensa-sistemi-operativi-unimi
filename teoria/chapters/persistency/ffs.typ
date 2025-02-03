@@ -22,12 +22,12 @@ FFS migliora l'organizzazione dei dati su disco suddividendolo in *cylinder grou
 
 *Cilindro*: insieme di tracce alla stessa distanza dal centro del disco su più superfici, e raggruppare più cilindri riduce la frammentazione e migliora le prestazioni minimizzando gli spostamenti della testina.
 
-#figure(image("../images/ffs/cilindro.png"), caption: [Struttura del cilindro.])
+#figure(image("../../images/ffs/cilindro.png"), caption: [Struttura del cilindro.])
 
 Nei file system moderni, come ext2, ext3 ed ext4, questa struttura è implementata come *block groups*, poiché i dischi moderni astraggono la geometria fisica esponendo solo uno spazio logico di blocchi. Tuttavia, il principio rimane lo stesso: collocare file correlati nello stesso gruppo per ridurre i tempi di seek.
 
 #figure(
-  image("../images/ffs/gruppi.png"),
+  image("../../images/ffs/gruppi.png"),
   caption: [Struttura di block groups.],
 )
 
@@ -139,14 +139,14 @@ Per evitare questo problema, FFS spezza i file grandi in blocchi e li distribuis
 ==== Esempio senza l'eccezione per file grandi
 Un file di 30 blocchi in un FFS con 10 inode e 40 blocchi dati per gruppo finirebbe per occupare quasi tutto un gruppo:
 
-#image("../images/ffs/es1.png")
+#image("../../images/ffs/es1.png")
 
 Se ora vengono creati altri file nella root `/`, non c'è più spazio nel gruppo 0 per i loro dati, riducendo la località.
 
 ==== Esempio con l'eccezione per file grandi
 Con la politica di suddivisione in chunk di 5 blocchi, il file viene distribuito su più gruppi:
 
-#image("../images/ffs/es2.png")
+#image("../../images/ffs/es2.png")
 
 
 Ora altri file nella root `/` possono essere salvati nel gruppo 0 senza problemi.

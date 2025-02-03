@@ -44,7 +44,7 @@ Proprietà:
   - Throughput random in stato stazionario: $N dot R$.
 
 #figure(
-  image("../images/raid/r0.png", width: 70%),
+  image("../../images/raid/r0.png", width: 70%),
   caption: [Raid 0 o striping.],
 ) <raid0>
 
@@ -91,7 +91,7 @@ Proprietà (mirroring = 2):
   - *Throughput random in stato stazionario*: miglior soluzione, distribuzione delle letture su tutti i dischi $N dot R$.
 
 #figure(
-  image("../images/raid/r1.png", width: 70%),
+  image("../../images/raid/r1.png", width: 70%),
   caption: [Raid 1 o mirroring.],
 )
 
@@ -102,14 +102,14 @@ Combinazioni di RAID 1 e di RAID 0:
   stroke: 0pt,
   [
     #figure(
-      image("../images/raid/r10.png"),
+      image("../../images/raid/r10.png"),
       caption: [Raid 1 + 0.@a2023_confronto],
     )
 
   ],
   [
     #figure(
-      image("../images/raid/r01.png"),
+      image("../../images/raid/r01.png"),
       caption: [Raid 0 + 1 mirroring.@a2025_fileraid],
     )
   ],
@@ -120,7 +120,7 @@ Combinazioni di RAID 1 e di RAID 0:
 *RAID 4*: i dati vengono distribuiti su più dischi e un disco è dedicato per la parità.
 
 #figure(
-  image("../images/raid/r4.png", width: 70%),
+  image("../../images/raid/r4.png", width: 70%),
   caption: [RAID 4 con parità.],
 )
 
@@ -129,12 +129,12 @@ Combinazioni di RAID 1 e di RAID 0:
 - 1 se il numero di bit pari a 1 è dispari.
 
 #figure(
-  image("../images/raid/parity.png", width: 80%),
+  image("../../images/raid/parity.png", width: 80%),
   caption: [Calcolo della parità.],
 )
 
 #figure(
-  image("../images/raid/parity2.png", width: 90%),
+  image("../../images/raid/parity2.png", width: 90%),
   caption: [Calcolo della parità con blocchi.],
 )
 
@@ -172,7 +172,7 @@ Soluzioni al Small Write Problem:
 *RAID 5*: simile al RAID 4 ma il blocco di parità ruota sui dischi per risolvere il problema della scrittura ridotta.
 
 #figure(
-  image("../images/raid/r5.png", width: 70%),
+  image("../../images/raid/r5.png", width: 70%),
   caption: [RAID 5 con rotated parity.],
 )
 
@@ -185,7 +185,7 @@ Proprietà:
 Immaginiamo una write al blocco 1 e una write al blocco 10; verrà tradotta in una richiesta al disco 1 e una al disco 4 (per il blocco 1 e la sua parità) e una richiesta per il disco 0 e 2 (per il blocco 10 e la sua parità). In questo modo possono procedere in parallelo. Possiamo assumere che, dato un elevato numero di richieste random, saremo in grado di tenere occupati praticamente tutti i dischi. Se è questo il caso, allora la nostra larghezza di banda (bandwidth) per piccole writes sarà di (N/4)R MB/s. Il fattore di perdita 4 è dovuto al fatto che ogni write in un sistema RAID-5 genera 4 operazioni di I/O, che è semplicemente il costo dovuto all'impiego della parità (read data, read parity, write data, write parity)
 
 #figure(
-  image("../images/raid/raid recap.png"),
+  image("../../images/raid/raid recap.png"),
   caption: [Capacità, affidabilità e performance dei RAID.],
 )
 

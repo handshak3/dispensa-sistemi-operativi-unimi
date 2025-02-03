@@ -4,14 +4,14 @@ Il disco rigido è composto da un gran numero di settori (blocchi da 512 byte), 
 
 === Struttura e funzionamento
 #figure(
-  image("../images/hdd/single track.png", width: 60%),
+  image("../../images/hdd/single track.png", width: 60%),
   caption: [Singola traccia con testa.],
 )
 
 Un disco rigido è composto da un piatto (*platter*) rotante che contiene $n$ tracce (*track*) da tutti e due i lati (*surface*). Ogni traccia è composta da un numero di settori (*sector*), che sono le unità di base di memorizzazione dei dati. I settori sono numerati da $0$ a $n-1$. Il disco è dotato di una testina (*disk head*) che può leggere e scrivere i dati sui settori. La testina è montata su un braccio (*disk arm*) che può essere spostato per accedere a diverse tracce. Il disco è in continuo movimento, quindi la testina deve essere posizionata sulla traccia corretta al momento giusto per leggere o scrivere i dati.
 
 #figure(
-  image("../images/hdd/hdd.png"),
+  image("../../images/hdd/hdd.png"),
   caption: [Nomenclatura delle componenti di un HDD. @markham_2020_disk],
 )
 
@@ -30,7 +30,7 @@ La ricerca di un blocco ha più fasi:
 *Seek time*: tempo necessario per spostare la testina da una traccia all'altra.
 
 #figure(
-  image("../images/hdd/multiple tracks.png"),
+  image("../../images/hdd/multiple tracks.png"),
   caption: [Tre track e una testa.],
 )
 

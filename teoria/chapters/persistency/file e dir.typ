@@ -17,7 +17,7 @@
 Indicare *l'estensione* del file nel nome arbitrario dopo il punto “`.`” è una convenzione.
 
 #figure(
-  image("../images/file/dir tree.png", width: 60%),
+  image("../../images/file/dir tree.png", width: 60%),
   caption: [Albero delle directory.],
 )
 
@@ -124,7 +124,7 @@ Quando un processo padre crea un processo figlio con `fork()`, un'entry nella ta
 `dup2()`: sostituisce il descrittore con uno nuovo.
 
 #figure(
-  image("../images/file/pt.png"),
+  image("../../images/file/pt.png"),
   caption: [Processi che condividono una voce della tabella dei file aperti.],
 )
 

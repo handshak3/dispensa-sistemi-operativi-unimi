@@ -11,20 +11,20 @@ Per la costruzione di un file system VSFS (Very Simple File System) bisogna comp
 === Struttura di VSFS
 Organizzazione del File System sul disco:
 1. Il disco viene diviso in *blocchi* (es. 4KB).
-  #image("../images/fs/block.png")
+  #image("../../images/fs/block.png")
 2. La maggior parte dello spazio del FS sarà destinato ai dati dell'utente (data region).
-  #image("../images/fs/data region.png")
+  #image("../../images/fs/data region.png")
 3. Il FS traccia le informazioni di ciascun file (*metadati*) e le conserva in una struttura chiamata *inode*. Va riservato lo spazio per la inode table. Supponendo 256 byte per inode, un blocco da 4 KB può contenerne 16. Quindi il massimo numero di file che si può avere è $16 "inode" dot 5 "blocchi" = 80$ file.
-  #image("../images/fs/inode region.png")
+  #image("../../images/fs/inode region.png")
 4. Occorre una struttura per tracciare se gli inode o i blocchi dati sono allocati o liberi. possiamo utilizzare:
   - *Free List*: punta al primo blocco libero e così via.
   - *Bitmap*: si utilizza una data bitmap e un'inode bitmap che indicano se l'oggetto/blocco corrispondente è libero (0) oppure in uso (1).
 
-  #image("../images/fs/bitmap region.png")
+  #image("../../images/fs/bitmap region.png")
 
 5. Lo spazio rimanente sarà occupato dal *superblocco*: contiene informazioni sul file system (n. inode, n. blocchi, ecc.), include anche il magic number per identificare il tipo di FS. Il super blocco verrà letto dall'OS per montare il FS.
 
-  #image("../images/fs/super block.png")
+  #image("../../images/fs/super block.png")
 
 === Inode
 *inode (index node)*: struttura che contiene i metadati di un file. Ogni inode è implicitamente identificato da un numero detto "i-number", che funge da nome di basso livello.
@@ -33,7 +33,7 @@ Organizzazione del File System sul disco:
 
 Dato un i-number, calcolare la posizione dell'inode corrispondente su disco. Supponendo di avere:
 
-#figure(image("../images/fs/inode table.png"), caption: [Inode table.])
+#figure(image("../../images/fs/inode table.png"), caption: [Inode table.])
 
 L'obbiettivo è leggere l'i-number 32.
 
@@ -58,7 +58,7 @@ $ "Block" = ("iNumber" dot "SizeOf(iNode)") / "BlockSize" $
 $ "Sector" = (21) / "SectorSize" $
 
 #figure(
-  image("../images/fs/inode field.png"),
+  image("../../images/fs/inode field.png"),
   caption: [Ext2 Inode Simplified.],
 )
 
@@ -69,7 +69,7 @@ $ "Sector" = (21) / "SectorSize" $
 - *Puntatore indiretto*: invece di puntare a un blocco che contiene dati, punta a un blocco che contiene puntatori a dati utente. Un inode contiene un numero fisso di puntatori diretti o un singolo puntatore indiretto. Se il file cresce, viene allocato un blocco indiretto (nel data region) e lo slot dell'inode per un puntatore indiretto è impostato per puntare ad esso. Così aumenta la dimensione massima del file.
 - *Doppio puntatore indiretto*: puntatore a un blocco che contiene altri puntatori a blocchi indiretti, ciascuno dei quali contiene puntatori a blocchi dei dati. Così aumenta la dimensione massima del file.
 
-#figure(image("../images/fs/pointers.png"), caption: [Esempi dei puntatori.])
+#figure(image("../../images/fs/pointers.png"), caption: [Esempi dei puntatori.])
 
 - *Direct indexing*: il file può essere grande massimo 12 blocchi, ciascuno di dimensione 4 K.
 - *Single indirect indexing*: il puntatore non punta a un blocco che contiene dati ma a un blocco che contiene altri puntatori. Ciascuno di questi puntatori punta a un blocco che contiene i dati utente. Avendo puntatori da 4-bytes (perché ogni indirizzo è grande 4-bytes), si ha un blocco di puntatori suddiviso in fette da 4 byte (1024 indirizzi da 4 bytes ciascuno).
@@ -104,7 +104,7 @@ Struttura di una directory:
   - `.` (dot): riferimento alla directory stessa.
   - `..` (dot-dot): riferimento alla directory padre.
 
-#image("../images/fs/dir org.png")
+#image("../../images/fs/dir org.png")
 
 Quando un file viene eliminato (`unlink()`), si crea uno spazio vuoto nella directory. Questo spazio può essere riutilizzato per nuove entry di dimensioni maggiori.
 
@@ -139,7 +139,7 @@ Considerazioni sulle prestazioni:
 - Il numero di operazioni I/O dipende dalla lunghezza del percorso: più directory significa più inode e blocchi dati da leggere.
 - Directory grandi peggiorano le prestazioni perché richiedono la lettura di più blocchi per trovare un file.
 
-#figure(image("../images/fs/read timeline.png"), caption: [Read timeline.])
+#figure(image("../../images/fs/read timeline.png"), caption: [Read timeline.])
 
 === Scrittura su file
 
@@ -170,7 +170,7 @@ Efficienza della Scrittura:
 - Sistemi avanzati ottimizzano la scrittura con strategie come buffering e journaling per ridurre il numero di scritture effettive su disco.
 
 #figure(
-  image("../images/fs/file creation timeline.png"),
+  image("../../images/fs/file creation timeline.png"),
   caption: [File creation timeline.],
 )
 

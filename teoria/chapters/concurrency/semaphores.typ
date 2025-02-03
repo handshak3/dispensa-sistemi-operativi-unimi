@@ -60,7 +60,7 @@ Utilizzo:
 - Quando thread 0 ha terminato l'operazione, chiama `sem_post()` per incrementare il valore del semaforo a 1 (lock rilasciato).
 
 #figure(
-  image("../images/semaphores/single.png"),
+  image("../../images/semaphores/single.png"),
   caption: [Singolo thread che utilizza il semaforo.],
 )
 
@@ -71,7 +71,7 @@ Un caso più interessante si verifica quando il Thread 0 ha il lock (ovvero ha c
 - Quando Thread 1 termina, incrementerà nuovamente il valore del semaforo, ripristinandolo a 1.
 
 #figure(
-  image("../images/semaphores/double.png"),
+  image("../../images/semaphores/double.png"),
   caption: [Due thread che usano lo stesso semaforo.],
 )
 
@@ -96,7 +96,7 @@ Come dovrebbe essere con i semafori:
 - Quando il genitore ottiene quindi la possibilità di eseguire, chiamerà `sem_wait()` e troverà il valore del semaforo a 1; il genitore decrementerà quindi il valore (a 0) e tornerà da `sem_wait()` senza aspettare, ottenendo anche l'effetto desiderato.
 
 #figure(
-  image("../images/semaphores/tracev1.png"),
+  image("../../images/semaphores/tracev1.png"),
   caption: [Trace dei thread nel primo caso.],
 )
 
@@ -104,7 +104,7 @@ Come dovrebbe essere con i semafori:
 Si verifica quando il figlio esegue fino al completamento prima che il genitore possa chiamare `sem_wait()`. In questo caso, il figlio chiamerà prima `sem_post()`, aumentando così il valore del semaforo da 0 a 1. Quando il genitore ottiene quindi la possibilità di eseguire, chiamerà `sem_wait()` e troverà il valore del semaforo a 1; il genitore decrementerà quindi il valore (a 0) e tornerà da `sem_wait()` senza aspettare, ottenendo anche l'effetto desiderato.
 
 #figure(
-  image("../images/semaphores/tracev2.png"),
+  image("../../images/semaphores/tracev2.png"),
   caption: [Trace dei thread nel secondo caso.],
 )
 
@@ -344,7 +344,7 @@ Approccio funzionante ma presenta alcuni lettori potrebbero soffrire di starvati
 Si supponga che ci siano cinque "filosofi" seduti intorno a un tavolo. Tra ogni coppia di filosofi c'è una sola forchetta (e quindi, cinque in totale). I filosofi hanno periodi in cui pensano, e non hanno bisogno di forchette e periodi in cui mangiano. Per mangiare, un filosofo ha bisogno di due forchette, sia quella alla sua sinistra che quella alla sua destra.
 
 #figure(
-  image("../images/semaphores/filosofi.png", width: 65%),
+  image("../../images/semaphores/filosofi.png", width: 65%),
   caption: [Problema dei 5 filosofi.],
 )
 

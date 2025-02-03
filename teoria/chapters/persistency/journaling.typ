@@ -55,13 +55,13 @@ Con il journaling, dopo un crash, invece di eseguire una scansione completa del 
 
 Per comprendere come funziona, prendiamo ad esempio il file system Linux ext3. Il disco è suddiviso in groups-blocks, ciascuno dei quali contiene una bitmap per gli inodes, una bitmap per i dati e gli stessi inodes e blocchi di dati. Una struttura chiave in questo contesto è il blocco "journal", che occupa uno spazio ridotto all'interno della partizione (o su un altro dispositivo).
 
-#image("../images/journaling/journal block.png")
+#image("../../images/journaling/journal block.png")
 
 ==== Esempio pratico:
 
 Supponiamo di voler eseguire l'aggiornamento di un inode (I[v2]), una bitmap (B[v2]) e un data block (Db).
 
-#image("../images/journaling/data jou.png")
+#image("../../images/journaling/data jou.png")
 
 Prima di scrivere questi dati su disco, il sistema registra le informazioni necessarie nel log (journal), in particolare:
 - *TxB*: "Transaction Begin", che contiene informazioni sull'aggiornamento imminente, come gli indirizzi finali di I[v2], B[v2] e Db, oltre a un identificatore della transazione (TID).
@@ -78,11 +78,11 @@ La sequenza delle operazioni è quindi la seguente:
 
 Cosa succede se un crash avviene durante la scrittura del blocco journal?
 
-#image("../images/journaling/data jou 2.png")
+#image("../../images/journaling/data jou 2.png")
 
 Il sistema sta cercando di scrivere i blocchi della transazione su disco (TxB, I[v2], B[v2], Db, TxE). Una soluzione semplice potrebbe essere quella di eseguire una scrittura per volta, attendendo che ogni scrittura sia completata prima di passare alla successiva. Sebbene questo approccio funzioni, è inefficiente. D'altro canto, scrivere tutti i blocchi in una sola volta non è sicuro, poiché il disco potrebbe ottimizzare l'I/O e scrivere i blocchi nell'ordine sparso (ad esempio, prima TxB, poi I[v2], B[v2], TxE, e infine Db). Se il crash avviene dopo che TxE è stato scritto ma prima di Db, il file system troverà una transazione "completa" (con un inizio e una fine), ma in realtà il sistema non può sapere che la transazione è incompleta. Al riavvio, il sistema potrebbe erroneamente copiare il contenuto del "garbage-block" nel blocco Db, con il rischio di perdita di dati.
 
-#image("../images/journaling/data jou 3.png")
+#image("../../images/journaling/data jou 3.png")
 
 Per evitare questo problema, il file system adotta una scrittura in due fasi. Prima vengono scritti nel journal tutti i blocchi tranne TxE (questi blocchi vengono scritti in una sola operazione). A questo punto, il file system può scrivere anche TxE nel journal, garantendo così l'atomicità dell'operazione. Il disco garantisce che le scritture da 512 byte (dimensione di un settore) vengano eseguite in modo atomico, quindi TxE deve essere di 512 byte per garantire il corretto funzionamento.
 
@@ -109,7 +109,7 @@ Il protocollo di journaling potrebbe generare un traffico I/O aggiuntivo. Ad ese
 
 Nel caso del journaling, tutte queste informazioni vengono scritte nello stesso blocco journal per entrambe le operazioni di "file creation". Poiché i file si trovano nella stessa directory e gli inodes sono probabilmente nello stesso blocco su disco, potrebbe succedere che lo stesso blocco venga scritto più volte (ad esempio, scriviamo prima l'inode di "file1", poi quello di "file2", sovrascrivendo quello di "file1", e così via). Una soluzione a questo problema consiste nell'utilizzare un buffer globale nel quale vengono raccolte le transazioni. Tuttavia, se il buffer continua ad accumulare transazioni, potrebbe riempirsi rapidamente.
 
-#image("../images/journaling/data jou 4.png")
+#image("../../images/journaling/data jou 4.png")
 
 I problemi derivanti dall'accumulo di transazioni sono i seguenti:
 - Più grande è il log, più tempo sarà necessario per eseguire il recovery.
@@ -117,7 +117,7 @@ I problemi derivanti dall'accumulo di transazioni sono i seguenti:
 
 Per affrontare questi problemi, i file system con journaling trattano il log come una struttura dati circolare, riutilizzandola continuamente. Questo è il motivo per cui il journaling è noto come *circular log*. Quando una transazione è completata, il file system libera lo spazio relativo ad essa. Una soluzione semplice consiste nel marcare le transazioni vecchie e "non-checkpointed" all'interno di un superblock del journal.
 
-#image("../images/journaling/data jou 5.png")
+#image("../../images/journaling/data jou 5.png")
 
 Nel superblock del journal ci sono informazioni sufficienti per determinare quale blocco non ha ancora raggiunto la fase di checkpoint. Questo approccio riduce notevolmente il tempo di recupero, poiché non è necessario ripetere tutte le transazioni, ma solo quelle incompletate.
 
@@ -145,23 +145,23 @@ Un protocollo per risolvere queste problematiche potrebbe essere il seguente:
 ==== Block Reuse
 Immaginiamo di usare una forma di metadata journaling. Supponiamo di avere una directory chiamata "foo" e che l'utente aggiunga una voce a questa directory (creando un nuovo file). Il contenuto della directory viene scritto nel log, poiché le directory sono considerate metadati. Immaginiamo ora che il blocco dati di "foo" abbia l'indirizzo "1000". In questo caso, il log conterrà informazioni come:
 
-#image("../images/journaling/data jou 6.png")
+#image("../../images/journaling/data jou 6.png")
 
 
 Supponiamo che l'utente elimini tutto dalla directory e successivamente la directory stessa, liberando il blocco "1000". Poi, l'utente crea un nuovo file chiamato "foolbar", che finisce per utilizzare lo stesso blocco "1000", che in precedenza apparteneva alla directory "foo". L'inode di "foolbar" viene scritto su disco, così come i suoi dati, ma solo l'inode viene scritto nel journal.
 
-#image("../images/journaling/data jou 7.png")
+#image("../../images/journaling/data jou 7.png")
 
 
 Se si verifica un crash e queste informazioni sono ancora nel log, si crea un grosso problema, poiché il blocco "1000" (contenente i dati di "foolbar") viene sovrascritto con i dati della directory "foo". Per evitare questo problema, il file system può utilizzare un tipo speciale di record nel journal chiamato revoke record. Quando una directory viene eliminata, come nell'esempio, viene scritto un revoke record nel journal. Durante il recovery, il sistema esaminerà prima il revoke record e non riscriverà i dati che sono stati "revocati".
 
 #figure(
-  image("../images/journaling/dj timeline.png"),
+  image("../../images/journaling/dj timeline.png"),
   caption: [Data journaling timeline.],
 )
 
 #figure(
-  image("../images/journaling/dj timeline.png"),
+  image("../../images/journaling/dj timeline.png"),
   caption: [Metadata journaling timeline.],
 )
 

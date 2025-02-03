@@ -58,7 +58,7 @@ Algoritmo TLB di base:
 + Aggiornato il TLB, l'hardware riprova l'istruzione e la traduzione si trova nel TLB quindi la referenza di memoria viene elaborata rapidamente.
 
 #figure(
-  image("../images/tlb/tlb.png"),
+  image("../../images/tlb/tlb.png"),
   caption: [Schema di funzionamento delle TLB. @geeksforgeeks2],
 )
 

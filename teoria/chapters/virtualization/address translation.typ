@@ -40,7 +40,7 @@ Quando un processo genera un riferimento alla memoria, il processore aggiunge il
 $ "indirizzo fisico" = "indirizzo virtuale" + "base" $
 
 #figure(
-  image("../images/translation/base and bound.png", width: 60%),
+  image("../../images/translation/base and bound.png", width: 60%),
   caption: [Base and bound register. Schema creato dall'autore.],
 )
 
@@ -58,7 +58,7 @@ In sintesi, la *rilocazione statica* è un processo che modifica gli indirizzi d
 Supponiamo un processo con uno spazio di indirizzi di dimensioni 4 Kb che è stato caricato all'indirizzo fisico 16 KB.
 
 #figure(
-  image("../images/translation/translation.png"),
+  image("../../images/translation/translation.png"),
   caption: [Esempio di traduzione.],
 )
 
@@ -68,7 +68,7 @@ Supponiamo un processo con uno spazio di indirizzi di dimensioni 4 Kb che è sta
 *MMU (Memory Management Unit)*: gruppo di componenti hardware che gestisce gli accessi in memoria e si occupa di tradurre gli indirizzi virtuali in indirizzi fisici.
 #figure(
   caption: [Come calcola il PA l'MMU. Schema creato dall'autore.],
-  image("../images/translation/mmu.png"),
+  image("../../images/translation/mmu.png"),
 )
 
 L'hardware dovrebbe fornire istruzioni speciali per modificare il base-and-bounds register accessibili solamente in modalità kernel.
@@ -76,19 +76,19 @@ L'hardware dovrebbe fornire istruzioni speciali per modificare il base-and-bound
 *Free list*: elenco degli intervalli della memoria fisica non ancora utilizzati (l'OS deve tenere traccia della memoria per capire se è possibile allocare i processi).
 
 #figure(
-  image("../images/translation/dynamic rel.png"),
+  image("../../images/translation/dynamic rel.png"),
   caption: [Requisiti per la dynamic relocation.],
 )
 
 La CPU deve essere in grado di generare eccezioni in situazioni in cui un processo utente tenta di accedere alla memoria illegalmente. in caso di out of bounds, il processore deve interrompere l'esecuzione del processo utente e organizzare l'esecuzione dell'handler di eccezione out-of-bounds dell'OS. L'handler dell OS decidere come reagire. Allo stesso modo, se un processo utente tenta di modificare i valori dei registri base e limiti (privilegiati), il processore deve sollevare un'eccezione e eseguire l'handler "ha tentato di eseguire un'operazione privilegiata in modalità utente".
 
 #figure(
-  image("../images/translation/os responsibilities.png"),
+  image("../../images/translation/os responsibilities.png"),
   caption: [OS responsibilities.],
 )
 
 #figure(
-  image("../images/translation/LDE Boot.png"),
+  image("../../images/translation/LDE Boot.png"),
   caption: [Limited Direct Execution (Dynamic Relocation) \@ Boot.],
 )
 
@@ -101,7 +101,7 @@ Per supportare la dynamic relocation, l'OS:
 + Quando il processo riprende l'esecuzione, deve ripristinare base e bound.
 + L'OS deve fornire gestori di eccezioni, o funzioni da chiamare, installa questi gestori all'avvio (tramite istruzioni privilegiate). Se un processo tenta di accedere a una memoria al di fuori dei suoi confini, il processore genererà un'eccezione.
 #figure(
-  image("../images/translation/lde runtime.png"),
+  image("../../images/translation/lde runtime.png"),
   caption: [Limited Direct Execution (Dynamic Relocation) \@ Runtime.],
 )
 

@@ -143,7 +143,7 @@ Avremmo dovuto impedire a $T_("c1")$ di provare a consumare perché $T_("c2")$ s
 Il problema si verifica perché il consumatore $T_("c1")$ non è stato in grado di verificare che il buffer fosse effettivamente pronto prima di chiamare `get()`.
 
 #figure(
-  image("../images/cv/trace 1.png"),
+  image("../../images/cv/trace 1.png"),
   caption: [Trace dei thread con l'if.],
 )
 *Semantica Mesa*: un segnale a un thread è solo un suggerimento che lo stato del mondo è cambiato. Il thread svegliato non ha alcuna garanzia che lo stato del mondo sarà ancora come lo desiderava.
@@ -224,7 +224,7 @@ Tutti e tre i thread rimangono inattivi.
 È evidente che è necessario inviare un segnale, ma deve essere più diretto. Un consumatore non dovrebbe svegliare altri consumatori, solo produttori, e viceversa.
 
 #figure(
-  image("../images/cv/trace 2.png"),
+  image("../../images/cv/trace 2.png"),
   caption: [Trace dei thread senza il while.],
 )
 

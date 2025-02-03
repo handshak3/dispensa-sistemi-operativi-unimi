@@ -38,7 +38,7 @@ L'offset è la distanza l'inizio del segmento e l'indirizzo logico
 ==== Esempio di traduzione di un indirizzo
 
 #figure(
-  image("../images/segmentation/segmentation ex.png", width: 60%),
+  image("../../images/segmentation/segmentation ex.png", width: 60%),
   caption: [Esercizio: Segment table.],
 )
 
@@ -94,7 +94,7 @@ L'hardware conoscere il segmento a cui si sta riferendo utilizzando:
 Divide lo spazio degli indirizzi in segmenti basati sui primi bit dell'indirizzo virtuale.
 
 #figure(
-  image("../images/segmentation/seg mem1.png", width: 70%),
+  image("../../images/segmentation/seg mem1.png", width: 70%),
   caption: [Blocco di memoria a 14 bit.],
 )
 
@@ -126,7 +126,7 @@ Oltre ad avere base-and-bounds all'hardware occorre sapere se il segmento cresce
 Per risparmiare memoria è utile condividere determinati segmenti (specialmente il codice) tra gli address space. Il *bit di protezione* è stato introdotto per questo. Il registro base utilizza questo bit per ogni segmento e indica se un programma può leggere, scrivere o eseguire un segmento. Lo stesso segmento fisico di memoria poterebbe essere mappato in più address space virtuali. L'hardware deve verificare i bit di protezione quando un processo accede a un segmento.
 
 #figure(
-  image("../images/segmentation/segment reg with growth support.png"),
+  image("../../images/segmentation/segment reg with growth support.png"),
   caption: [Segment registers with growth support.],
 )
 
@@ -155,7 +155,7 @@ Per risparmiare memoria è utile condividere determinati segmenti (specialmente 
 ]
 
 #figure(
-  image("../images/segmentation/segmentation seed 1.png"),
+  image("../../images/segmentation/segmentation seed 1.png"),
   caption: [Struttura AS e physical memory dell'esercizio. Schema creato dall'autore.],
 )
 
@@ -244,7 +244,7 @@ In un AS grande 1k abbiamo bisogno di 10 bit per indirizzare tutti i byte
 *Segment table*: struttura dati che mantiene le informazioni sui segmenti di un processo. Ogni segmento è rappresentato da un record nella tabella dei segmenti, che include l'indirizzo base del segmento, la dimensione del segmento e le flag di protezione. Supporta la creazione di un numero molto elevato di segmenti.
 
 #figure(
-  image("../images/segmentation/segmentation.png"),
+  image("../../images/segmentation/segmentation.png"),
   caption: [Schema di traduzione. @lavecchia_2020_differenza],
 )
 
@@ -263,7 +263,7 @@ Ci sono due approcci principali per gestire la frammentazione esterna:
 - *Gestione della free list*: consiste nel mantenere una lista di tutti i frammenti di memoria libera. Quando viene fatta una richiesta di allocazione di memoria, l'OS cerca il frammento di memoria più grande che è abbastanza grande per soddisfare la richiesta. Meno costosa ma non efficiente.
 
 #figure(
-  image("../images/segmentation/frammentazione.png"),
+  image("../../images/segmentation/frammentazione.png"),
   caption: [Esempio di come la memoria fisica viene trasformata con la compaction.],
 )
 #colbreak()

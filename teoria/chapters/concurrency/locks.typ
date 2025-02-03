@@ -111,7 +111,7 @@ Problemi:
 + *Problema di prestazioni*: L'uso dello spin-waiting fa sì che un thread consumi inutilmente tempo CPU controllando continuamente il flag. Questo è particolarmente inefficiente su sistemi monoprocessore, dove il thread bloccante non può avanzare fino al prossimo context switch.
 
 #figure(
-  image("../images/locks/no mutual exclusion.png"),
+  image("../../images/locks/no mutual exclusion.png"),
   caption: [Trace: No Mutual Exclusion.],
 )
 

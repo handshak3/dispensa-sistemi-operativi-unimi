@@ -44,7 +44,7 @@ Flusso di esecuzione dell'interrupt:
 2. Viene assegnato un codice ad ogni system call per essere identificata e poi chiamata.
 3. Il codice utente specifica quale chiamata occorre effettuare e l'OS verifica la validità del codice che in nel caso affermativo effettuera la determinata system call.
 
-#figure(caption: [Limited Direct Execution protocol.])[#image("../images/mechanism/limited direct execution.png")]
+#figure(caption: [Limited Direct Execution protocol.])[#image("../../images/mechanism/limited direct execution.png")]
 
 === Problema 2 (Context Switching)
 Immaginiamo di avere un processo in esecuzione sulla CPU fisica che abbia appena esaurito il lasso di tempo a disposizione. A questo punto il sistema operativo dovrebbe eseguire il codice che consente di bloccare l'esecuzione del processo corrente e schedulare il prossimo da eseguire. Il problema è che ciò non può avvenire visto che il processore è attualmente occupato. Soluzioni
@@ -73,7 +73,7 @@ Dopo un interrupt è necessario stabilire come e se cambiare processo in esecuzi
 
 Siccome no tutti gli interrupt portano a un context-switch, l'hardware salva i registri essenziali nel kernel per gestire lp'interrupt. Tipicamente salva il Program Counter (PC), Program Status Word (PSW) e lo Stack Pointer (SP). Successivamente, in caso di context-switch, l'OS salva tutti i registri per poi essere in grado di ripristinarli in seguito.
 
-#figure(caption: [Limited Direct Execution with interrupt.])[#image("../images/mechanism/limited direct execution protocol with interrupt.png")]
+#figure(caption: [Limited Direct Execution with interrupt.])[#image("../../images/mechanism/limited direct execution protocol with interrupt.png")]
 
 Per fare context-switching, l'OS salva alcuni valori dei registri per il processo in corso di esecuzione (generalmente li salva nel kernel stack) e ripristinarne altri per il processo scelto. Facendo ciò è in grado di assicurare che quando si esegue l'istruzione per ritornare dall'interrupt (*IRET*), anziché ritornare al processo che era in esecuzione, il sistema riprenderà l'esecuzione del processo schedulato. L'OS dovrà quindi salvare i registri di general purpose, program counter, kernel stack pointer del currently-running-process e successivamente ripristinare i rispettivi valori del chosen-process. Quando viene eseguita la return-from-trap il processo che andrà in esecuzione sarà quello scelto, completando così il context switch. Cambiando puntatori al kernel stack (di fatto cambiando stack), il kernel è in grado di cambiare “contesto”, passando dal processo in corso di esecuzione a quello schedulato.
 

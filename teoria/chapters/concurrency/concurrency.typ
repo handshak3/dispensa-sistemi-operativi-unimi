@@ -15,7 +15,7 @@ I thread del programma condividono lo stesso address space e quindi i dati. Ognu
 In un processo multithread, ogni thread viene eseguito in modo indipendente e ha il suo stack.
 
 #figure(
-  image("../images/concurrency/single thread and multi thread.png"),
+  image("../../images/concurrency/single thread and multi thread.png"),
   caption: [Single-Threaded And Multi-Threaded Address Spaces],
 )
 === Strutture per i thread

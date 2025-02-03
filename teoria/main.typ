@@ -26,61 +26,61 @@
 
 = Virtualizzazione
 
-#include "chapters/processes.typ"
+#include "chapters/virtualization/processes.typ"
 
-#include "chapters/process API.typ"
+#include "chapters/virtualization/process API.typ"
 
-#include "chapters/cpu mechanism.typ"
+#include "chapters/virtualization/cpu mechanism.typ"
 
-#include "chapters/cpu scheduling.typ"
+#include "chapters/virtualization/cpu scheduling.typ"
 
-#include "chapters/mlfq.typ"
+#include "chapters/virtualization/mlfq.typ"
 
-#include "chapters/address space.typ"
+#include "chapters/virtualization/address space.typ"
 
-#include "chapters/memory api.typ"
+#include "chapters/virtualization/memory api.typ"
 
-#include "chapters/address translation.typ"
+#include "chapters/virtualization/address translation.typ"
 
-#include "chapters/segmentation.typ"
+#include "chapters/virtualization/segmentation.typ"
 
-#include "chapters/paging.typ"
+#include "chapters/virtualization/paging.typ"
 
-#include "chapters/tlb.typ"
+#include "chapters/virtualization/tlb.typ"
 
-#include "chapters/small tlbs.typ"
+#include "chapters/virtualization/small tlbs.typ"
 
 
-#include "chapters/swapping mechanisms.typ"
+#include "chapters/virtualization/swapping mechanisms.typ"
 
-#include "chapters/swapping policies.typ"
+#include "chapters/virtualization/swapping policies.typ"
 
 = Concorrenza
 
-#include "chapters/concurrency.typ"
+#include "chapters/concurrency/concurrency.typ"
 
-#include "chapters/thread api.typ"
+#include "chapters/concurrency/thread api.typ"
 
-#include "chapters/locks.typ"
+#include "chapters/concurrency/locks.typ"
 
-#include "chapters/lockbased.typ"
+#include "chapters/concurrency/lockbased.typ"
 
-#include "chapters/condition variables.typ"
+#include "chapters/concurrency/condition variables.typ"
 
-#include "chapters/semaphores.typ"
+#include "chapters/concurrency/semaphores.typ"
 
 = Persistenza
 
-#include "chapters/io devices.typ"
+#include "chapters/persistency/io devices.typ"
 
-#include "chapters/hd drivers.typ"
+#include "chapters/persistency/hd drivers.typ"
 
-#include "chapters/raid.typ"
+#include "chapters/persistency/raid.typ"
 
-#include "chapters/file e dir.typ"
+#include "chapters/persistency/file e dir.typ"
 
-#include "chapters/file system.typ"
+#include "chapters/persistency/file system.typ"
 
-#include "chapters/ffs.typ"
+#include "chapters/persistency/ffs.typ"
 
-#include "chapters/journaling.typ"
+#include "chapters/persistency/journaling.typ"

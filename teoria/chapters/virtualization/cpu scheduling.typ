@@ -35,7 +35,7 @@ Tempi di consegna:
 
 #figure(
   caption: [FIFO simple example],
-  image("../images/scheduling/fifo.png", width: 70%),
+  image("../../images/scheduling/fifo.png", width: 70%),
 )
 *Vantaggi*: semplice e facile da implementare.
 
@@ -49,7 +49,7 @@ Tempo medio di consegna: $(100+110+120)/3=110$
 
 #figure(
   caption: [Convoy Effect example.],
-  image("../images/scheduling/convoy effect.png", width: 70%),
+  image("../../images/scheduling/convoy effect.png", width: 70%),
 )
 
 === Shortest Job First (SJF)
@@ -66,7 +66,7 @@ Tempi di consegna:
 
 #figure(
   caption: [SJF simple example.],
-  image("../images/scheduling/sjf.png", width: 70%),
+  image("../../images/scheduling/sjf.png", width: 70%),
 )
 
 *Problema*: i lavori non arrivano tutti inseme (negazione dell'assunzione 2). Se un workload con burst CPU corto arriva quando la CPU è occupata con un workload con CPU più lungo, il convoy effect è ancora presente.
@@ -79,7 +79,7 @@ Tempo medio di consegna: $(100 + (110-10)+(120-10))/3=103,33$
 
 #figure(
   caption: [SJF with late arrivals from B and C.],
-  image("../images/scheduling/sjf example.png", width: 75%),
+  image("../../images/scheduling/sjf example.png", width: 75%),
 )
 
 Nuova metrica: *tempo di risposta* $ T_"response"=T_"first turn"-T_"arrival" $
@@ -116,7 +116,7 @@ Tempi di risposta:
 
 #figure(
   caption: [SJF simple example.],
-  image("../images/scheduling/stcf.png", width: 70%),
+  image("../../images/scheduling/stcf.png", width: 70%),
 )
 
 *Problema*: la policy non è efficace perché i job effettuano anche operazioni di I/O e con si conosce quanto sarà effettivamente il loro tempo di consegna.
@@ -144,7 +144,7 @@ Tempi di risposta:
 
 #figure(
   caption: [RR simple example.],
-  image("../images/scheduling/rr.png", width: 80%),
+  image("../../images/scheduling/rr.png", width: 80%),
 )
 
 === Integrazione dell'I/O
@@ -152,7 +152,7 @@ Tempi di risposta:
 Un processo necessariamente ha bisogno di I/O (negazione assunzione 4).
 
 #figure(
-  image("../images/scheduling/no overlap.png", width: 80%),
+  image("../../images/scheduling/no overlap.png", width: 80%),
   caption: [RR senza overlap.],
 )
 
@@ -181,7 +181,7 @@ Parte prima un sub-job di A (10 ms), quando A fa I/O può partire B (per un quan
 
 #figure(
   caption: [Overlap allows better use of resources.],
-  image("../images/scheduling/overlap.png", width: 80%),
+  image("../../images/scheduling/overlap.png", width: 80%),
 )
 
 Tempi di consegna

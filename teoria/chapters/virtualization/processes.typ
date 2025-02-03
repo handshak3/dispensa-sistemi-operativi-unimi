@@ -36,12 +36,11 @@ La differenza principale è che i meccanismi sono i mezzi per implementare una p
 - Statistiche di utilizzo delle risorse
 
 #figure(
-  image("../images/processes/pcb2.png"),
+  image("../../images/processes/pcb2.png"),
   caption: [Contenuto della PCB. @a2025_process],
 )
 
-=== API di processo comuni:
-
+=== API di processo comuni
 - *`Create`*: Crea nuovi processi.
 - *`Destroy`*: Distrugge forzatamente i processi.
 - *`Wait`*: Attende la fine del processo.
@@ -49,7 +48,7 @@ La differenza principale è che i meccanismi sono i mezzi per implementare una p
 - *`Status`*: Restituisce informazioni sullo stato (tempo di esecuzione, ecc.).
 
 #figure(caption: [Loading from program to process.])[
-  #image("../images/processes/loading from program to process.png", width: 70%)
+  #image("../../images/processes/loading from program to process.png", width: 70%)
 ]
 
 === Creazione dei processi
@@ -64,19 +63,19 @@ Quando viene creato un processo, l'OS esegue le seguenti fasi:
 === Stati di esecuzione dei processi
 
 - *Running*: Il processo è in esecuzione su un processore.
-- *Ready*: Il processo è pronto per l’esecuzione, ma non è ancora in esecuzione.
+- *Ready*: Il processo è pronto per l'esecuzione, ma non è ancora in esecuzione.
 - *Blocked*: Il processo è sospeso in attesa di un evento, come l'input utente o l'accesso a un file.
 - *Zombie*: Il processo padre termina prima del processo figlio (il processo ha ancora un PID e un PCB). Per evitare ciò, il processo padre deve chiamare `wait()` per terminare insieme al figlio e pulire le strutture dati.
 
 #figure(caption: [Process state transaction.])[
-  #image("../images/processes/process state transaction.png", width: 70%)
+  #image("../../images/processes/process state transaction.png", width: 70%)
 ]
 
 === Task List o Process Table
 La *task list* (o *process table*) è una struttura dati che tiene traccia di tutti i processi in esecuzione nel sistema.
 
 #figure(
-  image("../images/processes/pcb.png"),
+  image("../../images/processes/pcb.png"),
   caption: [Relazione tra PCB e process table. @a2025_process],
 )
 

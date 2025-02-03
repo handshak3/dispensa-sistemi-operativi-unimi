@@ -8,7 +8,7 @@ I sistemi multiprogrammazione e time sharing sono stati sviluppati per migliorar
 
 #figure(
   caption: [Sharing memory.],
-  image("../images/as/sharing mem.png", width: 45%),
+  image("../../images/as/sharing mem.png", width: 45%),
 )
 
 === Address space moderno
@@ -32,7 +32,7 @@ L'interattività diventa importante. Un modo per implementare il time-sharing (m
 
 #figure(
   caption: [Address space example.],
-  image("../images/as/address space.png", width: 70%),
+  image("../../images/as/address space.png", width: 70%),
 )
 
 *Address space*: astrazione del programma in esecuzione fornita dall'OS (range di indirizzi di memoria sui quali il programma è in esecuzione).

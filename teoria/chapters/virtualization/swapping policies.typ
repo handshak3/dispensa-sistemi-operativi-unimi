@@ -58,7 +58,7 @@ Funzionamento dell'Algoritmo Clock:
     - Sposta la lancetta alla pagina successiva.
   - Questo processo continua finché non si trova una pagina con il bit di riferimento a 0, indicante che non è stata utilizzata di recente e può essere sostituita.
 
-#figure(image("../images/swapping/clock.png"), caption: [Clock algorithm.])
+#figure(image("../../images/swapping/clock.png"), caption: [Clock algorithm.])
 
 Per migliorare ulteriormente l'efficienza, l'algoritmo può considerare anche il bit di modifica (dirty bit), che indica se una pagina è stata modificata mentre risiedeva in memoria.
 

@@ -67,7 +67,7 @@ Svantaggi:
 Il multi-level page table rappresenta un compromesso tra tempo e spazio.
 
 #figure(
-  image("../images/tlb/small tlbs.png"),
+  image("../../images/tlb/small tlbs.png"),
   caption: [Linear (Left) And Multi-Level (Right) Page Tables.],
 )
 
@@ -213,7 +213,7 @@ Ricapitolando:
   - offset = `0x3EDB`
 
 #figure(
-  image("../images/tlb/multi TLB.png"),
+  image("../../images/tlb/multi TLB.png"),
   caption: [Schema di memoria di un Multi-Level TLB a due livelli su architettura x86-64 con page size = 16 Kb. Schema creato dall'autore.],
 )
 

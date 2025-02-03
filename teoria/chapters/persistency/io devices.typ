@@ -1,7 +1,7 @@
 == I/O devices
 
 #figure(
-  image("../images/io/architettura.png", width: 80%),
+  image("../../images/io/architettura.png", width: 80%),
   caption: [Prototipo dell'architettura di un sistema.],
 )
 
@@ -12,7 +12,7 @@ Vantaggi struttura gerarchica:
 - È possibile utilizzare bus diversi per diversi tipi di dispositivi, a seconda delle loro esigenze di prestazioni.
 
 #figure(
-  image("../images/io/architettura moderna.png", width: 80%),
+  image("../../images/io/architettura moderna.png", width: 80%),
   caption: [Architettura moderna di un sistema.],
 )
 
@@ -30,7 +30,7 @@ Un dispositivo canonico ha due componenti importanti:
 - *Struttura interna*: è specifica dell'implementazione e si occupa di implementare l'astrazione che il dispositivo presenta al sistema.
 
 #figure(
-  image("../images/io/canonical drive.png"),
+  image("../../images/io/canonical drive.png"),
   caption: [Interfaccia e struttura interna.],
 )
 L'interfaccia di un dispositivo ha tre registri:
@@ -62,11 +62,11 @@ Le interruzioni consentono quindi di sovrapporre (overlay) computazione e I/O, m
 Gli interrupt non sono sempre la miglior soluzione quando si hanno molte richieste. In questi casi, è meglio utilizzare il polling per avere un controllo migliore sul sistema e consentire ai processi di livello utente di eseguire le richieste.
 
 #figure(
-  image("../images/io/noint.png"),
+  image("../../images/io/noint.png"),
   caption: [Performance senza l'utilizzo di interrupt.],
 )
 #figure(
-  image("../images/io/int.png"),
+  image("../../images/io/int.png"),
   caption: [Performance con l'utilizzo di interrupt.],
 )
 
@@ -76,11 +76,11 @@ Quando si utilizza PIO per trasferire grande mole di dati, la CPU è sovraccaric
 
 === DMA (Direct Memory Access)
 #figure(
-  image("../images/io/nodma.png"),
+  image("../../images/io/nodma.png"),
   caption: [Performance senza l'utilizzo di DMA.],
 )
 #figure(
-  image("../images/io/dma.png"),
+  image("../../images/io/dma.png"),
   caption: [Performance con l'utilizzo di DMA.],
 )
 
@@ -102,7 +102,7 @@ I device hanno interfacce specifiche e l'OS deve essere in grado di interagire c
 *Driver*: un pezzo di software nell'OS che conosce come funziona un dispositivo.
 
 #figure(
-  image("../images/io/file system stack.png"),
+  image("../../images/io/file system stack.png"),
   caption: [File system stack.],
 )
 Rappresentazione approssimativa e approssimativa dell'organizzazione del software Linux.

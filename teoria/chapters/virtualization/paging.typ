@@ -17,8 +17,8 @@ Per la gestione dello spazio esistono due approcci:
   grid(
     columns: (1fr, 1fr),
     row-gutter: 1em,
-    [$#image("../images/paging/as w paging.png")$],
-    [$#image("../images/paging/full as w paging.png")$],
+    [$#image("../../images/paging/as w paging.png")$],
+    [$#image("../../images/paging/full as w paging.png")$],
 
     [(a)], [(b)],
   ),
@@ -44,7 +44,7 @@ Il processo divide l'indirizzo virtuale in due componenti:
 - *Offset*: identifica il byte all'interno della pagina.
 
 #figure(
-  image("../images/paging/translation w paging.png", width: 70%),
+  image("../../images/paging/translation w paging.png", width: 70%),
   caption: [The address translation process.],
 )
 
@@ -62,7 +62,7 @@ Abbiamo:
 + Verifico i calcoli:\
   $2^20 dot 4096 "KB" = 4 "GB di spazio indirizzabile"$
 #figure(
-  image("../images/paging/paging.png"),
+  image("../../images/paging/paging.png"),
   caption: [Schema di traduzione. @lavecchia_2020_differenza],
 )
 
@@ -85,7 +85,7 @@ Bit in ogni PTE:
 - *PWT, PCD, PAT e G*: determinano come funziona la memorizzazione in cache.
 
 #figure(
-  image("../images/paging/x86 pte.png"),
+  image("../../images/paging/x86 pte.png"),
   caption: [x86 PTE.],
 )
 
@@ -198,7 +198,7 @@ Tutto uguale a prima fino al punto 4.
 + Check validità della PTE:\
   $"bin"("most_significant_nibble_of_PFN") = "bin"("0x0") = 0000$ quindi il MSB = 0, la PTE è valida.
 #figure(
-  image("../images/paging/paging schema.png"),
+  image("../../images/paging/paging schema.png"),
   caption: [Come funziona la paginazione. @geeksforgeeks1],
 )
 
