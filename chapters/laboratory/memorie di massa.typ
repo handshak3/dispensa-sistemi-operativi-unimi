@@ -9,7 +9,7 @@ Ci sono due tipi principali di memoria secondaria:
 - Serial Devices: nastri magnetici.
 
 Unità di misura spaziali:
-- byte: 8 bits
+- *byte*: 8 bits
 - *kilobyte (KB)*: 1024 or $2^10$ bytes
 - *megabyte (MB)*: 1024 kilobytes or $2^20$ bytes
 - *gigabyte (GB)*: 1024 megabytes or $2^30$ bytes
@@ -60,7 +60,7 @@ $"blocchi" = 3 times 2 times 8 = 48 "blocchi"$
 
 Si considera la posizione iniziale (0,0,2) e la posizione finale (1,0,3).
 
-#align(center)[#image("../images/ex sectors.png", width: 60%)]
+#align(center)[#image("../../images/lab/ex sectors.png", width: 60%)]
 
 + Calcolo della posizione finale (1,0,3):
   $
@@ -140,8 +140,6 @@ $20000/2 = 10.000 "settori"$
 Risultati Finali:  
 - Cilindri richiesti: 23  
 - Capacità totale del disco: $tilde$280 MB  
-
-Se vuoi altri dettagli, fammi sapere! 😊
 
 ==== Esercizio
 - Supponiamo di voler leggere consecutivamente i settori di una traccia ordinati dal primo all'ultimo : sectors 1, 2,…11.
@@ -223,21 +221,21 @@ Calcoli:
   - 1 blocco indiretto doppio
 - Primo blocco: Ha indice logico 0 1. 
 
-=== Numero di puntatori in un blocco indiretto
+*Numero di puntatori in un blocco indiretto*\
 Ogni puntatore occupa 3 byte. Un blocco è di 512 byte. Quindi, il numero di puntatori in un blocco indiretto è: $512 / 3 = 170$ 
 
-=== Indirizzo logico del primo e dell'ultimo blocco con indirizzamento indiretto semplice
+*Indirizzo logico del primo e dell'ultimo blocco con indirizzamento indiretto semplice*\
 - Blocchi diretti: I primi 5 blocchi (indici: 0, 1, 2, 3, 4).
 - Primo blocco indiretto semplice: Inizia dal blocco successivo, quindi indice 5. 
 - Ultimo blocco indiretto semplice: Può indirizzare 170 blocchi. 
   - Ultimo blocco = 5 + 170 - 1 = 174 
-=== Indirizzo logico del primo e dell'ultimo blocco con indirizzamento indiretto doppio
+*Indirizzo logico del primo e dell'ultimo blocco con indirizzamento indiretto doppio*\
 - Primo blocco indiretto doppio: Inizia dopo l'ultimo blocco dell'indiretto semplice. 
   Primo blocco = 174 + 1 = 175
 - Ultimo blocco indiretto doppio: Ogni blocco di indirizzamento doppio contiene 170 puntatori e ciascun puntatore indirizza un blocco con 170 indirizzi. 
   Numero massimo di blocchi = 170 x 170 = 28900
   Ultimo blocco = 175 + 28900 - 1 = 29074 
-=== Numero di blocchi che compongono un file di 130500 byte 
+*Numero di blocchi che compongono un file di 130500 byte*\ 
 Ogni blocco è di 512 byte. 
 Numero di blocchi $130500 / 512 = 255$ 
 === In quale blocco fisico si trova un dato byte? 

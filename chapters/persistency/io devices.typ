@@ -1,7 +1,7 @@
 == I/O devices
 
 #figure(
-  image("../../images/io/architettura.png", width: 80%),
+  image("../../images/io/architettura.png", width: 70%),
   caption: [Prototipo dell'architettura di un sistema.],
 )
 
@@ -12,7 +12,7 @@ Vantaggi struttura gerarchica:
 - È possibile utilizzare bus diversi per diversi tipi di dispositivi, a seconda delle loro esigenze di prestazioni.
 
 #figure(
-  image("../../images/io/architettura moderna.png", width: 80%),
+  image("../../images/io/architettura moderna.png", width: 60%),
   caption: [Architettura moderna di un sistema.],
 )
 

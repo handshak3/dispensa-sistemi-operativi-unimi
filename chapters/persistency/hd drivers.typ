@@ -111,7 +111,7 @@ Misura la quantità di dati trasferiti per unità di tempo.
 
 *Tempo Medio di Seek*
 
-$ T_{"seek"} = 1/3 T_"seek"^"max" $
+$ T_"seek" = 1/3 T_"seek"^"max" $
 
 Dove $T_"seek"^"max"$ è il tempo massimo per muoversi tra le tracce più distanti.
 

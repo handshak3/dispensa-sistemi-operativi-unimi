@@ -1,4 +1,4 @@
-=== CPU scheduling
+== CPU scheduling
 
 *Burst*: intervallo di tempo in cui viene usata intensamente una risorsa. Il CPU Burst, ad esempio, è un'intervallo di tempo $t$ in cui si ha un elevato utilizzo del processore. Per l'I/O Burst vale la stessa definizione in termini di dispositivi di input/output. Da ciò possiamo estrapolare altre due definizioni di classi funzionali di processi, che sono:
 - *CPU Bound*: processi con CPU Burst lunghi, ad esempio compilatori, simulatori, calcolo del tempo, ecc...
@@ -194,10 +194,53 @@ Tempi di risposta
 - $T_("response")(B)= 10 + 0 = 10$
 - $T_("response AVG")= (0 + 10) / 2=5$
 
+=== Formulario
+
+*Turnaround Time*
+
+$T_"turnaround" = T_"completion" - T_"arrival" $
+
+*Turnaround Time Medio*
+
+$T_"turnaround"_"avg" = (sum_(i=1)^n T_"turnaround"_i) / n $
+
+*Response Time*
+
+$T_"response" = T_"first turn" - T_"arrival" $
+
+*Response Time Medio*
+
+$T_"response"_"avg" = (sum_(i=1)^n T_"response"_i) / n $
+
+*Waiting Time*
+
+$T_"wait" = T_"turnaround" - T_"run time" $
+
+*Wait Time Medio*
+
+$T_"wait"_"avg" = (sum_(i=1)^n T_"wait"_i) / n $
+
 === Cheatsheet
 
-- $T_"turn around"=T_"completion"-T_"arrival"$
-- $T_"response"=T_"first turn"-T_"arrival"$
-- $T_"wait"=T_"turn around"-T_"run time"$
+*First In, First Out (FIFO) / First Come, First Served (FCFS)*
+- Ordina i job in base all'ordine di arrivo.
+- *Vantaggi*: Semplice da implementare.
+- *Svantaggi*: Convoy effect, penalizza i processi brevi.
+
+*Shortest Job First (SJF)*
+- Esegue per primo il job con CPU Burst più corto.
+- *Formula del Turnaround Time Medio*:
+- *Vantaggi*: Minimizza il turnaround time medio.
+- *Svantaggi*: Se i job non arrivano simultaneamente, può causare starvation.
+
+*Shortest Time to Completion First (STCF)*
+- Simile a SJF, ma preemptive: può interrompere un processo se arriva uno più corto.
+- *Vantaggi*: Riduce il response time rispetto a SJF.
+- *Svantaggi*: Difficile da implementare, richiede conoscenza del tempo rimanente.
+
+*Round Robin (RR)*
+- Assegna la CPU per un quantum di tempo fisso e poi passa al job successivo.
+- *Vantaggi*: Equo, garantisce un buon response time per processi interattivi.
+- *Svantaggi*: Se il quantum è troppo breve, aumenta il numero di context switch.
 
 #colbreak()

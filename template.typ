@@ -44,7 +44,7 @@
   grid(
     columns: (1fr,) * calc.min(3, authors.len()),
     ..authors.map(author => align(left)[
-      *#author.name* \
+      *#author.name*\
       #author.email
     ]),
   )
@@ -55,6 +55,7 @@
 
   include "chapters/dichiarazione fonte.typ"
 
+  // Indice
   outline(
     indent: 1.2em,
     fill: box(repeat[$. space$]),
@@ -63,6 +64,7 @@
 
   body
 
+  // Bibliography
   set page(numbering: "1")
   set page(columns: 1)
 

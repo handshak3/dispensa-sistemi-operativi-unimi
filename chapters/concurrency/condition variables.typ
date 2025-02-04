@@ -332,7 +332,7 @@ Con un solo produttore e consumatore, questo approccio è più efficiente in qua
 ]
 
 === Covering Conditions
-Un produttore dorme solo se tutti i buffer sono attualmente pieni (p2). Un consumatore dorme solo se tutti i buffer sono attualmente vuoti (c2).
+Un produttore dorme solo se tutti i buffer sono attualmente pieni (p2). Un consumatore dorme solo se tutti i buffer sono attualmente vuoti (c2). Considera zero byte liberi.
 #figure(caption: [Covering Conditions example.])[
   #text(9pt)[
     ```c
@@ -362,9 +362,6 @@ Un produttore dorme solo se tutti i buffer sono attualmente pieni (p2). Un consu
     ```
   ]
 ]
-
-
-Considera zero byte liberi.
 
 + $T_a$ chiama `allocate(100)`,
 + $T_b$ che richiede meno memoria chiamando `allocate(10)`.

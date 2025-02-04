@@ -53,7 +53,6 @@
       pop     edx
       ret
 
-
   ;---------------------------------------------
   ; void exit()
   ; Exit program and restore resources

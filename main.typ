@@ -84,3 +84,13 @@
 #include "chapters/persistency/ffs.typ"
 
 #include "chapters/persistency/journaling.typ"
+
+= Laboratorio
+
+#include "chapters/laboratory/memorie di massa.typ"
+
+#include "chapters/laboratory/assembly.typ"
+
+#include "chapters/laboratory/shell.typ"
+
+#include "chapters/laboratory/simulation.typ"

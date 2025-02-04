@@ -258,7 +258,6 @@ Problemi della segmentazione:
 *Deframmentazione*: operazione complessa e dispendiosa in cui l'OS compatta la memoria fisica riarrangiando i segmenti esistenti. Per eseguirla, il sistema deve fermare tutti i processi in esecuzione, copiare i loro dati in una regione contigua di memoria, e aggiornare i segment registers affinché puntino alle nuove locazioni. Questo processo consente di ottenere un ampio spazio libero contiguo, ma è bloccante, poiché durante l'operazione nessun programma può essere eseguito.
 
 Ci sono due approcci principali per gestire la frammentazione esterna:
-
 - *Compaction*: consiste nel riorganizzare i segmenti in memoria in modo che i frammenti di memoria libera siano contigui. Questo può essere fatto fermando i processi che sono in esecuzione, copiando i loro dati in una regione di memoria contigua, e quindi aggiornando i registri di segmento dei processi per puntare alle nuove posizioni fisiche. Approccio molto costoso.
 - *Gestione della free list*: consiste nel mantenere una lista di tutti i frammenti di memoria libera. Quando viene fatta una richiesta di allocazione di memoria, l'OS cerca il frammento di memoria più grande che è abbastanza grande per soddisfare la richiesta. Meno costosa ma non efficiente.
 
