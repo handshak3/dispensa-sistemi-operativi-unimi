@@ -1,7 +1,3 @@
-Certamente! Ecco una versione più professionale e arricchita con emoji per migliorare la presentazione:
-
----
-
 # Sistemi Operativi 📚💻  
 **Corso di Sicurezza dei Sistemi e Reti Informatiche**  
 Anno Accademico 2024/2025  
