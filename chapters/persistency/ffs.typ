@@ -22,7 +22,10 @@ FFS migliora l'organizzazione dei dati su disco suddividendolo in *cylinder grou
 
 *Cilindro*: insieme di tracce alla stessa distanza dal centro del disco su più superfici, e raggruppare più cilindri riduce la frammentazione e migliora le prestazioni minimizzando gli spostamenti della testina.
 
-#figure(image("../../images/ffs/cilindro.png"), caption: [Struttura del cilindro.])
+#figure(
+  image("../../images/ffs/cilindro.png"),
+  caption: [Struttura del cilindro.],
+)
 
 Nei file system moderni, come ext2, ext3 ed ext4, questa struttura è implementata come *block groups*, poiché i dischi moderni astraggono la geometria fisica esponendo solo uno spazio logico di blocchi. Tuttavia, il principio rimane lo stesso: collocare file correlati nello stesso gruppo per ridurre i tempi di seek.
 

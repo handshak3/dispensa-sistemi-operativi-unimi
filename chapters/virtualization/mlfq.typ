@@ -6,7 +6,10 @@ Obbiettivi:
 
 MLFQ ha un numero di code distinte e ciascuna di queste ha un livello di priorità (priorità usata per stabilire il job da eseguire in un determinato momento). Quando più lavori si trovano nella stessa coda viene applicato il RR.
 
-#figure(image("../../images/mlfq/mlfq.png", width: 60%), caption: [Esempio MLFQ.])
+#figure(
+  image("../../images/mlfq/mlfq.png", width: 60%),
+  caption: [Esempio MLFQ.],
+)
 
 MLFQ assegna una priorità variabile (in base al comportamento del processo).
 - Se un job effettua ripetutamente I/O manterrà la sua priorità (per renderlo interattivo).

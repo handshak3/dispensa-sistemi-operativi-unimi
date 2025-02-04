@@ -198,27 +198,27 @@ Tempi di risposta
 
 *Turnaround Time*
 
-$T_"turnaround" = T_"completion" - T_"arrival" $
+$T_"turnaround" = T_"completion" - T_"arrival"$
 
 *Turnaround Time Medio*
 
-$T_"turnaround"_"avg" = (sum_(i=1)^n T_"turnaround"_i) / n $
+$T_"turnaround"_"avg" = (sum_(i=1)^n T_"turnaround"_i) / n$
 
 *Response Time*
 
-$T_"response" = T_"first turn" - T_"arrival" $
+$T_"response" = T_"first turn" - T_"arrival"$
 
 *Response Time Medio*
 
-$T_"response"_"avg" = (sum_(i=1)^n T_"response"_i) / n $
+$T_"response"_"avg" = (sum_(i=1)^n T_"response"_i) / n$
 
 *Waiting Time*
 
-$T_"wait" = T_"turnaround" - T_"run time" $
+$T_"wait" = T_"turnaround" - T_"run time"$
 
 *Wait Time Medio*
 
-$T_"wait"_"avg" = (sum_(i=1)^n T_"wait"_i) / n $
+$T_"wait"_"avg" = (sum_(i=1)^n T_"wait"_i) / n$
 
 === Cheatsheet
 

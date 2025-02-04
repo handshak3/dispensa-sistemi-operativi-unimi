@@ -1,10 +1,10 @@
 == Memorie di massa
 
-Ci sono due tipi principali di memoria secondaria: 
+Ci sono due tipi principali di memoria secondaria:
 - *Direct Access Storage Devices (DASDs)*
   - Dischi magnetici:
     - Hard Disks
-    - Floppy Disks 
+    - Floppy Disks
   - Dischi ottici: CD-ROM
 - Serial Devices: nastri magnetici.
 
@@ -64,18 +64,18 @@ Si considera la posizione iniziale (0,0,2) e la posizione finale (1,0,3).
 
 + Calcolo della posizione finale (1,0,3):
   $
-  1 times (2 times 8) + 0 times 8 + 3 times 1\
-  = 1 times 16 + 0 +3\
-  = 16 + 3 = 19\
+    1 times (2 times 8) + 0 times 8 + 3 times 1\
+    = 1 times 16 + 0 +3\
+    = 16 + 3 = 19\
   $
 
 + Calcolo della posizione iniziale (0,0,2)
   $
-  0 times (2 times 8)+0 times 8+2 times 1\
-  =0 + 0 + 2 = 2
+    0 times (2 times 8)+0 times 8+2 times 1\
+    =0 + 0 + 2 = 2
   $
 
-+ Differenza tra le due posizioni: 
++ Differenza tra le due posizioni:
   $ 19 - 2 = 17 $
 
 === Tempo di lettura/scrittura
@@ -109,45 +109,45 @@ Salvare un file di 20000 record su un disco con le seguenti caratteristiche:
 + Quanti cilindri sono richiesti se ogni record occupa 256 bytes?
 + Qual è la capacità totale del disco?
 
-Calcolo dei settori necessari:  
+Calcolo dei settori necessari:
 Ogni settore può contenere:
-$512/256 = 2 "record per settore"$
-Quindi, il numero totale di settori necessari per memorizzare 20.000 record è: 
-$20000/2 = 10.000 "settori"$
+$512 / 256 = 2 "record per settore"$
+Quindi, il numero totale di settori necessari per memorizzare 20.000 record è:
+$20000 / 2 = 10.000 "settori"$
 
 + Calcolo dei cilindri richiesti:
 
-  Ogni cilindro ha:  
+  Ogni cilindro ha:
   $40 times 11 = 440 "settori per cilindro"$
 
-  Quindi, il numero di cilindri necessari è:  
+  Quindi, il numero di cilindri necessari è:
 
-  $10000/440 = tilde 22.73$
+  $10000 / 440 = tilde 22.73$
 
   Poiché un cilindro parziale non è possibile, servono 23 cilindri.
 
 + Capacità totale del disco
 
-  Calcoliamo la capacità complessiva del disco considerando tutti i cilindri:  
+  Calcoliamo la capacità complessiva del disco considerando tutti i cilindri:
 
   $1331 times 440 times 512 = 299.499.520 "bytes"$
 
-  Convertiamolo in Gigabyte (GB):  
+  Convertiamolo in Gigabyte (GB):
 
-  $299.499.520/(1024 times 1024 times 1024)} = tilde 0.28 "GB"$
+  $299.499.520 / (1024 times 1024 times 1024)} = tilde 0.28 "GB"$
   Capacità totale del disco ≈ 0.28 GB (circa 280 MB).
 
-Risultati Finali:  
-- Cilindri richiesti: 23  
-- Capacità totale del disco: $tilde$280 MB  
+Risultati Finali:
+- Cilindri richiesti: 23
+- Capacità totale del disco: $tilde$280 MB
 
 ==== Esercizio
 - Supponiamo di voler leggere consecutivamente i settori di una traccia ordinati dal primo all'ultimo : sectors 1, 2,…11.
 - Supponiamo che due settori consecutivi non possano essere letti in assenza di interlacciamento.
 
 Quante rivoluzioni sono necessarie per leggere l'intero disco?
-- Senza interlacciamento 
-- Con interlacciamento 3:1 
+- Senza interlacciamento
+- Con interlacciamento 3:1
 Nota: Al giorno d'oggi molti controllori dei dischi sono veloci e quindi l'interlacciamento non è più così commune.
 
 === Tempo di ricerca (seek Time)
@@ -171,16 +171,16 @@ Latenza è il tempo richiesto necessario perché il disco ruoti in modo che il s
 Note:
 - Latenza minima = 0.
 - Latenza massima = tempo per una intera rivoluzione del disco.
-- $"Latenza media"(r) = (min + max) / 2 = max / 2 = "tempo" 1/2 "rivoluzione del disco"$
+- $"Latenza media"(r) = (min + max) / 2 = max / 2 = "tempo" 1 / 2 "rivoluzione del disco"$
 
 Circa 5000 - 7000 RPM, 12/8 ms per rivoluzione RPM/60 = RPS
 Latenza Massima = $1/"RPS" = "sec"/"rotazione"$
 Latenza Media = $("Latenza Massima") / 2$
 
 === Tempo di trasferimento
-Il tempo di trasferimento è il tempo richiesto perché una testina passi attraverso un blocco.  
+Il tempo di trasferimento è il tempo richiesto perché una testina passi attraverso un blocco.
 
-$"Tempo di trasferimento" = "settori da trasferire"/"settori in una traccia" times "tempo di rotazione"$
+$"Tempo di trasferimento" = "settori da trasferire" / "settori in una traccia" times "tempo di rotazione"$
 
 Il tempo di trasferimento dipende unicamente dalla velocità a cui ruotano i piatti e dal numero di settori che deve essere trasferito.
 
@@ -188,7 +188,7 @@ St = numero totale settori per traccia.
 
 È possibile calcolare il tempo di trasferimento per n settori contigui sulla stessa traccia come segue:
 
-$"Tempo trasferimento" = (n/"St")times(1000/R)$
+$"Tempo trasferimento" = (n / "St")times(1000/R)$
 
 ==== Esercizio latenza, capacità e tempo di lettura
 
@@ -219,49 +219,49 @@ Calcoli:
   - 5 blocchi diretti
   - 1 blocco indiretto semplice
   - 1 blocco indiretto doppio
-- Primo blocco: Ha indice logico 0 1. 
+- Primo blocco: Ha indice logico 0 1.
 
 *Numero di puntatori in un blocco indiretto*\
-Ogni puntatore occupa 3 byte. Un blocco è di 512 byte. Quindi, il numero di puntatori in un blocco indiretto è: $512 / 3 = 170$ 
+Ogni puntatore occupa 3 byte. Un blocco è di 512 byte. Quindi, il numero di puntatori in un blocco indiretto è: $512 / 3 = 170$
 
 *Indirizzo logico del primo e dell'ultimo blocco con indirizzamento indiretto semplice*\
 - Blocchi diretti: I primi 5 blocchi (indici: 0, 1, 2, 3, 4).
-- Primo blocco indiretto semplice: Inizia dal blocco successivo, quindi indice 5. 
-- Ultimo blocco indiretto semplice: Può indirizzare 170 blocchi. 
-  - Ultimo blocco = 5 + 170 - 1 = 174 
+- Primo blocco indiretto semplice: Inizia dal blocco successivo, quindi indice 5.
+- Ultimo blocco indiretto semplice: Può indirizzare 170 blocchi.
+  - Ultimo blocco = 5 + 170 - 1 = 174
 *Indirizzo logico del primo e dell'ultimo blocco con indirizzamento indiretto doppio*\
-- Primo blocco indiretto doppio: Inizia dopo l'ultimo blocco dell'indiretto semplice. 
+- Primo blocco indiretto doppio: Inizia dopo l'ultimo blocco dell'indiretto semplice.
   Primo blocco = 174 + 1 = 175
-- Ultimo blocco indiretto doppio: Ogni blocco di indirizzamento doppio contiene 170 puntatori e ciascun puntatore indirizza un blocco con 170 indirizzi. 
+- Ultimo blocco indiretto doppio: Ogni blocco di indirizzamento doppio contiene 170 puntatori e ciascun puntatore indirizza un blocco con 170 indirizzi.
   Numero massimo di blocchi = 170 x 170 = 28900
-  Ultimo blocco = 175 + 28900 - 1 = 29074 
-*Numero di blocchi che compongono un file di 130500 byte*\ 
-Ogni blocco è di 512 byte. 
-Numero di blocchi $130500 / 512 = 255$ 
-=== In quale blocco fisico si trova un dato byte? 
-Tabella guida dei puntatori: 
+  Ultimo blocco = 175 + 28900 - 1 = 29074
+*Numero di blocchi che compongono un file di 130500 byte*\
+Ogni blocco è di 512 byte.
+Numero di blocchi $130500 / 512 = 255$
+=== In quale blocco fisico si trova un dato byte?
+Tabella guida dei puntatori:
 
 #table(
-  columns: (1fr, )*8,
-  [Puntatore], [0 (D)], [1 (D)], [2 (D)], [3 (D)], [4 (D)], [5 (IS)], [6 (ID)], [Valore], [100], [101], [102], [120], [121], [300], [301]   
+  columns: (1fr,) * 8,
+  [Puntatore], [0 (D)], [1 (D)], [2 (D)], [3 (D)], [4 (D)], [5 (IS)], [6 (ID)], [Valore], [100], [101], [102], [120], [121], [300], [301]
 )
 Tabella guida dei contenuti dei puntatori parziali:\
-Blocco 300: 
+Blocco 300:
 #table(
-  columns: (1fr, )*7,
-  [Indice elemento], [0], [1], [2], [3], [4], [5], [Valore], [301], [305], [306], [307], [308], [309]   
+  columns: (1fr,) * 7,
+  [Indice elemento], [0], [1], [2], [3], [4], [5], [Valore], [301], [305], [306], [307], [308], [309]
 )
 
-Blocco 301: 
+Blocco 301:
 #table(
-  columns: (1fr, )*7,
-  [Indice elemento], [0], [1], [2], [3], [4], [5], [Valore], [800], [801], [802], [850], [851], [852]   
+  columns: (1fr,) * 7,
+  [Indice elemento], [0], [1], [2], [3], [4], [5], [Valore], [800], [801], [802], [850], [851], [852]
 )
 
 Blocco 800:
 #table(
-  columns: (1fr, )*7,
-  [Indice elemento], [0], [1], [2], [3], [4], [5], [Valore], [1200], [1201], [1202], [1203], [1204], [1205]   
+  columns: (1fr,) * 7,
+  [Indice elemento], [0], [1], [2], [3], [4], [5], [Valore], [1200], [1201], [1202], [1203], [1204], [1205]
 )
 
 Byte 1980:\

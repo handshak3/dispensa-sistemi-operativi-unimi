@@ -4,7 +4,9 @@
 
 = Cheat Sheet Assembly x86
 
-== Registri Principali
+== Registri e istruzioni
+
+=== Registri principali
 
 #table(
   columns: 2,
@@ -17,10 +19,10 @@
   `EDI`, [Indice destinazione per operazioni su stringhe],
   `EBP`, [Puntatore di base per lo stack frame],
   `ESP`, [Puntatore dello stack],
-  `EIP`, [Puntatore dell'istruzione]
+  `EIP`, [Puntatore dell'istruzione],
 )
 
-== Istruzioni di Movimento Dati
+=== Istruzioni di Movimento Dati
 
 #table(
   columns: 3,
@@ -28,10 +30,10 @@
   `MOV`, [Copia dati da sorgente a destinazione], `MOV EAX, EBX`,
   `PUSH`, [Inserisce un valore nello stack], `PUSH EAX`,
   `POP`, [Estrae un valore dallo stack], `POP EAX`,
-  `XCHG`, [Scambia i valori tra due operandi], `XCHG EAX, EBX`
+  `XCHG`, [Scambia i valori tra due operandi], `XCHG EAX, EBX`,
 )
 
-== Istruzioni Aritmetiche
+=== Istruzioni Aritmetiche
 
 #table(
   columns: 3,
@@ -43,10 +45,10 @@
   `DIV`, [Divide senza segno], `DIV EBX`,
   `IDIV`, [Divide con segno], `IDIV EBX`,
   `INC`, [Incrementa di 1], `INC EAX`,
-  `DEC`, [Decrementa di 1], `DEC EAX`
+  `DEC`, [Decrementa di 1], `DEC EAX`,
 )
 
-== Istruzioni Logiche
+=== Istruzioni Logiche
 
 #table(
   columns: 3,
@@ -57,10 +59,10 @@
   `NOT`, [Complemento a uno], `NOT EAX`,
   `SHL`, [Shift a sinistra], `SHL EAX, 1`,
   `SHR`, [Shift a destra], `SHR EAX, 1`,
-  `CMP`, [Confronta due operandi], `CMP EAX, EBX`
+  `CMP`, [Confronta due operandi], `CMP EAX, EBX`,
 )
 
-== Istruzioni di Controllo di Flusso
+=== Istruzioni di Controllo di Flusso
 
 #table(
   columns: 3,
@@ -73,10 +75,10 @@
   `JGE`, [Salta se maggiore o uguale (SF=OF)], `JGE label`,
   `JLE`, [Salta se minore o uguale (ZF=1 o SF≠OF)], `JLE label`,
   `CALL`, [Chiama una subroutine], `CALL subroutine`,
-  `RET`, [Ritorna da una subroutine], `RET`
+  `RET`, [Ritorna da una subroutine], `RET`,
 )
 
-== Direttive comuni
+=== Direttive comuni
 
 #table(
   columns: 3,
@@ -84,7 +86,7 @@
   `.data`, [Sezione dati], [],
   `.bss`, [Sezione dati non inizializzati], [],
   `.text`, [Sezione codice], [],
-  `.global`, [Definisce simboli globali], `.global _start`
+  `.global`, [Definisce simboli globali], `.global _start`,
 )
 
 == System Call
@@ -96,7 +98,7 @@
   [3], [sys_read], [unsigned int], [char \*], [size_t],
   [4], [sys_write], [unsigned int], [const char \*], [size_t],
   [5], [sys_open], [const char \*], [int], [int],
-  [6], [sys_close], [unsigned int], [-], [-]
+  [6], [sys_close], [unsigned int], [-], [-],
 )
 
 #align(center)[

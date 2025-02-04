@@ -105,27 +105,27 @@ Dove:
 
 *Throughput*
 
-$ "Throughput" = "Size"_"Transfer"/T_"I/O" $
+$ "Throughput" = "Size"_"Transfer" / T_"I/O" $
 
 Misura la quantità di dati trasferiti per unità di tempo.
 
 *Tempo Medio di Seek*
 
-$ T_"seek" = 1/3 T_"seek"^"max" $
+$ T_"seek" = 1 / 3 T_"seek"^"max" $
 
 Dove $T_"seek"^"max"$ è il tempo massimo per muoversi tra le tracce più distanti.
 
 *Tempo di Rotazione Medio*
 
-$ T_"rotation" = 1/2 T_"rotation"^"max" $
+$ T_"rotation" = 1 / 2 T_"rotation"^"max" $
 
 Dove il tempo di rotazione massimo è dato da:
 
-$ T_"rotation"^"max" = 60000/"RPM" "(in ms)" $
+$ T_"rotation"^"max" = 60000 / "RPM" "(in ms)" $
 
 *Tempo di Trasferimento*
 
-$ T_"transfer" = "Size"_"Transfer"/"Transfer Rate" $
+$ T_"transfer" = "Size"_"Transfer" / "Transfer Rate" $
 
 Dove:
 - $"Size"_"Transfer"$ è la dimensione del trasferimento dei dati.
@@ -133,7 +133,9 @@ Dove:
 
 Velocità di Trasferimento Massima
 
-$ "Max Transfer Rate" =\ ("Settori per traccia" times "Dimensione settore" times "RPM") /  60 $
+$
+  "Max Transfer Rate" =\ ("Settori per traccia" times "Dimensione settore" times "RPM") / 60
+$
 
 Dove:
 - "Settori per traccia" è il numero di settori per traccia.
@@ -142,13 +144,13 @@ Dove:
 
 *Distanza Media di Seek*
 
-$ 1/(N^2) sum_(x=0)^N sum_(y=0)^N |x - y| = N/3 $
+$ 1 / (N^2) sum_(x=0)^N sum_(y=0)^N |x - y| = N / 3 $
 
 Dove $N$ è il numero totale di tracce.
 
 *Rateo di I/O*
 
-$ R_"I/O" = "Size"_"Transfer"/T_"I/O" $
+$ R_"I/O" = "Size"_"Transfer" / T_"I/O" $
 
 Indica la velocità con cui le operazioni di I/O vengono eseguite.
 

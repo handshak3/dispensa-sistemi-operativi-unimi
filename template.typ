@@ -17,6 +17,14 @@
   set text(font: "Libertinus Serif", lang: "it", size: 10pt)
   set par(justify: true, leading: 1.1mm)
   show raw: set text(size: 6pt)
+  show table.cell.where(y: 0): strong
+  set table(
+    stroke: .05em,
+    fill: (..args) => {
+      let (col, row) = args.pos()
+      if calc.even(row) { rgb("#ddd") } else { white }
+    },
+  )
 
   // Outline
   show outline.entry.where(level: 1): it => {
@@ -48,7 +56,7 @@
       #author.email
     ]),
   )
-  
+
   // Abstract
   heading(outlined: false, numbering: none, text(0.85em, smallcaps[Abstract]))
   abstract

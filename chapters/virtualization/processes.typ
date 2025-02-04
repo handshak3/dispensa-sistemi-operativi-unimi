@@ -48,7 +48,10 @@ La differenza principale è che i meccanismi sono i mezzi per implementare una p
 - *`Status`*: Restituisce informazioni sullo stato (tempo di esecuzione, ecc.).
 
 #figure(caption: [Loading from program to process.])[
-  #image("../../images/processes/loading from program to process.png", width: 70%)
+  #image(
+    "../../images/processes/loading from program to process.png",
+    width: 70%,
+  )
 ]
 
 === Creazione dei processi

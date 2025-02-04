@@ -85,6 +85,9 @@
 
 #include "chapters/persistency/journaling.typ"
 
+= Esercizi
+#include "chapters/exercises.typ"
+
 = Laboratorio
 
 #include "chapters/laboratory/memorie di massa.typ"
