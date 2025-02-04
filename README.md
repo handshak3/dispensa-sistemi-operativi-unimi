@@ -9,7 +9,7 @@ Anno Accademico 2024/2025
 ---
 
 ### Introduzione 🌟  
-Questa dispensa è stata realizzata per supportare lo studio e la preparazione al corso di **Sicurezza dei Sistemi e Reti Informatiche** presso l'Università degli Studi di Milano. Il materiale si basa principalmente sul libro **"Operating Systems: Three Easy Pieces"** scritto da Remzi H. Arpaci-Dusseau e Andrea C. Arpaci-Dusseau, pubblicato da Arpaci-Dusseau Books, LLC nel 2018 [1].  
+Questa dispensa è stata realizzata per supportare lo studio e la preparazione al corso di **Sicurezza dei Sistemi e Reti Informatiche** presso l'Università degli Studi di Milano. Il materiale si basa principalmente sul libro **"Operating Systems: Three Easy Pieces"** scritto da Remzi H. Arpaci-Dusseau e Andrea C. Arpaci-Dusseau, pubblicato da Arpaci-Dusseau Books, LLC nel 2018.  
 
 Il contenuto include teorie, esempi pratici e simulazioni d'esame per facilitare la comprensione dei concetti fondamentali sui sistemi operativi e la loro sicurezza.  
 
@@ -54,8 +54,7 @@ Tutti i diritti sul contenuto originale appartengono agli autori del libro di ri
 ---
 
 ## Come Contribuire 🤝  
-Se riscontrate errori o avete suggerimenti per migliorare il contenuto, siete invitati ad aprire una **Issue** o una **Pull Request** nel repository GitHub dedicato:  
-👉 [Repository GitHub](https://github.com/handshak3/dispensa-sistemi-operativi-unimi)  
+Se riscontrate errori o avete suggerimenti per migliorare il contenuto, siete invitati ad aprire una **Issue** o una **Pull Request** nel repository GitHub.
 
 Il vostro contributo ci aiuterà a mantenere il materiale aggiornato e di alta qualità.  
 
@@ -63,8 +62,3 @@ Il vostro contributo ci aiuterà a mantenere il materiale aggiornato e di alta q
 
 ## Supportami 🍺
 Se la dispensa ti è stata utile, puoi offrirmi una birra! Puoi farlo su [PayPal](https://www.paypal.me/omgstudiowav).
-
----
-
-Grazie per l'attenzione! 🙏  
-Se hai domande o feedback, non esitare a contattarmi.
