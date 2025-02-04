@@ -2,7 +2,7 @@
 
 Questa dispensa si basa principalmente sul libro *Operating Systems: Three Easy Pieces*, scritto da Remzi H. Arpaci-Dusseau e Andrea C. Arpaci-Dusseau, pubblicato da Arpaci-Dusseau Books, LLC nel 2018 @ArpaciDusseau23-Book. Il materiale presentato in questa dispensa, inclusi frammenti di testo, diagrammi, grafici e tabelle, è tratto dal suddetto libro, salvo diversa indicazione.
 
-Tutti i diritti sul contenuto originale di questa dispensa sono riservati agli autori. L’utilizzo del materiale in questa dispensa è esclusivamente a scopo educativo, per gli studenti del corso _Sicurezza dei sistemi e delle reti informatiche_ presso l'Università degli Studi di Milano. La dispensa non è destinata a scopi commerciali e non può essere riprodotta o distribuita senza il permesso esplicito degli autori.
+Tutti i diritti sul contenuto originale di questa dispensa sono riservati agli autori. L'utilizzo del materiale in questa dispensa è esclusivamente a scopo educativo, per gli studenti del corso _Sicurezza dei sistemi e delle reti informatiche_ presso l'Università degli Studi di Milano. La dispensa non è destinata a scopi commerciali e non può essere riprodotta o distribuita senza il permesso esplicito degli autori.
 
 Per maggiori informazioni sul libro, si consiglia di consultare la versione ufficiale del testo:
 
@@ -48,7 +48,7 @@ Questo documento approfondisce anche gli argomenti trattati negli esami del Prof
 - *Esercizi pratici e simulazioni d'esame*.
 
 Le domande degli esami si ispirano fortemente a quelle presenti in questo documento:
-#link("http://twiki.di.uniroma1.it/twiki/view/Sistemioperativi1")[Sistemi Operativi 1 - Twiki UniRoma1] all'indirizzo: "http://twiki.di.uniroma1.it/twiki/view/Sistemioperativi1".
+#link("http://twiki.di.uniroma1.it/pub/Sistemioperativi1/WebHome/dispensa_so.pdf")[Sistemi Operativi 1 - Twiki UniRoma1] all'indirizzo: "http://twiki.di.uniroma1.it/twiki/view/Sistemioperativi1".
 
 Il materiale è destinato esclusivamente agli studenti dell'Università degli Studi di Milano iscritti al corso di *Sicurezza dei Sistemi e delle Reti Informatiche*.
 
