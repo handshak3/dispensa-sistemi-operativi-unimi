@@ -625,14 +625,14 @@ Trace degli Indirizzi Virtuali
 + Da quanti bit sono costituiti gli indirizzi logici e gli indirizzi fisici?
 
   *Indirizzi logici*
-    - Numero di pagine: $64/4 = 16$ → Richiede 4 bit per il numero di pagina (VPN).
-    - Offset all'interno della pagina: 2 bit ($log_2(4) = 2$).
-    - Totale: 4 + 2 = 6 bit.
+  - Numero di pagine: $64/4 = 16$ → Richiede 4 bit per il numero di pagina (VPN).
+  - Offset all'interno della pagina: 2 bit ($log_2(4) = 2$).
+  - Totale: 4 + 2 = 6 bit.
 
   *Indirizzi fisici*
-    - Numero di frame: $256/4 = 64$ → Richiede 6 bit per il numero di frame (PFN).
-    - Offset all'interno del frame: 2 bit} ($log_2(4) = 2$).
-    - Totale: 6 + 2 = 8 bit.
+  - Numero di frame: $256/4 = 64$ → Richiede 6 bit per il numero di frame (PFN).
+  - Offset all'interno del frame: 2 bit} ($log_2(4) = 2$).
+  - Totale: 6 + 2 = 8 bit.
 
 + Da quanti bit sono costituiti i numeri di pagina (VPN)?
 
@@ -766,7 +766,7 @@ Si traducono i seguenti indirizzi logici: 0, 2, 4, 9, 19, 11, 22, 32, 30, 26, 23
 
 Il Valid bit si trova in posizione 14.
 
-- Numero pagine virtuali: $(32 K)/(4 K) = 8$ 
+- Numero pagine virtuali: $(32 K)/(4 K) = 8$
 - Numero frame fisici: $(64 K)/(4K) = 16$
 - Suddivisione del VA:
   - sizeOf(VPN) = $log_2(8) = 3$ bit.
@@ -783,7 +783,7 @@ Il Valid bit si trova in posizione 14.
   [4], [`0x00000000`],
   [5], [`0x00000000`],
   [6], [`0x80000005`],
-  [7], [`0x00000000`]
+  [7], [`0x00000000`],
 )
 
 *VA: 9385*
@@ -836,17 +836,17 @@ Il Valid bit si trova in posizione 14.
 
 3. *Traduzione*
   - Estrarre PDIndex (primi 4 bit di VPN) per trovare la PDE:
-      ```
-      PDEAddr = PageDirBase + (PDIndex * sizeof(PDE))
-      ```
+    ```
+    PDEAddr = PageDirBase + (PDIndex * sizeof(PDE))
+    ```
   - Se PDE è valida, ottenere il PFN della Page Table e trovare la PTE:
-      ```
-      PTEAddr = (PDE.PFN << SHIFT) + (PTIndex * sizeof(PTE))
-      ```
+    ```
+    PTEAddr = (PDE.PFN << SHIFT) + (PTIndex * sizeof(PTE))
+    ```
   - Se PTE è valida, estrarre il PFN della pagina fisica e calcolare l'indirizzo fisico:
-      ```
-      PhysAddr = (PTE.PFN << SHIFT) + offset
-      ```
+    ```
+    PhysAddr = (PTE.PFN << SHIFT) + offset
+    ```
 *Esempio di Traduzione*
 - Indirizzo virtuale: `0x3F80`\ In binario: `11 1111 1000 0000`
 - PDIndex = `1111` che corrisponde alla Page Table con PFN `101`
@@ -887,17 +887,17 @@ Ricapitolando:
 - offset = 14 bit
 
 *Traduzione*:\
-  `0x12A7FEDB` #sub[16] =\ `0001 0010 1010 0111 1111 1110 1101 1011`#sub[2]
+`0x12A7FEDB` #sub[16] =\ `0001 0010 1010 0111 1111 1110 1101 1011`#sub[2]
 
-  Ottengo che:
-  - PDIndex = `1001`
-  - PTIndex = `010 1001 1111`
-  - offset = `11 1110 1101 1011`
+Ottengo che:
+- PDIndex = `1001`
+- PTIndex = `010 1001 1111`
+- offset = `11 1110 1101 1011`
 
-  Tradotti in esadecimale:
-  - PDIndex = `0x09`
-  - PTIndex = `0x029F`
-  - offset = `0x3EDB`
+Tradotti in esadecimale:
+- PDIndex = `0x09`
+- PTIndex = `0x029F`
+- offset = `0x3EDB`
 
 #figure(
   image("../images/tlb/multi TLB.png"),
@@ -905,32 +905,28 @@ Ricapitolando:
 )
 
 === Esercizio 3
-
 *Dati*
 - Seed: $0$.
-- Dimensione della Pagina: 32 byte.
-- Spazio di Indirizzamento Virtuale (VAS): 1024 byte = $2^10$.
-- Memoria Fisica: 128 pagine.
-- Pagine Allocate: $64$.
+- Dimensione della pagina: 32 byte cioè $2^5$
+- Spazio degli indirizzi virtuali: 1024 pagine
+- Memoria fisica: 128 pagine
+- Bit per indirizzo virtuale: 15
+  - 5 bit per l'offset
+  - 10 bit per il VPN
+    - 5 bit per il PDIndex
+    - 5 bit per il PTIndex
+- Bit per indirizzo fisico: 12
+  - 5 bit per l'offset
+  - 7 bit per il PFN.
 - Page Directory Base Register (PDBR): 108 decimale.
+  #table(
+    columns: 2,
+    [n° byte],
+    [`0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15`\ `16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31`],
 
-*Struttura degli Indirizzi*
-1. Indirizzo Virtuale: 15 bit:
-  - 5 bit per l'offset all'interno della pagina.
-  - 10 bit per il Virtual Page Number (VPN).
-
-2. Indirizzo Fisico: 12 bit:
-  - 5 bit per l'offset all'interno del frame.
-  - 7 bit per il Physical Frame Number (PFN).
-
-*Sistema di Paginazione*
-- Page Directory:
-  - I primi 5 bit dell'indirizzo virtuale indicizzano una voce nella page directory.
-  - Ogni entry della page directory (PDE), se valida, punta a una pagina della page table.
-
-- Page Table:
-  - Ogni pagina della page table contiene 32 PTE.
-  - Ogni PTE, se valida, contiene il PFN corrispondente alla pagina virtuale specificata.
+    [page 108],
+    [`83 fe e0 da 7f d4 7f eb be 9e d5 ad e4 ac 90 d6`\ `92 d8 c1 f8 9f e1 ed e9 a1 e8 c7 c2 a9 d1 db ff`],
+  )
 
 *Trace degli indirizzi virtuali*
 
@@ -942,7 +938,7 @@ Ricapitolando:
   [24],
   [8],
   [28],
-  [VALID],
+  [#text(size: 6pt)[VALID]],
   [`0x08`],
 
   [`0x3da8`],
@@ -950,7 +946,7 @@ Ricapitolando:
   [15],
   [13],
   [8],
-  [SEGMENTATION VIOLATION],
+  [#text(size: 6pt)[INVALID PTE]],
   [-],
 
   [`0x17f5`],
@@ -958,7 +954,7 @@ Ricapitolando:
   [5],
   [31],
   [21],
-  [VALID],
+  [#text(size: 6pt)[VALID]],
   [`0x1c`],
 
   [`0x7f6c`],
@@ -966,7 +962,7 @@ Ricapitolando:
   [31],
   [27],
   [12],
-  [INVALID PTE],
+  [#text(size: 6pt)[INVALID PTE]],
   [-],
 
   [`0x0bad`],
@@ -974,32 +970,36 @@ Ricapitolando:
   [2],
   [29],
   [13],
-  [INVALID PTE],
+  [#text(size: 6pt)[INVALID PTE]],
   [-],
 )
 
 *VA: `0x611c`*
-
 + Decomposizione dell'Indirizzo Virtuale:
   - Binario: $11000 \, 01000 \, 11100$.
-  - PDE Index: $11000$ (decimale: 24).
-  - VPN: $01000$ (decimale: 8).
-  - Offset: $11100$ (decimale: 28).
+    - PDIndex: $11000$ (decimale: 24).
+    - PTIndex: $01000$ (decimale: 8).
+    - Offset: $11100$ (decimale: 28).
 
 + Consultazione della Page Directory:
-  - PDBR → Page $108$: Entry $24$: $a_1$.
-  - $a_1 = 1 \, 0100001$: Valid bit = $1$, PFN = $33$.
+  - 24° byte del PDBR = `0xa1`.
+  - `0xa1` = $1 \, 0100001$: Valid bit = $1$, PFN = $33$.
 
 + Consultazione della Page Table:
-  - Page $33$: Entry $8$: $b_5$.
-  - $b_5 = 1 \, 0110101$: Valid bit = $1$, PFN = $53$.
+  #table(
+    columns: 2,
+    [n° byte],
+    [`0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15`\ `16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31`],
 
-+ Calcolo dell'Indirizzo Fisico:
-  - PFN + Offset: $53 + 28 = 81$.
-  - Indirizzo fisico: `0x08`.
+    [page 33],
+    [`7f 7f 7f 7f 7f 7f 7f 7f b5 7f 9d 7f 7f 7f 7f 7f`\ `7f 7f 7f 7f 7f 7f 7f 7f 7f 7f f6 b1 7f 7f 7f 7f`],
+  )
+  - Page $33$: Entry n°$8$: `0xb5`.
+  - `0xb5` = $1 \, 0110101$: Valid bit = $1$, PFN = $53$.
+
++ PA = 53 + 28 = 81 = `0x08`.
 
 *VA: `0x3da8`*
-
 + Decomposizione dell'Indirizzo Virtuale:
   - Binario: $01111 \, 01101 \, 01000$.
   - PDE Index: $01111$ (decimale: 15).
@@ -1007,207 +1007,99 @@ Ricapitolando:
   - Offset: $01000$ (decimale: 8).
 
 + Consultazione della Page Directory:
-  - PDBR → Page $108$: Entry $15$: $d_6$.
-  - $d_6 = 1 \, 1010110$: Valid bit = $1$, PFN = $86$.
+  - 15° byte del PDBR: `0xd6`.
+  - `0xd6` $= 1 \, 1010110$: Valid bit = $1$, PFN = $86$.
 
 + Consultazione della Page Table:
-  - Page $86$: Entry $13$: $7f$.
-  - $7f = 0 \, 1111111$: Valid bit = $0$.
+  #table(
+    columns: 2,
+    [n° byte],
+    [`0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15`\ `16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31`],
 
-+ Risultato:
-  - Invalid PTE → Segmentation Violation.
+    [page 86],
+    [`7f 7f 7f 7f 7f 7f 7f c5 7f 7f 7f 7f 7f 7f 7f 7f`\ `7f 7f 7f 7f ca 7f 7f ee 7f 7f 7f 7f 7f 7f 7f 7f`],
+  )
+  - Page $86$: Entry n°$13$: `0x7f`.
+  - `0x7f` $= 0 \, 1111111$: Valid bit = $0$.
+
++ Risultato: Invalid PTE.
 
 *VA: `0x17f5`*
-1. Decomposizione dell'Indirizzo Virtuale:
++ Decomposizione dell'Indirizzo Virtuale:
   - Binario: $00101 \, 11111 \, 10101$.
   - PDE Index: $00101$ (decimale: 5).
   - VPN: $11111$ (decimale: 3).
   - Offset: $10101$ (decimale: 2).
 
-2. Consultazione della Page Directory:
-  - PDBR → Page $108$: Entry $5$: $d_4$.
-  - $d_4 = 1 \, 1010100$: Valid bit = $1$, PFN = $84$.
++ Consultazione della Page Directory:
+  - 5° byte del PDBR: `0xd4`.
+  - `0xd4` $= 1 \, 1010100$: Valid bit = $1$, PFN = $84$.
 
-3. Consultazione della Page Table:
-  - Page $84$: Entry $31$: $c_e$.
-  - $c_e = 1 \, 1001110$: Valid bit = $1$, PFN = $78$.
++ Consultazione della Page Table:
+  #table(
+    columns: 2,
+    [n° byte],
+    [`0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15`\ `16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31`],
 
-4. Calcolo dell'Indirizzo Fisico:
-  - PFN + Offset: $78 + 21 = 99$.
-  - Indirizzo fisico: `0x1c`.
+    [page 84],
+    [`7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f`\ `7f 7f 7f 7f 7f 7f 7f 7f 7f 94 7f 7f 7f 7f 7f ce`],
+  )
+  - Page $84$: Entry n°$31$: `0xce`.
+  - `0xce` $= 1 \, 1001110$: Valid bit = $1$, PFN = $78$.
 
++ PA = 78 + 21 = 99
 
 *VA: `0x7f6c`*
-1. Decomposizione dell'Indirizzo Virtuale:
++ Decomposizione dell'Indirizzo Virtuale:
   - Binario: $11111 \, 11011 \, 01100$.
   - PDE Index: $11111$ (decimale: 3).
   - VPN: $11011$ (decimale: 2).
   - Offset: $01100$ (decimale: 1).
 
-2. Consultazione della Page Directory:
-  - PDBR → Page $108$: Entry $31$: `ff`.
-  - Df = 1 , D: Valid bit = $1$, PFN = $127$.
++ Consultazione della Page Directory:
+  - 31° byte del PDBR: `0xff`.
+  - `0xff` = 1 , D: Valid bit = $1$, PFN = $127$.
 
-3. Consultazione della Page Table:
-  - Page $127$: Entry $27$: $7f$.
-  - $7f = 0 \, 1111111$: Valid bit = $0$.
++ Consultazione della Page Table:
+  #table(
+    columns: 2,
+    [n° byte],
+    [`0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15`\ `16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31`],
 
-4. Risultato: Invalid PTE.
+    [page 127],
+    [`7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f`\ `df 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 95 7f 7f`],
+  )
+  - Page $127$: Entry n°$27$: `0x7f`.
+  - `0x7f` $= 0 \, 1111111$: Valid bit = $0$.
+
++ Risultato: Invalid PTE.
 
 *VA: `0x0bad`*
-1. Decomposizione dell'Indirizzo Virtuale:
++ Decomposizione dell'Indirizzo Virtuale:
   - Binario: $00010 \, 11101 \, 01101$.
   - PDE Index: $00010$ (decimale: 2).
   - VPN: $11101$ (decimale: 29).
   - Offset: $01101$ (decimale: 1).
 
-2. Consultazione della Page Directory:
-  - PDBR → Page $108$: Entry $2$: $e_0$.
-  - $e_0 = 1 \, 1100000$: Valid bit = $1$, PFN = $96$.
++ Consultazione della Page Directory:
+  - 2° byte del PDBR: `0xe0`.
+  - `0xe0` $= 1 \, 1100000$: Valid bit = $1$, PFN = $96$.
 
-3. Consultazione della Page Table:
-  - Page $96$: Entry $29$: $7f$.
-  - $7f = 0 \, 1111111$: Valid bit = $0$.
-
-4. Risultato: Invalid PTE.
-
-- Se la PDE o la PTE non è valida, si verifica un errore di traduzione (invalid PTE o segmentation violation).
-- L'indirizzo fisico viene calcolato concatenando il PFN con l'offset.
-
-#text(size: 8pt)[
++ Consultazione della Page Table:
   #table(
-    columns: 1fr,
-    [Page directory],
-    [*0*:`1b1d05051d0b19001e00121c1909190c0f0b0a1218151700100a061c06050514`],
-    [*1*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*2*:`121b0c06001e04130f0b10021e0f000c17091717071e001a0f0408120819060b`],
-    [*3*:`7f7f7f7fcd7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f887f7f7f7f7f7f7f7fb9`],
-    [*4*:`0b041004051c13071b131d0e1b150107080507071b0e1b0411001c000c181e00`],
-    [*5*:`17131d0a1202111906081507081d1e041b1101121301171902140e070e040a14`],
-    [*6*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*7*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*8*:`11101a120f10180a11151e151d0c12170a081e0a1e1a06191e08141702190915`],
-    [*9*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*10*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*11*:`0910141d04011a18170e150c050c18181d1b151016051c16120d13131b11060d`],
-    [*12*:`060b16191c05141d01141a0a07120d050e0c110f090b19071100160a0108071d`],
-    [*13*:`19100b0e000614140f1d0e091a08121519180b0101161d0a0d16140814090b10`],
-    [*14*:`1218140b000d1c0a07040f10020c141d0d0d0e060c140c12191e1b0b00120e07`],
-    [*15*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*16*:`7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7fea7f7f7f`],
-    [*17*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*18*:`7f7f7f7f7f7fab7f7f7f8e7f7f7fdd7f7f7f7f7f7f7f8b7f7f7f7f7f7f7f7f7f`],
-    [*19*:`00130001061402011e0d1b060d0b050a1e170b0c081016150e011c0c0c00041a`],
-    [*20*:`1a190402020c1d110807030419041a190411001a11170f151c111b0a03000719`],
-    [*21*:`0b081b0e1c151e121e050d111e111a130f0c0b09061d101a1b1d070a13090417`],
-    [*22*:`1212150f081b0a0e130f1d1d1c1c120f150608010500140418151e0c1c0e0a03`],
-    [*23*:`1d0f030b0c0f1e1e1113140f0f091502091b071d1e110102060a03180b07010b`],
-    [*24*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*25*:`03031c031b0e0e0a0c0b110a1907070e1c0016000c170d0d070e070814121c1e`],
-    [*26*:`090e1d18081115180d0c170d070e1d040e130e06001513000917131004150e15`],
-    [*27*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*28*:`0f1d0f0a0211070b0b17071d170e1b0b0b04180c0f0e140b1c0d0b0c171e1a0e`],
-    [*29*:`17081e031b010710120c030708171c120118090a10071c050c08101113100c13`],
-    [*30*:`7f7f7f7f7f847f7f7f7f977fbd7f7ff47f7f7f7f7f7f7f7f7f7f7f7f7f7f9c7f`],
-    [*31*:`7f7f7f7f7f7fd07f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f`],
-    [*32*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*33*:`7f7f7f7f7f7f7f7fb57f9d7f7f7f7f7f7f7f7f7f7f7f7f7f7f7ff6b17f7f7f7f`],
-    [*34*:`0413050d0c02161518101105060710190b1b16160a031d1a0c1a1b0a0f0a151c`],
-    [*35*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*36*:`1d1313160c0c1400050a07130b1b110c0c150c14010d0804100f11171b0f090e`],
-    [*37*:`1e0f0a0d0c100c021e1e05070d15001913081a1409101e01151a150412180c12`],
-    [*38*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*39*:`1b111e171108150e160c0f001601151218081506100a1e1e06110a1e1c121615`],
-    [*40*:`0d030b1007190b0709191c1d0017100307080c0e1d01151a0b07060904110700`],
-    [*41*:`7f7f7f7f7f7f7f7fe57f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f8d7f7f7f7f7f`],
-    [*42*:`03041501111c1015001312110c0b1e01001d050306181d000d030806140a050f`],
-    [*43*:`190802041311011e0e0916000d141d171b030d00080b0a0b180519100a11050f`],
-    [*44*:`7f7f7f7f7f7fcc7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7fa27f7f7f7f7f7f`],
-    [*45*:`7fb27fef7f7f7f7fa4f57f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f`],
-    [*46*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*47*:`070a0f1002090b0c0e0d020613190f0402040b111410110a14160c19171c0e0a`],
-    [*48*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*49*:`1e0a0f0702030d13101003010b1d05080e1c1d00140714171b151a1804011610`],
-    [*50*:`161b040706011a0f020d0d181704130f0004140b1d0f15040e1619060c0e0d0e`],
-    [*51*:`14000f1a070a1a0511071d180d02090f1c0311151019101d12120d120b110905`],
-    [*52*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*53*:`0f0c18090e121c0f081713071c1e191b09161b150e030d121c1d0e1a08181100`],
-    [*54*:`1901050f031b1c090d11081006090d121008070318031607081614160f1a0314`],
-    [*55*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*56*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*57*:`1c1d1602020b000a001e19021b0606141d03000b00121a05030a1d041d0b0e09`],
-    [*58*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*59*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*60*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*61*:`010510020c0a0c031c0e1a1e0a0e150d09161b1c130b1e1302021701000c100d`],
-    [*62*:`7f7f7fa87f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f`],
-    [*63*:`0612060a1d1b19010407181a12161902021a010601001a0a0404141e0f1b0f11`],
-    [*64*:`18121708080d1e161d10111e0518181a1704141c110b1d110c13180700101d15`],
-    [*65*:`7f7f7f7f7f7f7f7f7f7f997f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f`],
-    [*66*:`7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7fd77f7f`],
-    [*67*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*68*:`121216020f060c0f0a0c16011d120511020f150d09141c1b0b1a03011e171311`],
-    [*69*:`190a19020d0a0d190f1e1a03090016001b050c01090c0117160b1902010b1b17`],
-    [*70*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*71*:`7f7f7f7f7f7f7f7f7f7f7f857f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f`],
-    [*72*:`180c0018050c0b030a051314000e111b0f02011a181a081402190a1d0e011c13`],
-    [*73*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*74*:`0d0b1e08180d0b011a151b0d14030c06011d0604060b10041e1e040c151b0f1c`],
-    [*75*:`1a1c011b00141c0f0c0a1c1c13160a041e14081e120a1b021804030816120d04`],
-    [*76*:`0c11150c1b1d1e01191b041d03061d191108070c0013011702000817190f1d03`],
-    [*77*:`1c061606001b1a0205071c0b190d0b171308121519141312021d16081513140b`],
-    [*78*:`0e02171b1c1a1b1c100c1508191a1b121d110d141e1c1802120f131a07160306`],
-    [*79*:`1e1b1516071708030e0a050d1b0d0d1510041c0d180c190c06061d12010c0702`],
-    [*80*:`1b081d1c020d170d0f19151d051c1c131d071b171202000007170b18130c1b01`],
-    [*81*:`7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7fe27f7f7f7f7f7f7f7f7f7f7f7f7ffa`],
-    [*82*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*83*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*84*:`7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f947f7f7f7f7fce`],
-    [*85*:`7f7f7f7f7f7f7f7f9a7fbf7f7f7f7f7f7f7f7f7faf7f7f7f7f7f7f7f7f7f7f7f`],
-    [*86*:`7f7f7f7f7f7f7fc57f7f7f7f7f7f7f7f7f7f7f7fca7f7fee7f7f7f7f7f7f7f7f`],
-    [*87*:`1805180d170e1802011c0f1b1d14110602191b18150d09030d111c1d0c031716`],
-    [*88*:`7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7fc47f7f7f7f7f7f7f7f7f7f7f7f`],
-    [*89*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*90*:`7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7fc07f7f7f7f7f7f7f7fde7f7f7f7f7f7f`],
-    [*91*:`7f7f7f7f7f7f7f7f7f7f7f7fa57f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f`],
-    [*92*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*93*:`0a1a1907001905181505021c12130e0412071816001c01020904070b160c080f`],
-    [*94*:`1406190710140713080519110a1200040c1e0f021718181115061619170a1213`],
-    [*95*:`0a1d0f1d1e1915040012151d10151406131e0315130b18001b190e030e12070f`],
-    [*96*:`7f7f7f7f7f7f7f7f7f7f7f7f7f7fb67f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f`],
-    [*97*:`7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7fc87f7f7f7f7fe77f7f7f7f7f7f7f7f7f`],
-    [*98*:`15191803171a170e1503170818130f100201001804030b1e1b0919020c111e01`],
-    [*99*:`090b1304150b1204140a0e0c0e1509140109170113000e1b0010021a15171400`],
-    [*100*:`7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7fa77f7f7f7f7f7f7f7f7f7fe37f7f`],
-    [*101*:`0e0a00010b061005061416091a070a16011c020e1601191e0e030203170c1c0d`],
-    [*102*:`1d031b0116000d1a0c1c1612050a0c121e080f1c0a13171317061d0512091309`],
-    [*103*:`1e171c061012190e180c121a181400050f07021a1d090c19011303081901010c`],
-    [*104*:`7f7f7f7f7f7f7f7f7f7f7f7f80aa7f7f7f7f7f7f7f7f7f7f7f7f7f7ff07f7f7f`],
-    [*105*:`b37f7f7f7f7f7f7f7f7f7f7f7f937f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f`],
-    [*106*:`160a000e1001110a00050310011c1a1d091c1e170814120c090103040e131701`],
-    [*107*:`7f7f7f7f7f7f7f7f7f7f7f7f7f7ff17f7f7f7f7f7f7f7f7ff37f7f7f7f7f7f7f`],
-    [*108*:`83fee0da7fd47febbe9ed5ade4ac90d692d8c1f89fe1ede9a1e8c7c2a9d1dbff`],
-    [*109*:`7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f827f7f7f7f7f7f7f7f7f7f7f7f7f7f`],
-    [*110*:`1614041e0c120b010e0401131303110a0b180f1b120e130a03151318031c181c`],
-    [*111*:`08000115111d1d1c01171514161b130b10061200040a18160a1301051e080c11`],
-    [*112*:`19051e1302161e0c150906160019100303141b081e031a0c02080e181a041014`],
-    [*113*:`1d07111b1205071e091a181716181a01050f06100f03020019021d1e170d080c`],
-    [*114*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*115*:`110601040d1406151a170d141e1b0a1505110b0d0d141a0e0417171d0c0e101b`],
-    [*116*:`0a130b11150f14171a05060f0f19101b180f190e0a0d0e1401161e0e02060307`],
-    [*117*:`1b0a170019111d0b130a18121e000401031c1d0e1d19181705110d1d05051404`],
-    [*118*:`1119021a1c05191a1b101206150c00040c1b111c1c02120a0f0e0e03190f130e`],
-    [*119*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*120*:`7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7fcb7f7f7f7f7f7f7f7f7f7f7f7f7f`],
-    [*121*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*122*:`051e0312041b1d18090717090d01040002020d1116040d13020d0b1d010c0c16`],
-    [*123*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*124*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*125*:`0000000000000000000000000000000000000000000000000000000000000000`],
-    [*126*:`7f7f7f7f7f7f7f7f8ce6cf7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f967f7f7f7f7f`],
-    [*127*:`7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7fdf7f7f7f7f7f7f7f7f7f7f7f7f957f7f`]
+    columns: 2,
+    [n° byte],
+    [`0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15`\ `16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31`],
+
+    [page 96],
+    [`7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f b6 7f`\ `7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f 7f`],
   )
-]
+  - Page $96$: Entry n°$29$: `0x7f`.
+  - `0x7f` $= 0 \, 1111111$: Valid bit = 0.
+
++ Risultato: Invalid PTE.
+
+Se la PDE o la PTE non è valida, si verifica un errore di traduzione (invalid PTE o segmentation violation).
 
 == Algoritmi di sostituzione
 
@@ -1301,21 +1193,21 @@ Sequenza di accessi:
 == Dischi
 === Esercizio 1
 *Caratteristiche del disco*
-- Velocità di rotazione: 10.000 RPM $==>$ $T_"rotation" = 60000/10000 = 6$ ms 
+- Velocità di rotazione: 10.000 RPM $==>$ $T_"rotation" = 60000/10000 = 6$ ms
 - Tempo medio di seek ($T_S$): 4 ms
 - Numeri settori per traccia: 500
 - Dimensione del settore: 512 byte
-  
+
 *Domanda*:
 Calcola il tempo totale medio ($T_"I/O"$) necessario per leggere un blocco di 4 KB (settori contigui e nella stessa traccia)
 
 Settori da leggere:
 
-$(4096 "byte")/ (512 "byte/settore") = 8 "settori"$
+$(4096 "byte") / (512 "byte/settore") = 8 "settori"$
 
 Tempo per leggere un settore ($T_"sector"$):
 
-$T_"sector" = (T_"rotation" ("ms"))/("Numeri settori per traccia") = (6 "ms")/500 = 0.12 "ms"$
+$T_"sector" = (T_"rotation" ("ms")) / ("Numeri settori per traccia") = (6 "ms") / 500 = 0.12 "ms"$
 
 Tempo totale medio ($T_("I/O")=T_S+T_L+T_T$)
 - $T_S = 4$ ms
@@ -1339,14 +1231,14 @@ $500 times 512 = 256 000 "byte/rotation"$
 
 Rotazioni al secondo:
 
-$10000/60 approx 166,67 "rotazioni/s"$
+$10000 / 60 approx 166,67 "rotazioni/s"$
 
 Throughput (byte/s):
 
 $256000 "byte/rotazione" times 166.67 "rotazioni/s" approx 42666667 "byte/s"$
 Throughput (MB/s):
 
-$(42666667 "byte/s")/1000000 approx 42,67 "MB/s"$
+$(42666667 "byte/s") / 1000000 approx 42,67 "MB/s"$
 
 == Filesystem Implementation
 === Esercizio 1
@@ -1359,3 +1251,5 @@ $(42666667 "byte/s")/1000000 approx 42,67 "MB/s"$
 
 Indirizzo dell'inode corrispondente all'inumber $16$:
 $"Indirizzo" =\ "inodeStartAddr" + ("inumber" times "sizeof(inode_t)" = \ 12 "KB" + (16 times 256 "Byte") = 16 "KB"$
+
+#line()

@@ -39,4 +39,4 @@ Con il comando `nice` è possibile aumentare e diminuire la priorità di lavoro.
   - Se il processo non completa l'esecuzione entro il quanto di tempo, viene spostato nella coda a priorità inferiore (*accounting* del tempo impiegato dal processo: soluzione al gaming).
 5. Dopo un tempo $s$, sposta tutti i job nel sistema nella coda con massima priorità (risolve la starvation e la dinamicità dei programmi).
 
-#colbreak()
+#line()

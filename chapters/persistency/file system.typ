@@ -188,4 +188,4 @@ I file system moderni ritardano le scritture tra cinque e trenta secondi per ott
 
 La gestione del caching e del buffering nei file system bilancia le prestazioni con l'affidabilità, offrendo opzioni per adattarsi alle esigenze specifiche delle applicazioni.
 
-#colbreak()
+#line()

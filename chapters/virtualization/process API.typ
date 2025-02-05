@@ -64,4 +64,4 @@ Motivi per cui si verificano i processi zombie:
 - Il processo padre non è in grado di chiamare la funzione `wait()` a causa di un errore.
 - Il processo padre è stato terminato.
 
-#colbreak()
+#line()

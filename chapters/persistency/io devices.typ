@@ -113,4 +113,4 @@ Il FS (File System) non deve conoscere i dettagli specifici del dispositivo hard
 
 L'interfaccia generica può avere lati negativi, poiché può impedire alle applicazioni di sfruttare le capacità speciali di alcuni dispositivi.
 
-#colbreak()
+#line()

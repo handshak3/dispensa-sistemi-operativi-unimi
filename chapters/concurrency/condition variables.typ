@@ -375,4 +375,4 @@ Il codice non funziona, il thread che sveglia altri thread non sa quale thread s
 
 Soluzione suggerita da Lampson e Redell (condizione di copertura): \ Sostituire la chiamata `pthread_cond_signal()` con `pthread_cond_broadcast()`, che sveglia tutti i thread in attesa in modo da svegliare tutti thread che dovrebbero essere svegli. Può impattare sulle prestazioni ma i thread si svegliati inutilmente ricontrolleranno la condizione e poi torneranno a dormire.
 
-#colbreak()
+#line()

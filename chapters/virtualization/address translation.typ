@@ -58,7 +58,7 @@ In sintesi, la *rilocazione statica* è un processo che modifica gli indirizzi d
 Supponiamo un processo con uno spazio di indirizzi di dimensioni 4 Kb che è stato caricato all'indirizzo fisico 16 KB.
 
 #figure(
-  image("../../images/translation/translation.png"),
+  image("../../images/translation/translation.png", width: 80%),
   caption: [Esempio di traduzione.],
 )
 
@@ -68,7 +68,7 @@ Supponiamo un processo con uno spazio di indirizzi di dimensioni 4 Kb che è sta
 *MMU (Memory Management Unit)*: gruppo di componenti hardware che gestisce gli accessi in memoria e si occupa di tradurre gli indirizzi virtuali in indirizzi fisici.
 #figure(
   caption: [Come calcola il PA l'MMU. Schema creato dall'autore.],
-  image("../../images/translation/mmu.png"),
+  image("../../images/translation/mmu.png", width: 80%),
 )
 
 L'hardware dovrebbe fornire istruzioni speciali per modificare il base-and-bounds register accessibili solamente in modalità kernel.
@@ -105,5 +105,4 @@ Per supportare la dynamic relocation, l'OS:
   caption: [Limited Direct Execution (Dynamic Relocation) \@ Runtime.],
 )
 
-#colbreak()
-
+#line()

@@ -135,4 +135,4 @@ Una volta che il PA è noto, l'hardware recupera la PTE dalla memoria, estrae il
   caption: [Come funziona la paginazione. @geeksforgeeks1],
 )
 
-#colbreak()
+#line()

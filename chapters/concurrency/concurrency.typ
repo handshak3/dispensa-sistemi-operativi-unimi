@@ -153,4 +153,4 @@ Se un thread dopo aver incrementato il contatore viene interrotto e l'OS fa cont
 
 *Programma indeterminato:* consiste in una o più race condition; l'output del programma varia da esecuzione a esecuzione, a seconda di quali thread sono stati eseguiti quando. Il risultato non è quindi deterministico.
 
-#colbreak()
+#line()

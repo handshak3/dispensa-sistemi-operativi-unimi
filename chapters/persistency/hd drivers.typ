@@ -134,13 +134,13 @@ Dove:
 Il tempo per trasferire dati dipende dalla porzione di traccia letta. Se l'intera traccia viene letta in un giro completo, il tempo di trasferimento è:
 
 $
-T_"trasf, traccia" = T_"rot"
+  T_"trasf, traccia" = T_"rot"
 $
 
 Se vengono letti $N$ settori (su un totale di $S$ settori per traccia), allora:
 
 $
-T_"trasf" = T_"rot" times N/S
+  T_"trasf" = T_"rot" times N / S
 $
 
 *Velocità di Trasferimento Massima*
@@ -174,13 +174,13 @@ Dove $T_"cycle"$ è il tempo totale tra due richieste consecutive.
 
 *Velocità di Rotazione e Tempo per Rotazione*
 - *Rotazioni al secondo (RPS)*:
-  $ "RPS" = "RPM"/60 $
+  $ "RPS" = "RPM" / 60 $
 
 - *Tempo per una rotazione completa:*
-  $  T_"rot" ("s") = 60/"RPM" $
+  $ T_"rot" ("s") = 60 / "RPM" $
 
   $
-  T_"rot" ("ms") = 60000/"RPM"
+    T_"rot" ("ms") = 60000 / "RPM"
   $
 
 *Tempo Medio di Latenza Rotazionale*
@@ -188,7 +188,7 @@ Dove $T_"cycle"$ è il tempo totale tra due richieste consecutive.
 Il tempo medio di latenza è la metà del tempo per una rotazione completa:
 
 $
-T_"lat" = T_"rot"/2
+  T_"lat" = T_"rot" / 2
 $
 
 *Dati per Traccia*
@@ -200,7 +200,7 @@ Se un disco ha:
 allora i byte per traccia sono:
 
 $
-"Byte per traccia" = S times B
+  "Byte per traccia" = S times B
 $
 
-#colbreak()
+#line()

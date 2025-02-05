@@ -72,4 +72,5 @@ Quando la richiesta di memoria dei processi in esecuzione supera la memoria fisi
 Per gestire questa situazione, alcuni sistemi adottano meccanismi di controllo avanzati, come l'*admission control*, che limita il numero di processi in esecuzione per garantire un utilizzo più efficiente delle risorse. L'idea alla base è che eseguire meno processi in modo efficace sia preferibile rispetto a eseguirne troppi con prestazioni pessime.
 
 Linux, invece, utilizza un approccio più diretto con l'*Out-Of-Memory (OOM) Killer*: quando la memoria è sovraccarica, questo demone identifica e termina il processo che sta consumando più memoria, liberando risorse e prevenendo il collasso del sistema.
-#colbreak()
+
+#line()

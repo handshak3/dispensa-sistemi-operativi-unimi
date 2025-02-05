@@ -189,4 +189,4 @@ Immaginiamo una write al blocco 1 e una write al blocco 10; verrà tradotta in u
   caption: [Capacità, affidabilità e performance dei RAID.],
 )
 
-#colbreak()
+#line()

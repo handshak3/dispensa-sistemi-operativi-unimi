@@ -2,9 +2,7 @@
 
 #show: codly-init.with()
 
-= Cheat Sheet Assembly x86
-
-== Registri e istruzioni
+== Cheat Sheet Assembly x86
 
 === Registri principali
 
@@ -265,4 +263,4 @@ _start:
     int 0x80
 ```
 
-#colbreak()
+#line()

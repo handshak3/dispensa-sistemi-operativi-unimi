@@ -51,4 +51,4 @@ Un modello di protezione implementato dal sistema operativo è quello ad anelli.
   caption: [Livelli di sicurezza.],
 )
 
-#colbreak()
+#line()

@@ -5,7 +5,6 @@
   authors: (
     (name: "Nicola Iantomasi", email: "nicola.iantomasi2020@gmail.com"),
   ),
-  abstract: include "chapters/abstract.typ",
   date: "Anno Accademico 2024/2025",
   subtitle: "Sicurezza dei Sistemi e delle Reti Informatiche",
 )
@@ -97,3 +96,7 @@
 #include "chapters/laboratory/shell.typ"
 
 #include "chapters/laboratory/simulation.typ"
+
+#colbreak()
+
+#bibliography("citations.bib")

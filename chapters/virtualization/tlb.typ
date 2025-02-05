@@ -123,4 +123,4 @@ Quando installiamo una nuova entry nel TLB si va a sostituire con una vecchia en
 - *LRU* (least-recently-used): sostituisce la nuova entry con quella utilizzata meno recentemente.
 - *Random Policy*: sostituisce una vecchia entry a caso con una nuova.
 
-#colbreak()
+#line()

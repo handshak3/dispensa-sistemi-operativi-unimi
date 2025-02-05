@@ -243,4 +243,4 @@ $T_"wait"_"avg" = (sum_(i=1)^n T_"wait"_i) / n$
 - *Vantaggi*: Equo, garantisce un buon response time per processi interattivi.
 - *Svantaggi*: Se il quantum è troppo breve, aumenta il numero di context switch.
 
-#colbreak()
+#line()

@@ -196,4 +196,5 @@ FFS ha introdotto diverse innovazioni significative per migliorare l'efficienza 
 3. *Miglioramenti dell'usabilità*: FFS ha reso il sistema più facile da usare introducendo nomi di file lunghi, collegamenti simbolici (per riferimenti più flessibili a file e directory) e un'operazione di rinomina atomica per i file. Sebbene non siano innovazioni tecniche rivoluzionarie, queste migliorie hanno contribuito a una maggiore adozione e fruibilità di FFS.
 
 Queste scelte progettuali hanno mostrato un equilibrio tra innovazione tecnica e miglioramenti pratici, rendendo FFS più efficiente e accessibile per gli utenti.
-#colbreak()
+
+#line()

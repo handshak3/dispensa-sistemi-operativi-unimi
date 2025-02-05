@@ -249,19 +249,19 @@ Tabella guida dei contenuti dei puntatori parziali:\
 Blocco 300:
 #table(
   columns: (1fr,) * 7,
-  [Indice elemento], [0], [1], [2], [3], [4], [5], [Valore], [301], [305], [306], [307], [308], [309]
+  [Indice], [0], [1], [2], [3], [4], [5], [Valore], [301], [305], [306], [307], [308], [309]
 )
 
 Blocco 301:
 #table(
   columns: (1fr,) * 7,
-  [Indice elemento], [0], [1], [2], [3], [4], [5], [Valore], [800], [801], [802], [850], [851], [852]
+  [Indice], [0], [1], [2], [3], [4], [5], [Valore], [800], [801], [802], [850], [851], [852]
 )
 
 Blocco 800:
 #table(
   columns: (1fr,) * 7,
-  [Indice elemento], [0], [1], [2], [3], [4], [5], [Valore], [1200], [1201], [1202], [1203], [1204], [1205]
+  [Indice], [0], [1], [2], [3], [4], [5], [Valore], [1200], [1201], [1202], [1203], [1204], [1205]
 )
 
 Byte 1980:\
@@ -274,3 +274,5 @@ $3023 / 512 = 5.9$\ Il byte si trova nel sesto blocco fisico, che è indirizzato
 Byte 92151:\
 $92151 / 512 = 179.98$\
 Il byte si trova nell'indirizzamento indiretto doppio. Andiamo sulla prima “Jumper”, che ci porta al blocco 301, ma è un ID (doppio), quindi saltiamo un altra volta il prima possibile finendo nella 800. Partendo dal primo blocco dell'indiretto doppio (indice 175, cosa che sappiamo da calcoli dell'es 2), avendo che 179 - 175 = 4, otteniamo 1024.
+
+#line()

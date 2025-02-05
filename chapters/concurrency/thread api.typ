@@ -91,4 +91,4 @@ Esistono due altre routine di lock:
 
 È importante utilizzare le condition variables in modo appropriato per evitare problemi di sincronizzazione. Ad esempio, è importante assicurarsi che il lock sia acquisito prima di chiamare la routine `pthread_cond_wait()` e rilasciato dopo aver chiamato la routine `pthread_cond_signal()`.
 
-#colbreak()
+#line()
