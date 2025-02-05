@@ -131,7 +131,19 @@ Dove:
 - $"Size"_"Transfer"$ è la dimensione del trasferimento dei dati.
 - $"Transfer Rate"$ è la velocità di trasferimento del disco.
 
-Velocità di Trasferimento Massima
+Il tempo per trasferire dati dipende dalla porzione di traccia letta. Se l'intera traccia viene letta in un giro completo, il tempo di trasferimento è:
+
+$
+T_"trasf, traccia" = T_"rot"
+$
+
+Se vengono letti $N$ settori (su un totale di $S$ settori per traccia), allora:
+
+$
+T_"trasf" = T_"rot" times N/S
+$
+
+*Velocità di Trasferimento Massima*
 
 $
   "Max Transfer Rate" =\ ("Settori per traccia" times "Dimensione settore" times "RPM") / 60
@@ -159,5 +171,36 @@ Indica la velocità con cui le operazioni di I/O vengono eseguite.
 $ U = T_"I/O" / T_"cycle" $
 
 Dove $T_"cycle"$ è il tempo totale tra due richieste consecutive.
+
+*Velocità di Rotazione e Tempo per Rotazione*
+- *Rotazioni al secondo (RPS)*:
+  $ "RPS" = "RPM"/60 $
+
+- *Tempo per una rotazione completa:*
+  $  T_"rot" ("s") = 60/"RPM" $
+
+  $
+  T_"rot" ("ms") = 60000/"RPM"
+  $
+
+*Tempo Medio di Latenza Rotazionale*
+
+Il tempo medio di latenza è la metà del tempo per una rotazione completa:
+
+$
+T_"lat" = T_"rot"/2
+$
+
+*Dati per Traccia*
+
+Se un disco ha:
+- $S$ settori per traccia,
+- $B$ byte per settore,
+
+allora i byte per traccia sono:
+
+$
+"Byte per traccia" = S times B
+$
 
 #colbreak()

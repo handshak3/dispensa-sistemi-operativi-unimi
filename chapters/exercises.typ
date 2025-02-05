@@ -1219,7 +1219,7 @@ page 126:7f7f7f7f7f7f7f7f8ce6cf7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f967f7f7f7f7f
 page 127:7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7fdf7f7f7f7f7f7f7f7f7f7f7f7f957f7f
 ```
 
-== Algoritmi di Sostituzione
+== Algoritmi di sostituzione
 
 === LRU (Least Recently Used)
 
@@ -1308,6 +1308,56 @@ Calcoli:
 - $T_"I/O" = 9 "ms" + 8 "ms" + 950 "ms" = 967 "ms"$.
 - $R_"I/O" = (100 "MB")(967 "ms") = 103.41 "MB/s"$.
 
+== Dischi
+=== Esercizio 1
+*Caratteristiche del disco*
+- Velocità di rotazione: 10.000 RPM $==>$ $T_"rotation" = 60000/10000 = 6$ ms 
+- Tempo medio di seek ($T_S$): 4 ms
+- Numeri settori per traccia: 500
+- Dimensione del settore: 512 byte
+  
+*Domanda*:
+Calcola il tempo totale medio ($T_"I/O"$) necessario per leggere un blocco di 4 KB (settori contigui e nella stessa traccia)
+
+Settori da leggere:
+
+$(4096 "byte")/ (512 "byte/settore") = 8 "settori"$
+
+Tempo per leggere un settore ($T_"sector"$):
+
+$T_"sector" = (T_"rotation" ("ms"))/("Numeri settori per traccia") = (6 "ms")/500 = 0.12 "ms"$
+
+Tempo totale medio ($T_("I/O")=T_S+T_L+T_T$)
+- $T_S = 4$ ms
+- $T_L = 1/2 T_"rotation" = 3$ ms
+- $T_T = 8 times 0,012 "ms" = 0,096 "ms"$
+
+$T_("I/O")= 4 "ms" + 3 "ms" + 0,096 "ms" = 7,096 "ms"$
+
+=== Esercizio 2
+*Caratteristiche del disco*
+- Velocità di rotazione: 10.000 RPM
+- Numeri settori per traccia: 500
+- Dimensione del settore: 512 byte
+
+*Domanda*:
+Calcola il throughput massimo teorico del disco in megabyte al secondo (MB/s) (assumi: seek time = 0 e tempo di accesso = 0).
+
+Byte letti con una rotazione:
+
+$500 times 512 = 256 000 "byte/rotation"$
+
+Rotazioni al secondo:
+
+$10000/60 approx 166,67 "rotazioni/s"$
+
+Throughput (byte/s):
+
+$256000 "byte/rotazione" times 166.67 "rotazioni/s" approx 42666667 "byte/s"$
+Throughput (MB/s):
+
+$(42666667 "byte/s")/1000000 approx 42,67 "MB/s"$
+
 == Filesystem Implementation
 === Esercizio 1
 Dati:
@@ -1318,7 +1368,4 @@ Dati:
 - inumber: 6.
 
 Indirizzo dell'inode corrispondente all'inumber $16$:
-$
-  "Indirizzo" = "inodeStartAddr" + ("inumber" times "sizeof(inode_t)" = 12 "KB" + (16 times 256 "Byte") = 16
-$KB$.
-$
+$"Indirizzo" =\ "inodeStartAddr" + ("inumber" times "sizeof(inode_t)" = \ 12 "KB" + (16 times 256 "Byte") = 16 "KB"$
