@@ -755,7 +755,7 @@ Si traducono i seguenti indirizzi logici: 0, 2, 4, 9, 19, 11, 22, 32, 30, 26, 23
 - VPN: $9$.
 - Invalid Page: La tabella non contiene una voce per la pagina 9.
 
-=== Esercizio 4 (DA RIVEDERE)
+=== Esercizio 4
 
 *Dati*
 - sizeOf(Virtual AS) = 32K ($2^15$)
