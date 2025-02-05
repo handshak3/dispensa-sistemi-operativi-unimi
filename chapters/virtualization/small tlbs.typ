@@ -120,4 +120,9 @@ Se la directory delle pagine diventa troppo grande per essere contenuta in una s
   ]
 ]
 
+#figure(
+  image("../../images/tlb/multi TLB.png"),
+  caption: [Schema di memoria di un Multi-Level TLB a due livelli su architettura x86-64 con page size = 16 Kb. Schema creato dall'autore.],
+)
+
 #colbreak()

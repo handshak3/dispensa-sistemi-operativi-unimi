@@ -822,11 +822,11 @@ Il Valid bit si trova in posizione 14.
 - Indirizzo virtuale: 14 bit (8 bit per VPN, 6 bit per offset)
 - PTE size = 4 byte
 
-1. Struttura della Page Table Lineare
+1. *Struttura della Page Table Lineare*
   - Ogni PTE è di 4 bytes, quindi, Page Table = $256 dot 4$ bytes = 1KB
   - Con pagine da 64 bytes, quindi, la Page Table è divisa in 16 pagine (ciascuna contiene 16 PTE)
 
-2. Costruzione della Multi-Level Page Table
+2. *Costruzione della Multi-Level Page Table*
   - Page Directory con 16 entry (una per ogni pagina della Page Table)
   - Page Table divisa in 16 pagine da 64 bytes
   - Indice VPN suddiviso:
@@ -834,27 +834,20 @@ Il Valid bit si trova in posizione 14.
     - PTIndex 4 bit
     - Offset: 8 bit
 
-3. Traduzione
+3. *Traduzione*
   - Estrarre PDIndex (primi 4 bit di VPN) per trovare la PDE:
-    #text(9pt)[
       ```
       PDEAddr = PageDirBase + (PDIndex * sizeof(PDE))
       ```
-    ]
   - Se PDE è valida, ottenere il PFN della Page Table e trovare la PTE:
-    #text(9pt)[
       ```
       PTEAddr = (PDE.PFN << SHIFT) + (PTIndex * sizeof(PTE))
       ```
-    ]
   - Se PTE è valida, estrarre il PFN della pagina fisica e calcolare l'indirizzo fisico:
-    #text(9pt)[
       ```
       PhysAddr = (PTE.PFN << SHIFT) + offset
       ```
-    ]
-
-Esempio di Traduzione
+*Esempio di Traduzione*
 - Indirizzo virtuale: `0x3F80`\ In binario: `11 1111 1000 0000`
 - PDIndex = `1111` che corrisponde alla Page Table con PFN `101`
 - PTIndex = `1110`
@@ -868,19 +861,19 @@ Richiesta: calcolare il valore dei 3 offset:
 - VPNChunkIndex
 - Offset della pagina fisica dove risiede il dato
 
-Dati:
+*Dati*
 - VirtualAddressSize = 48 bit
 - PageSize = 16 Kb = $2^14$
 - VA = `0x12A7FEDB`
 
 Inoltre, avendo 48 bit per l'indirizzamento capiamo che siamo su un sistema a 64 bit.
 
-Implicazioni:
+*Implicazioni*:
 - Con PageSize = $2^14$, abbiamo 14 bit per l'offset.
 - Dato che abbiamo 14 bit per l'offset, i bit per la VPN sono 48 - 14 = 34 bit.
 - Siccome siamo su architettura x86-64 quindi a 64 bit, le PTE sono grandi 8 byte (64 bit = 8 byte).
 
-Calcoli:
+*Calcoli*
 + Calcolo il numero di PTE per pagina e PTIndex:
   $(16 "Kb") / (8 "byte") = (16 dot 1024)/8$ = 2048 = $2^11$ PTE per pagina. Questo implica che occorrono 11 bit per il PTIndex.
 
@@ -893,10 +886,10 @@ Ricapitolando:
   - PTIndex = 11 bit
 - offset = 14 bit
 
-+ Traduzione:\
+*Traduzione*:\
   `0x12A7FEDB` #sub[16] =\ `0001 0010 1010 0111 1111 1110 1101 1011`#sub[2]
 
-  Ottengo che
+  Ottengo che:
   - PDIndex = `1001`
   - PTIndex = `010 1001 1111`
   - offset = `11 1110 1101 1011`
@@ -913,13 +906,12 @@ Ricapitolando:
 
 === Esercizio 3
 
-Dati:
-- Dimensione della Pagina: 32 byte}.
+*Dati*
+- Dimensione della Pagina: 32 byte.
 - Spazio di Indirizzamento Virtuale (VAS): 1024 byte = $2^10$.
 - Memoria Fisica: 128 pagine.
 
-Struttura degli Indirizzi:
-
+*Struttura degli Indirizzi*
 1. Indirizzo Virtuale: 15 bit:
   - 5 bit per l'offset all'interno della pagina.
   - 10 bit per il Virtual Page Number (VPN).
@@ -928,8 +920,7 @@ Struttura degli Indirizzi:
   - 5 bit per l'offset all'interno del frame.
   - 7 bit per il Physical Frame Number (PFN).
 
-Sistema di Paginazione:
-
+*Sistema di Paginazione*
 - Page Directory:
   - I primi 5 bit dell'indirizzo virtuale indicizzano una voce nella page directory.
   - Ogni entry della page directory (PDE), se valida, punta a una pagina della page table.
@@ -939,14 +930,13 @@ Sistema di Paginazione:
   - Ogni PTE, se valida, contiene il PFN corrispondente alla pagina virtuale specificata.
 
 
-  Parametri del Sistema
-
+*Parametri del sistema*
 - Seed: $0$.
 - Pagine Allocate: $64$.
 - Numero di Indirizzi da Tradurre: $10$.
 - Page Directory Base Register (PDBR): 108 decimale.
 
-Trace degli Indirizzi Virtuali
+*Trace degli indirizzi virtuali*
 
 #table(
   columns: 7,
@@ -1254,13 +1244,13 @@ Sequenza di accessi:
 
 === Cheetah Random Access
 
-Dati:
+*Dati*
 - Capacità: 300GB.
 - RPM: $15000$.
 - Seek Time: 4 ms.
 - Max Transfer Rate: 125 MB/s.
 
-Calcoli:
+*Calcoli*
 - $T_"rotation" = 60 / 15000 = 4 "ms"$
 - $T_"transfer" = (4 "KB")/(125 "MB/s") = 32 mu s$.
 - $T_"I/O" = 4 "ms" + 4 "ms" + 32 mu s = 8 "ms"$.
@@ -1268,13 +1258,13 @@ Calcoli:
 
 === Barracuda Random Access
 
-Dati:
+*Dati*
 - Capacità: 1 tB.
 - RPM: $7200$.
 - Seek Time: 9 ms.
 - Max Transfer Rate: 105 MB/s.
 
-Calcoli:
+*Calcoli*
 - $"T_rotation" = 60/7200 = 8 "ms"$.
 - $T_"transfer" = (4 "KB")/(105 "MB/s") = 37 mu s$.
 - $T_"I/O" = 9 "ms" + 8 "ms" + 37 mu s = 17 "ms"$.
@@ -1282,13 +1272,13 @@ Calcoli:
 
 === Cheetah Sequential Access
 
-Dati:
+*Dati*
 - Capacità: 300 GB.
 - RPM: $15000$.
 - Seek Time: $4 "ms"$.
 - Max Transfer Rate: $125 "MB/s"$.
 
-Calcoli:
+*Calcoli*
 - $T_"rotation" = 60/15000 = 4 "ms"$.
 - $T_"transfer" = (100 "MB")/(125 "MB/s") = 800 "ms"$.
 - $T_"I/O" = 4 "ms" + 4 "ms" + 800 "ms" = 808 "ms"$.
@@ -1296,13 +1286,13 @@ Calcoli:
 
 === Barracuda Sequential Access
 
-Dati:
+*Dati*
 - Capacità: 1 TB.
 - RPM: $7200$.
 - Seek Time: 9 ms.
 - Max Transfer Rate: 105 MB/s.
 
-Calcoli:
+*Calcoli*
 - $T_"rotation" = 60/7200 = 8 "ms"$.
 - $T_"transfer" = (100 "MB")(105 "MB/s") = 950 "ms"$.
 - $T_"I/O" = 9 "ms" + 8 "ms" + 950 "ms" = 967 "ms"$.
@@ -1360,7 +1350,7 @@ $(42666667 "byte/s")/1000000 approx 42,67 "MB/s"$
 
 == Filesystem Implementation
 === Esercizio 1
-Dati:
+*Dati*
 - inodeStartAddr: 12 KB.
 - blockSize: 4 KB.
 - sectorSize: 512 Byte.
