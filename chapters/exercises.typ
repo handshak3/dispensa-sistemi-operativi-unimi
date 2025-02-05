@@ -444,13 +444,12 @@ Segmento 1 (cresce negativamente):
 
 == Paging
 === Esercizio 1
-Si consideri un sistema con paging lineare, dove:
+*Dati*
 - Address space size: 16 KB = $2^(14)$.
 - Physical memory size: 64 KB.
 - Page size: 4 KB = $2^(12)$.
 
-La tabella delle pagine è organizzata come segue:
-
+*Tabella delle pagine*
 #table(
   columns: (1fr, 2fr),
   [Entry], [Valore],
@@ -462,12 +461,11 @@ La tabella delle pagine è organizzata come segue:
 
 Se il bit più significativo è $1$, la pagina è valida e il resto dell'entry contiene il PFN. Se il bit è $0$, la pagina non è valida.
 
-Traduzione degli Indirizzi Virtuali
-
+*Traduzione degli Indirizzi Virtuali*
 #table(
-  columns: 7,
+  columns: (1.5fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
   [VA (hex)],
-  [VA (decimale)],
+  [VA (dec)],
   [VPN],
   [Offset (hex)],
   [PTE],
@@ -481,63 +479,58 @@ Traduzione degli Indirizzi Virtuali
   [`0x00003a1e`], [14878], [3], [`0xa1e`], [VALID], [6], [`0x6a1e`],
 )
 
-1. Calcolo della VPN e dell'Offset:
++ *Calcolo della VPN e dell'Offset*:
   - Dimensione della pagina: 4 KB = $2^12$.
   - Offset: 12 bit.
   - VPN: Restanti bit (14 - 12 = 2 bit).
 
-2. Primo Indirizzo (VA = `0x00003229`):
-  - Binario: 00000011 001000101001.
++ *Primo Indirizzo (VA = `0x00003229`)*:
+  - Binario: 11 0010 0010 1001.
   - VPN: $3$.
   - Offset: `0x229`.
-  - PTE: `0x8000000c` → Valid ($1$), PFN = `0x6`.
-  - Indirizzo fisico: `0x6229`.
+  - PTE: `0x80000006` → Valid ($1$), PFN = `0x6`.
+  - PA = (PFN $times$ sizeOf(AS)) + Offset = (`0x6` $times$ `0x1000`) + `0x229` = `0x6229`.
 
-3. Secondo Indirizzo (VA = `0x00001369`):
-  - Binario: 00000001, 001101101001.
++ *Secondo Indirizzo (VA = `0x00001369`)*:
+  - Binario: 01 0011 0110 1001.
   - VPN: $1$.
   - Offset: `0x369`.
   - PTE: `0x00000000` → Non valida.
 
-4. Terzo Indirizzo (VA = `0x00001e80`):
-  - Binario: 00000001, 111010000000.
+- *Terzo Indirizzo (VA = `0x00001e80`)*:
+  - Binario: 01 1110 1000 0000.
   - VPN: $1$.
   - Offset: `0xe80`.
   - PTE: `0x00000000` → Non valida.
 
-5. Quarto Indirizzo (VA = `0x00002556`):
-  - Binario: $00000010, 010101010110$.
++ *Quarto Indirizzo (VA = `0x00002556`)*:
+  - Binario: $10 0101 0101 0110$.
   - VPN: $2$.
   - Offset: `0x556`.
   - PTE: `0x00000000` → Non valida.
 
-6. Quinto Indirizzo (VA = `0x00003a1e`):
-  - Binario: 00000011, 101000011110.
++ *Quinto Indirizzo (VA = `0x00003a1e`)*:
+  - Binario: 11 1010 0001 1110.
   - VPN: $3$.
   - Offset: `0xa1e`.
   - PTE: `0x80000006` → Valid ($1$), PFN = `0x6`.
   - Indirizzo fisico: `0x6a1e`.
 
-- Per ogni indirizzo virtuale, si estrae la VPN e si consulta la tabella delle pagine per determinare se la pagina è valida.
-- Se valida, si calcola l'indirizzo fisico concatenando il PFN con l'offset.
-- Se non valida, si segnala un errore di traduzione.
-
 === Esercizio 2
-Dati:
+*Dati*
 - Seed: 897832
-- Address Space Size: 32 KB = $2^15$ → Indirizzi virtuali da $0$ a $2^15 - 1$.
-- Physical Memory Size: 64 KB}.
+- Address Space Size: 32 KB = $2^15$
+- Physical Memory Size: 64 KB.
 - Page Size: 4 KB = $2^12$.
 
-  Struttura degli Indirizzi Virtuali:
+*Struttura degli Indirizzi Virtuali*
 - Offset: 12 bit ($2^12 = 4096$).
 - VPN (Virtual Page Number): 15 - 12 = 3 bit.
 
-Tabella delle Pagine:
-
+*Tabella delle Pagine*
 #table(
   columns: (1fr, 2fr),
-  [Entry], [Valore],
+  [VPN], [PTE],
   [`[0]`], [`0x8000000f`],
   [`[1]`], [`0x8000000b`],
   [`[2]`], [`0x00000000`],
@@ -562,28 +555,25 @@ Trace degli Indirizzi Virtuali
   [`0x00002821`], [10273], [VIOLATION], [-],
 )
 
-*VA 0x00001760 (decimal: 5984)*+ Decomposizione dell'Indirizzo Virtuale:
-- Binario: `000000000001011101100000`.
-- VPN: `001` (decimal: 1).
-- Offset: `011101100000` (hex: `0x760`, decimal: 1888).
+*VA 0x00001760 (decimal: 5984)*
++ Decomposizione dell'Indirizzo Virtuale:
+  - Binario: `001 0111 0110 0000`.
+  - VPN: `001` (decimal: 1).
+  - Offset: `0111 0110 0000` (hex: `0x760`, decimal: 1888).
 + Consultazione della Tabella delle Pagine:
   - Entry $1$: `0x8000000b` → Valid ($1$), PFN = `0xb`.
-+ Calcolo dell'Indirizzo Fisico:
-  - PFN + Offset: `0xb760`.
-  - Indirizzo fisico: `0xb760`.
++ PA = (PFN $times$ sizeOf(AS)) + Offset = `0xb760`.
 
 *VA 0x000001cd (decimal: 461)*
 + Decomposizione dell'Indirizzo Virtuale:
-  - Binario: `000000000000000111001101`.
+  - Binario: `000 0001 1100 1101`.
   - VPN: `000` (decimal: 0).
-  - Offset: `00000111001101` (hex: `0x1cd`, decimal: 461).
+  - Offset: `0001 1100 1101` (hex: `0x1cd`, decimal: 461).
 
 + Consultazione della Tabella delle Pagine:
   - Entry $0$: `0x8000000f` → Valid ($1$), PFN = `0xf`.
 
-+ Calcolo dell'Indirizzo Fisico:
-  - PFN + Offset: `0xf1cd`.
-  - Indirizzo fisico: `0xf1cd`.
++ PA = `0xf1cd`.
 
 *VA 0x00000121 (decimal: 289)*
 + Decomposizione dell'Indirizzo Virtuale:
@@ -592,9 +582,7 @@ Trace degli Indirizzi Virtuali
   - Offset: $00000100100001$ (hex: `0x121`, decimal: `289`).
 + Consultazione della Tabella delle Pagine:
   - Entry $0$: `0x8000000f` → Valid ($1$), PFN = `0xf`.
-+ Calcolo dell'Indirizzo Fisico:
-  - PFN + Offset: `0xf121`.
-  - Indirizzo fisico: `0xf121`.
++ PA = `0xf121`.
 
 *VA 0x00006211 (decimal: 25105)*
 + Decomposizione dell'Indirizzo Virtuale:
@@ -627,45 +615,34 @@ Trace degli Indirizzi Virtuali
   [`0x00002821`], [10273], [VIOLATION], [-],
 )
 
-- Per ogni indirizzo virtuale, si estrae la VPN e si consulta la tabella delle pagine per determinare se la pagina è valida.
-- Se valida, si calcola l'indirizzo fisico concatenando il PFN con l'offset.
-- Se non valida, si segnala un errore di traduzione (violation).
-
 === Esercizio 3
-Si consideri un sistema di traduzione da indirizzamento logico ad indirizzamento fisico realizzato mediante paginazione.
+*Dati*
+- Spazio logico del programma: 64 byte $2^6$.
+- Dimensione delle pagine: 4 byte $2^2$.
+- Memoria fisica: 256 byte $2^8$.
 
-- Spazio logico del programma: 64 byte.
-- Dimensione delle pagine: 4 byte.
-- Memoria fisica: 256 byte.
+*Domande e Risposte*
++ Da quanti bit sono costituiti gli indirizzi logici e gli indirizzi fisici?
 
-Dati:
-- $2^6 = 64$ → Spazio logico totale.
-- $2^2 = 4$ → Dimensione della pagina.
-- $2^8 = 256$ → Memoria fisica totale.
+  *Indirizzi logici*
+    - Numero di pagine: $64/4 = 16$ → Richiede 4 bit per il numero di pagina (VPN).
+    - Offset all'interno della pagina: 2 bit ($log_2(4) = 2$).
+    - Totale: 4 + 2 = 6 bit.
 
-Domande e Risposte
+  *Indirizzi fisici*
+    - Numero di frame: $256/4 = 64$ → Richiede 6 bit per il numero di frame (PFN).
+    - Offset all'interno del frame: 2 bit} ($log_2(4) = 2$).
+    - Totale: 6 + 2 = 8 bit.
 
-a. Da quanti bit sono costituiti gli indirizzi logici e gli indirizzi fisici?
++ Da quanti bit sono costituiti i numeri di pagina (VPN)?
 
-- Indirizzi logici:
-  - Numero di pagine: $64/4 = 16$ → Richiede 4 bit per il numero di pagina (VPN).
-  - Offset all'interno della pagina: 2 bit ($log_2(4) = 2$).
-  - Totale: 4 + 2 = 6 bit.
+  Il numero di pagine è $16$ ($64/4$), quindi richiede $log_2(16) = 4$ bit.
 
-- Indirizzi fisici:
-  - Numero di frame: $256/4 = 64$ → Richiede 6 bit per il numero di frame (PFN).
-  - Offset all'interno del frame: 2 bit} ($log_2(4) = 2$).
-  - Totale: 6 + 2 = 8 bit.
++ Da quanti bit sono costituiti i numeri di frame (PFN)?
 
-b. Da quanti bit sono costituiti i numeri di pagina (VPN)?
+  Il numero di frame è $64$ ($256/4$), quindi richiede $log_2(64) = 6$ bit.
 
-- Il numero di pagine è $16$ ($64/4$), quindi richiede $log_2(16) = 4$ bit.
-
-c. Da quanti bit sono costituiti i numeri di frame (PFN)?
-
-- Il numero di frame è $64$ ($256/4$), quindi richiede $log_2(64) = 6$ bit.
-
-Tabella delle Pagine (Page Table)
+*Tabella delle Pagine*
 
 #table(
   columns: (1fr, 1fr),
@@ -680,8 +657,7 @@ Tabella delle Pagine (Page Table)
   [7], [12],
 )
 
-Traduzione degli Indirizzi Logici in Indirizzi Fisici
-
+*Traduzione*
 Si traducono i seguenti indirizzi logici: 0, 2, 4, 9, 19, 11, 22, 32, 30, 26, 23, 36.
 
 #table(
@@ -709,155 +685,137 @@ Si traducono i seguenti indirizzi logici: 0, 2, 4, 9, 19, 11, 22, 32, 30, 26, 23
   [36], [`1001 00`], [9], [0], [-], [-], [-], [Invalid Page],
 )
 
-VA: $0$
-- Binario: $0000 \, 00$.
+*VA: $0$*
+- Binario: `0000 00`.
 - VPN: $0$, Offset: $0$.
 - PFN: $12$.
-- PA: $12 times 4 + 0 = 48$ → $48$.
+- PA: PFN $times$ sizeOf(page) + Offset = 12 $times$ 4 + 0 = 48.
 
-VA: $2$
-- Binario: $0000 \, 10$.
+*VA: $2$*
+- Binario: `0000 10`.
 - VPN: $0$, Offset: $2$.
 - PFN: $12$.
-- PA: $12 times 4 + 2 = 50$ → $50$.
+- PA: $12 times 4 + 2 = 50$.
 
-VA: $4$
-- Binario: $0001 \, 00$.
+*VA: $4$*
+- Binario: `0001 00`.
 - VPN: $1$, Offset: $0$.
 - PFN: $1$.
-- PA: $1 times 4 + 0 = 4$ → 4
+- PA: $1 times 4 + 0 = 4$
 
-VA: $9$
-- Binario: $0010 \, 01$.
+*VA: $9$*
+- Binario: `0010 01`.
 - VPN: $2$, Offset: $1$.
 - PFN: $17$.
-- PA: $17 times 4 + 1 = 69$ → 69.
+- PA: $17 times 4 + 1 = 69$.
 
-VA: $19$
-- Binario: $0100 \, 11$.
+*VA: $19$*
+- Binario: `0100 11`.
 - VPN: $4$, Offset: $3$.
 - PFN: $11$.
-- PA: $11 times 4 + 3 = 47$ → 47.
+- PA: $11 times 4 + 3 = 47$.
 
-VA: $11$
-- Binario: $0010 \, 11$.
+*VA: $11$*
+- Binario: `0010 11`.
 - VPN: $2$, Offset: $3$.
 - PFN: $17$.
-- PA: $17 times 4 + 3 = 71$ → 71.
+- PA: $17 times 4 + 3 = 71$.
 
-VA: $22$
-- Binario: $0101 \, 10$.
+*VA: $22$*
+- Binario: `0101 10`.
 - VPN: $5$, Offset: $2$.
 - PFN: $16$.
-- PA: $16 times 4 + 2 = 66$ → 66.
+- PA: $16 times 4 + 2 = 66$.
 
-VA: $32$
-- Binario: $1000 \, 00$.
+*VA: $32$*
+- Binario: `1000 00`.
 - VPN: $8$.
 - Invalid Page: La tabella non contiene una voce per la pagina $8$.
 
-VA: $30$
-- Binario: $0111 \, 10$.
+*VA: $30$*
+- Binario: `0111 10`.
 - VPN: $7$, Offset: $2$.
 - PFN: $12$.
-- PA: $12 times 4 + 2 = 42$ → $42$.
+- PA: $12 times 4 + 2 = 42$.
 
-VA: $26$
-- Binario: $0110 \, 10$.
+*VA: $26$*
+- Binario: `0110 10`.
 - VPN: $6$, Offset: $2$.
 - PFN: $61$.
-- PA: $61 times 4 + 2 = 246$ → $246$.
+- PA: $61 times 4 + 2 = 246$.
 
-VA: $23$
-- Binario: $0101 \, 11$.
+*VA: $23$*
+- Binario: `0101 11`.
 - VPN: $5$, Offset: $3$.
 - PFN: $16$.
-- PA: $16 times 4 + 3 = 67$ → $67$.
+- PA: $16 times 4 + 3 = 67$.
 
-VA: $36$
-- Binario: $1001 \, 00$.
+*VA: $36$*
+- Binario: `1001 00`.
 - VPN: $9$.
 - Invalid Page: La tabella non contiene una voce per la pagina 9.
 
-- Se la tabella delle pagine non contiene un PFN valido per una determinata pagina logica, si verifica un errore di traduzione (invalid page).
-- L'indirizzo fisico viene calcolato concatenando il PFN con l'offset.
-
 === Esercizio 4
-=== Esercizio 5
 
-Dati:
-- $"AS_size" = 16 "k"$
-- $"phys_mem_size" = 64 "k"$
-- $"page_size" = 4 "k"$
+*Dati*
+- sizeOf(Virtual AS) = 32K ($2^15$)
+- sizeOf(Physical AS) = 64K
+- sizeOf(page) = 4 K
 
-Page Table:\
-[0] `0x8000000c`\
-[1] `0x00000000`\
-[2] `0x00000000`\
-[3] `0x80000006`\
+*Calcoli preliminari*
 
-Virtual address da tradurre:
-- $"VA"_1 =$ `0x00003229`
-- $"VA"_2 =$ `0x00001369`
+Il Valid bit si trova in posizione 14.
 
-*Traduzione 1*
+- Numero pagine virtuali: $(32 K)/(4 K) = 8$ 
+- Numero frame fisici: $(64 K)/(4K) = 16$
+- Suddivisione del VA:
+  - sizeOf(VPN) = $log_2(8) = 3$ bit.
+  - sizeOf(Offset) = 15 - 3 = 12 bit.
 
-$"VA"_1 =$ `0x00003229`
-
-+ Calcolo di quanti bit occorrono per rappresentare il VA:\
-  $"size_of_VA" = log_2 "AS_size" = log_2 16 "k" dot 1024 = 14 "bit"$
-
-+ Calcolo delle pagine presenti nell'AS:\
-  $"n_of_pages" = ("AS_size") / ("page_size") = 16 / 4 = 4$
-
-+ Calcolo dei bit necessari per il VPN:\
-  $"n_of_bit_for_VPN" = log_2 "n_of_pages" = log_2 4 = 2 "bit"$
-
-+ Calcolo dei bit che occorrono all'offset:\
-  $"n_of_bit_for_offset" = "size_of_VA" - "n_of_bit_for_VPN" = 14 - 2 = 12 "bit"$
-
-+ Estrazione del VPN:\
-  + Conversione in binario del VA:\
-    $"bin"("VA") =\ "bin"("0x00003229") = 11 space 0010 space 0010 space 1001$
-  + Estrazione del PFN e dell'offset:\
-    $underbracket(11, "VPN") underbracket(0010 space 0010 space 1001, "Offset")$
-
-    - $"dec"(11) = 3$ quindi $"VPN" = 3$
-    - $"dec"(0010 space 0010 space 1001)=553$ quindi $"offset" = 553$
-+ Check validità della PTE:\
-  $"bin"("most_significant_nibble_of_PFN") = "bin"("0x8") = 1000$ quindi il MSB = 1, la PTE è valida.
-+ Estrazione del PFN:\
-  $"bin"("PFN") = "bin"("0x80000006") = 1000 space 0000 space 0000 space 0000 space 0000 space 0000 space 0000 space 0111$
-
-  Escludendo il byte più significativo che contiene il valid bit, rimane 0110 che tradotto in decimale è 6. Quindi abbiamo che PFN = 6.
-+ Calcolo del PA:\
-  $"PA" = 2^("n_of_bit_for_offset") dot "PFN" + "offset" = 2^12 dot 6 + 553 = 25129$
-
-*Traduzione 2*
-
-$"VA"_2 =$ `0x00001369`
-
-Tutto uguale a prima fino al punto 4.
-
-1. Estrazione del VPN:\
-  + Conversione in binario del VA:\
-    $"bin"("VA") =\ "bin"("0x00001369") = 01 space 0011 space 0110 space 1001$
-  + Estrazione del PFN e dell'offset:\
-    $underbracket(01, "VPN") underbracket(0011 space 0110 space 1001, "Offset")$
-
-    - $"dec"(01) = 1$ quindi $"VPN" = 1$
-    - $"dec"(0011 space 0110 space 1001)=$ quindi $"offset" = 873$
-+ Check validità della PTE:\
-  $"bin"("most_significant_nibble_of_PFN") = "bin"("0x0") = 0000$ quindi il MSB = 0, la PTE è valida.
-#figure(
-  image("../images/paging/paging schema.png"),
-  caption: [Come funziona la paginazione. @geeksforgeeks1],
+*Tabella delle pagine*
+#table(
+  columns: (1fr, 2fr),
+  [VPN], [PTE],
+  [0], [`0x80000003`],
+  [1], [`0x8000000a`],
+  [2], [`0x8000000f`],
+  [3], [`0x00000000`],
+  [4], [`0x00000000`],
+  [5], [`0x00000000`],
+  [6], [`0x80000005`],
+  [7], [`0x00000000`]
 )
+
+*VA: 9385*
+- Binario: `010 0100 1010 1001`
+- VPN: 2, Offset: 1193
+- PFN: 15
+- PA = 15 $times$ 4096 + 1193 = 62633
+
+*VA: 7128*
+- Binario: `001 1011 1101 1000`
+- VPN: 1, Offset: 3032
+- PFN: 10
+- PA = 10 $times$ 4096 + 3032 = 43992
+
+*VA: 16457*
+- Binario: `100 0000 0100 1001`
+- VPN: 4 $==>$ PTE non valida $==>$ Segmentation Fault!
+
+*VA: 16672*
+- Binario: `100 0001 0010 0000`
+- VPN: 4 $==>$ PTE non valida $==>$ Segmentation Fault!
+
+*VA: 3788*
+- Binario: `000 1110 1100 1100`
+- VPN: 0, Offset: 3788
+- PFN: 3
+- PA = 3 $times$ 4096 + 3788 = 16076
 
 == Multi-Level Page Table
 
 === Esercizio 1
-Dati:
+*Dati*
 - Address space: 16KB
 - Dimensione pagina: 64 bytes
 - Numero totale di pagine: 256 ($2^8$)
