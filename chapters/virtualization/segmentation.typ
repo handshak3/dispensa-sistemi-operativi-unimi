@@ -157,7 +157,7 @@ Ci sono due approcci principali per gestire la frammentazione esterna:
 - *Gestione della free list*: consiste nel mantenere una lista di tutti i frammenti di memoria libera. Quando viene fatta una richiesta di allocazione di memoria, l'OS cerca il frammento di memoria più grande che è abbastanza grande per soddisfare la richiesta. Meno costosa ma non efficiente.
 
 #figure(
-  image("../../images/segmentation/frammentazione.png"),
+  image("../../images/segmentation/frammentazione.png", width: 80%),
   caption: [Esempio di come la memoria fisica viene trasformata con la compaction.],
 )
 

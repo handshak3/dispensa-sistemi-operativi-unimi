@@ -97,20 +97,20 @@ Proprietà (mirroring = 2):
 
 Combinazioni di RAID 1 e di RAID 0:
 
-#table(
+#grid(
   columns: 2,
   stroke: 0pt,
   [
     #figure(
       image("../../images/raid/r10.png"),
-      caption: [Raid 1 + 0.@a2023_confronto],
+      caption: [Raid 1 + 0. @a2023_confronto],
     )
 
   ],
   [
     #figure(
       image("../../images/raid/r01.png"),
-      caption: [Raid 0 + 1 mirroring.@a2025_fileraid],
+      caption: [Raid 0 + 1 mirroring. @a2025_fileraid],
     )
   ],
 )

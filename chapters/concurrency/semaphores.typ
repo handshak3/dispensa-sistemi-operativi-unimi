@@ -344,7 +344,7 @@ Approccio funzionante ma presenta alcuni lettori potrebbero soffrire di starvati
 Si supponga che ci siano cinque "filosofi" seduti intorno a un tavolo. Tra ogni coppia di filosofi c'è una sola forchetta (e quindi, cinque in totale). I filosofi hanno periodi in cui pensano, e non hanno bisogno di forchette e periodi in cui mangiano. Per mangiare, un filosofo ha bisogno di due forchette, sia quella alla sua sinistra che quella alla sua destra.
 
 #figure(
-  image("../../images/semaphores/filosofi.png", width: 65%),
+  image("../../images/semaphores/filosofi.png", width: 60%),
   caption: [Problema dei 5 filosofi.],
 )
 

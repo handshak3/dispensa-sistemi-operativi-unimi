@@ -97,6 +97,4 @@
 
 #include "chapters/laboratory/simulation.typ"
 
-#colbreak()
-
 #bibliography("citations.bib")

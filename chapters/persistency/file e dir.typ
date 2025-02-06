@@ -124,7 +124,7 @@ Quando un processo padre crea un processo figlio con `fork()`, un'entry nella ta
 `dup2()`: sostituisce il descrittore con uno nuovo.
 
 #figure(
-  image("../../images/file/pt.png"),
+  image("../../images/file/pt.png", width: 80%),
   caption: [Processi che condividono una voce della tabella dei file aperti.],
 )
 

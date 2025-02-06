@@ -11,11 +11,11 @@
   set page(
     numbering: "I",
     number-align: center,
-    margin: (left: 12mm, right: 12mm, top: 10mm, bottom: 10mm),
+    margin: (left: 12mm, right: 12mm, top: 5mm, bottom: 8mm),
     columns: 2,
   )
-  set text(font: "Libertinus Serif", lang: "it", size: 8.8pt)
-  set par(justify: true, leading: 1.1mm)
+  set text(font: "Libertinus Serif", lang: "it", size: 8.4pt)
+  set par(justify: true, leading: 1.2mm)
   show raw: set text(size: 6pt)
   set line(length: 100%, stroke: .4pt)
 

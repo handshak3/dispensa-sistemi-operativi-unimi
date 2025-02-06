@@ -38,6 +38,10 @@ La famiglia di politiche basate sull'attualità di accesso è basata sul *princi
 - *LFU policy* (Least Frequently Used): sostituisce la pagina che è stata utilizzata meno frequentemente.
 - *LRU policy* (Least Recently Used): sostituisce la pagina che è stata utilizzata meno di recente.
 
+*Problema*: L'implementazione perfetta di LRU richiede un notevole overhead computazionale perché bisogna aggiornare le strutture dati ad ogni accesso alla memoria. 
+
+Per ridurre tale overhead, si usano delle approssimazioni dell'algoritmo LRU, come l'algoritmo dell'orologio.
+
 === LRU approssimato
 
 È possibile fare un approssimazione per trovare le pagine utilizzate meno recentemente. Approssimando LRU otteniamo un algoritmo più flessibile e meno
@@ -49,14 +53,14 @@ L'hardware non pulisce mai lo use bit, è l'OS che ha il compito di settarlo a 0
 
 Il *Clock algorithm* è utilizzato per approssimare l'LRU.
 Funzionamento dell'Algoritmo Clock:
-1. Struttura Circolare: Le pagine in memoria sono organizzate in una lista circolare, simile al quadrante di un orologio, con una "lancetta" che punta a una pagina specifica.
 
-2. Processo di Sostituzione:
-  - Quando è necessario sostituire una pagina, il sistema operativo controlla la pagina indicata dalla lancetta.
-  - Se il bit di riferimento della pagina è 1, significa che la pagina è stata utilizzata di recente. In questo caso, il sistema operativo:
-    - Resetta il bit di riferimento a 0.
-    - Sposta la lancetta alla pagina successiva.
-  - Questo processo continua finché non si trova una pagina con il bit di riferimento a 0, indicante che non è stata utilizzata di recente e può essere sostituita.
+Le pagine in memoria sono organizzate in una lista circolare, simile al quadrante di un orologio, con una "lancetta" che punta a una pagina specifica.
+
++ Quando è necessario sostituire una pagina, il sistema operativo controlla la pagina indicata dalla lancetta.
++ Se il bit di riferimento della pagina è 1, significa che la pagina è stata utilizzata di recente. In questo caso, il sistema operativo:
+  - Resetta il bit di riferimento a 0.
+  - Sposta la lancetta alla pagina successiva.
++ Questo processo continua finché non si trova una pagina con il bit di riferimento a 0, indicante che non è stata utilizzata di recente e può essere sostituita.
 
 #figure(image("../../images/swapping/clock.png"), caption: [Clock algorithm.])
 

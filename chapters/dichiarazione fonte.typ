@@ -12,32 +12,43 @@ Per maggiori informazioni sul libro, si consiglia di consultare la versione uffi
 
 Il materiale, inclusi frammenti di codice, grafici e tabelle, è tratto dal libro sopra citato e viene utilizzato esclusivamente a scopo educativo, per fini di apprendimento e studio. Si ritiene che l'uso di questo materiale rientri nell'ambito delle normative sul Fair Use, in quanto non ha scopi commerciali e viene utilizzato in quantità limitata per fini didattici. Si invita comunque a consultare il libro per una comprensione completa e dettagliata degli argomenti trattati.
 
-Gli argomenti trattati in questa dispensa sono i seguenti:
-- Processes API
-- CPU-Mechanism
-- CPU Scheduling
-- CPU Scheduling MLFQ
-- Address Space
-- Memory API
-- Address Translation
-- Segmentation
-- Paging
-- TLB (Translation Lookaside Buffer)
-- Smalltables TLBS
-- Swapping: Mechanisms
-- Swapping: Policies
-- Concurrency
-- Thread API
-- Locks
-- Lock-based Concurrent Data Structures
-- Condition Variables
-- Semaphores
-- I/O Devices
-- Hard Disk Drives (HD)
-- RAID (Redundant Array of Independent Disks)
-- Files and Directories
-- File System
-- Journaling
+Gli argomenti trattati in questa dispensa comprendono tutti quelli affrontati a lezione, con l'aggiunta di esercizi basati su temi d'esame ufficiali. In particolare i capitoli del libro trattati sono:
+
+#grid(
+  columns: (1fr, 1fr),
+  [
+  - Intro  
+  - Processes  
+  - Processes API  
+  - CPU-Mechanism  
+  - CPU scheduling  
+  - CPU Scheduling MLFQ  
+  - Address Space  
+  - Memory API  
+  - Address translation  
+  - Segmentation  
+  - Paging  
+  - TLB  
+  - Smalltables TLBS  
+  - Swapping: Mechanisms    
+  ],
+  [
+  - Swapping: Policies
+  - Concurrency  
+  - Thread API  
+  - Locks  
+  - #text(size: 7.9pt)[Lock-based concurrent data structure]  
+  - Condition variables  
+  - Semaphores  
+  - I/O devices  
+  - HD drives  
+  - RAID  
+  - Files and directories  
+  - File system  
+  - FFS  
+  - Journaling
+  ]
+)
 
 Per ottenere una copia completa del libro o maggiori dettagli, si invita a visitare il sito ufficiale: #link("http://pages.cs.wisc.edu/~remzi/OSTEP/").
 
@@ -47,9 +58,11 @@ Questo documento approfondisce anche gli argomenti trattati negli esami del Prof
 - *Shell e Pipeline*: approfondimento su comandi della shell, permessi, processi e strumenti di manipolazione di file come `grep`, `awk`, `cut`, `sort` e `sed`.
 - *Esercizi pratici e simulazioni d'esame*.
 
-Le domande degli esami si ispirano fortemente a quelle presenti in questo documento:
+Le domande degli esami si ispirano in parte a quelle presenti in questo documento:
 #link("http://twiki.di.uniroma1.it/pub/Sistemioperativi1/WebHome/dispensa_so.pdf")[Sistemi Operativi 1 - Twiki UniRoma1] all'indirizzo: "http://twiki.di.uniroma1.it/twiki/view/Sistemioperativi1".
 
 Il materiale è destinato esclusivamente agli studenti dell'Università degli Studi di Milano iscritti al corso di *Sicurezza dei Sistemi e delle Reti Informatiche*.
 
-Se riscontrate errori o avete suggerimenti per migliorare il contenuto, vi invitiamo ad aprire una *Issue* o una *Pull Request* nel #link("https://github.com/handshak3/dispensa-sistemi-operativi-unimi")[repository GitHub] all'indirizzo: "https://github.com/handshak3/dispensa-sistemi-operativi-unimi". Questo ci aiuterà a mantenere il materiale aggiornato e di alta qualità.
+Se riscontrate errori o avete suggerimenti per migliorare il contenuto, vi invitiamo ad aprire una *Issue* o una *Pull Request* nel #link("https://github.com/handshak3/dispensa-sistemi-operativi-unimi")[repository GitHub] all'indirizzo: "https://github.com/handshak3/dispensa-sistemi-operativi-unimi". Questo ci aiuterà a mantenere il materiale aggiornato e di qualità.
+
+#colbreak()

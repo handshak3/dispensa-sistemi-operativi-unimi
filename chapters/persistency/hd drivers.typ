@@ -11,7 +11,7 @@ Il disco rigido è composto da un gran numero di settori (blocchi da 512 byte), 
 Un disco rigido è composto da un piatto (*platter*) rotante che contiene $n$ tracce (*track*) da tutti e due i lati (*surface*). Ogni traccia è composta da un numero di settori (*sector*), che sono le unità di base di memorizzazione dei dati. I settori sono numerati da $0$ a $n-1$. Il disco è dotato di una testina (*disk head*) che può leggere e scrivere i dati sui settori. La testina è montata su un braccio (*disk arm*) che può essere spostato per accedere a diverse tracce. Il disco è in continuo movimento, quindi la testina deve essere posizionata sulla traccia corretta al momento giusto per leggere o scrivere i dati.
 
 #figure(
-  image("../../images/hdd/hdd.png"),
+  image("../../images/hdd/hdd.png", width: 70%),
   caption: [Nomenclatura delle componenti di un HDD. @markham_2020_disk],
 )
 
@@ -115,7 +115,7 @@ $ T_"seek" = 1 / 3 T_"seek"^"max" $
 
 Dove $T_"seek"^"max"$ è il tempo massimo per muoversi tra le tracce più distanti.
 
-*Tempo di Rotazione Medio*
+*Tempo di Rotazione Medio* o *Tempo Medio di Latenza Rotazionale*
 
 $ T_"rotation" = 1 / 2 T_"rotation"^"max" $
 
@@ -182,14 +182,6 @@ Dove $T_"cycle"$ è il tempo totale tra due richieste consecutive.
   $
     T_"rot" ("ms") = 60000 / "RPM"
   $
-
-*Tempo Medio di Latenza Rotazionale*
-
-Il tempo medio di latenza è la metà del tempo per una rotazione completa:
-
-$
-  T_"lat" = T_"rot" / 2
-$
 
 *Dati per Traccia*
 
