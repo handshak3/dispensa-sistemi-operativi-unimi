@@ -12,7 +12,7 @@
     numbering: "I",
     number-align: center,
     margin: (left: 12mm, right: 12mm, top: 5mm, bottom: 8mm),
-    columns: 2,
+    columns: 2
   )
   set text(font: "Libertinus Serif", lang: "it", size: 8.4pt)
   set par(justify: true, leading: 1.2mm)

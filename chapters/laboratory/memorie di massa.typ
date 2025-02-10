@@ -163,7 +163,7 @@ ogni specifico modello di disco):
 - Ht = tempo richiesto perché la testina si muova da una traccia alla successiva.
 
 Il tempo necessario perché la testina si muova di n tracce è:
-$ "Seek"(n)= H"s"+ "Ht" times n $
+$ "Seek"(n)= "Hs"+ "Ht" times "n" $
 
 === Latenza rotazionale (r)
 Latenza è il tempo richiesto necessario perché il disco ruoti in modo che il settore che ci interessa sia sotto la testina di lettura/scrittura. Gli hard disk ruotano a circa 5000-7000 rpm (12-8 msec per rivoluzione).

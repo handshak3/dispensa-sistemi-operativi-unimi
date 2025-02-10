@@ -1205,9 +1205,9 @@ Tempo per leggere un settore ($T_"sector"$):
 $T_"sector" = (T_"rotation" ("ms")) / ("Numeri settori per traccia") = (6 "ms") / 500 = 0.12 "ms"$
 
 Tempo totale medio ($T_("I/O")=T_S+T_L+T_T$)
-- $T_S = 4$ ms
-- $T_L = 1/2 T_"rotation" = 3$ ms
-- $T_T = 8 times 0,012 "ms" = 0,096 "ms"$
+- $T_"seek" = 4$ ms
+- $T_"rotation" = 1/2 T_"rotation" = 3$ ms 
+- $T_"transfer" = 8 times 0,012 "ms" = 0,096 "ms"$
 
 $T_("I/O")= 4 "ms" + 3 "ms" + 0,096 "ms" = 7,096 "ms"$
 
@@ -1245,6 +1245,152 @@ $(42666667 "byte/s") / 1000000 approx 42,67 "MB/s"$
 - inumber: 6.
 
 Indirizzo dell'inode corrispondente all'inumber $16$:
+
 $"Indirizzo" =\ "inodeStartAddr" + ("inumber" times "sizeof(inode_t)" = \ 12 "KB" + (16 times 256 "Byte") = 16 "KB"$
+
+== Semafori
+=== Esercizio 1
+
+Considera il seguente codice che usa due semafori per sincronizzare due thread:
+
+```c
+sem_t sem1, sem2;
+
+void *thread1(void *arg) {
+    sem_wait(&sem1);
+    sem_wait(&sem2);
+    printf("Thread 1 in sezione critica\n");
+    sem_post(&sem2);
+    sem_post(&sem1);
+    return NULL;
+}
+
+void *thread2(void *arg) {
+    sem_wait(&sem2);
+    sem_wait(&sem1);
+    printf("Thread 2 in sezione critica\n");
+    sem_post(&sem1);
+    sem_post(&sem2);
+    return NULL;
+}
+```
+
+*Domanda*: Cosa accade se entrambi i thread iniziano contemporaneamente?
+#set enum(numbering: "A.")
+
++ Entrambi i thread accederanno alla sezione critica senza problemi.
++ Si verifica una condizione di deadlock.
++ Il programma eseguirà indefinitamente senza terminare.
++ Il thread 2 entrerà nella sezione critica prima del thread 1.
++ L'ordine di esecuzione dipende dalla schedulazione del sistema operativo.
+#set enum(numbering: "1.")
+
+Scegli la risposta corretta e nel caso il codice porti a problemi indicare una possibile soluzione.
+
+*Soluzione*: Il codice definisce due semafori sem1 e sem2. Le funzioni thread1 e thread2 seguono la seguente sequenza:
+
+1. Thread 1:
+- Attende su sem1 (`sem_wait(&sem1);`)
+- Attende su sem2 (`sem_wait(&sem2);`)
+- Stampa un messaggio
+- Rilascia sem2 (`sem_post(&sem2);`)
+- Rilascia sem1 (`sem_post(&sem1);`)
+
+2. Thread 2:
+- Attende su sem2 (`sem_wait(&sem2);`)
+- Attende su sem1 (`sem_wait(&sem1);`)
+- Stampa un messaggio
+- Rilascia sem1 (`sem_post(&sem1);`)
+- Rilascia sem2 (`sem_post(&sem2);`)
+
+Se partono contemporaneamente, Thread 1 attende prima su sem1 e poi su sem2, mentre Thread 2 fa il contrario. Quindi: 
+1. Thread 1 acquisisce sem1 e aspetta su sem2.
+2. Thread 2 acquisisce sem2 e aspetta su sem1.
+I thread sono bloccati in attesa che l'altro rilasci un semaforo, il che non accadrà mai. Questo è un deadlock.
+
+*Risposta*: B. Si verifica una condizione di deadlock.
+
+*Correzione del codice*
+```c
+void thread1(void *arg) {
+    sem_wait(&sem1);
+    sem_wait(&sem2);
+    printf("Thread 1 in sezione critica\n");
+    sem_post(&sem2);
+    sem_post(&sem1);
+    return NULL;
+}
+
+void thread2(void *arg) {
+    sem_wait(&sem1);  // Modificato per rispettare lo stesso ordine di thread1
+    sem_wait(&sem2);
+    printf("Thread 2 in sezione critica\n");
+    sem_post(&sem2);
+    sem_post(&sem1);
+    return NULL;
+}```
+
+Ora entrambi i thread acquisiscono prima sem1 e poi sem2, prevenendo il deadlock.
+
+=== Esercizio 2
+Considera il seguente codice C che implementa un semaforo per sincronizzare l'accesso a una sezione critica:
+
+```c
+#include <stdio.h>
+#include <pthread.h>
+#include <semaphore.h>
+
+sem_t semaphore;
+
+void *thread_function(void *arg) {
+    sem_wait(&semaphore);
+    printf("Thread %d in sezione critica\n", *(int *)arg);
+    sem_post(&semaphore);
+    return NULL;
+}
+
+int main() {
+    pthread_t t1, t2;
+    int id1 = 1, id2 = 2;
+    sem_init(&semaphore, 0, 1);
+
+    pthread_create(&t1, NULL, thread_function, &id1);
+    pthread_create(&t2, NULL, thread_function, &id2);
+
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
+
+    sem_destroy(&semaphore);
+    return 0;
+}
+```
+*Domanda*: Quale sarà l'output di questo programma se entrambi i thread vengono eseguiti contemporaneamente?
+
+#set enum(numbering: "A.")
+
++  Entrambi i thread accederanno simultaneamente alla sezione critica.
++  L'output sarà sempre nell'ordine "Thread 1 in sezione critica" seguito da "Thread 2 in sezione critica".
++  I thread accederanno alla sezione critica uno alla volta, ma l'ordine non è garantito.
++  Il programma andrà in deadlock a causa dell'uso improprio del semaforo.
++  I thread non accederanno mai alla sezione critica a causa di un errore di sincronizzazione.
+
+Dare la risposta corretta e giustificarla.
+
+*Soluzione*:
+
+Analizziamo il comportamento del codice:
+#set enum(numbering: "1.")
+1. Inizializzazione del semaforo:\
+  `sem_init(&semaphore, 0, 1);`
+  Il semaforo è inizializzato a 1, il che significa che solo un thread alla volta può entrare nella sezione critica.
+
+2. Esecuzione dei thread:\
+   Entrambi i thread vengono creati con pthread_create. Ogni thread chiama `sem_wait(&semaphore)`, bloccandosi se il semaforo è già occupato.  Quando un thread termina la sezione critica, chiama `sem_post(&semaphore)`, permettendo all'altro thread di procedere.
+
+3. Conseguenze:\ Poiché il semaforo ha valore iniziale 1, solo un thread alla volta può accedere alla sezione critica. L'ordine di esecuzione dei thread non è garantito e dipende dalla schedulazione del sistema operativo. Non si verifica deadlock perché ogni thread rilascia il semaforo dopo l'uso.
+
+*Risposta corretta*: C. I thread accederanno alla sezione critica uno alla volta, ma l'ordine non è garantito.
+
+
 
 #line()
