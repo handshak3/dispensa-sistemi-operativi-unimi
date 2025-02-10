@@ -33,7 +33,7 @@
       width: 100%,
       radius: 2pt,
       fill: rgb("#ddd"),
-      [#it]
+      [#it],
     )
   ]
 
