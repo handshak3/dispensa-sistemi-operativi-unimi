@@ -112,5 +112,3 @@ Il FS (File System) non deve conoscere i dettagli specifici del dispositivo hard
 *Raw interface*: abilita applicazioni speciali a leggere e scrivere blocchi direttamente senza utilizzare l'astrazione del file.
 
 L'interfaccia generica può avere lati negativi, poiché può impedire alle applicazioni di sfruttare le capacità speciali di alcuni dispositivi.
-
-#line()

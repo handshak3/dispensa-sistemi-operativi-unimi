@@ -187,5 +187,3 @@ La cache ha un impatto significativo anche sulle operazioni di scrittura. Mentre
 I file system moderni ritardano le scritture tra cinque e trenta secondi per ottimizzare le prestazioni. Questo introduce un compromesso tra performance e sicurezza dei dati, poiché in caso di crash del sistema prima della scrittura definitiva su disco, i dati presenti in memoria vengono persi. Alcune applicazioni, come i database, non possono accettare questo rischio e adottano strategie alternative, come la chiamata a `fsync()` per forzare la scrittura su disco, l'uso di I/O diretto per bypassare la cache o l'accesso diretto al disco senza passare dal file system.
 
 La gestione del caching e del buffering nei file system bilancia le prestazioni con l'affidabilità, offrendo opzioni per adattarsi alle esigenze specifiche delle applicazioni.
-
-#line()

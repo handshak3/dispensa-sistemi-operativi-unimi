@@ -104,5 +104,3 @@ Per supportare la dynamic relocation, l'OS:
   image("../../images/translation/lde runtime.png"),
   caption: [Limited Direct Execution (Dynamic Relocation) \@ Runtime.],
 )
-
-#line()

@@ -63,5 +63,3 @@ Motivi per cui si verificano i processi zombie:
 - Il processo padre non si aspetta la terminazione del processo figlio.
 - Il processo padre non è in grado di chiamare la funzione `wait()` a causa di un errore.
 - Il processo padre è stato terminato.
-
-#line()

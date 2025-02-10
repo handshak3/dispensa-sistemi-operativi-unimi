@@ -38,7 +38,7 @@ La famiglia di politiche basate sull'attualità di accesso è basata sul *princi
 - *LFU policy* (Least Frequently Used): sostituisce la pagina che è stata utilizzata meno frequentemente.
 - *LRU policy* (Least Recently Used): sostituisce la pagina che è stata utilizzata meno di recente.
 
-*Problema*: L'implementazione perfetta di LRU richiede un notevole overhead computazionale perché bisogna aggiornare le strutture dati ad ogni accesso alla memoria. 
+*Problema*: L'implementazione perfetta di LRU richiede un notevole overhead computazionale perché bisogna aggiornare le strutture dati ad ogni accesso alla memoria.
 
 Per ridurre tale overhead, si usano delle approssimazioni dell'algoritmo LRU, come l'algoritmo dell'orologio.
 
@@ -76,5 +76,3 @@ Quando la richiesta di memoria dei processi in esecuzione supera la memoria fisi
 Per gestire questa situazione, alcuni sistemi adottano meccanismi di controllo avanzati, come l'*admission control*, che limita il numero di processi in esecuzione per garantire un utilizzo più efficiente delle risorse. L'idea alla base è che eseguire meno processi in modo efficace sia preferibile rispetto a eseguirne troppi con prestazioni pessime.
 
 Linux, invece, utilizza un approccio più diretto con l'*Out-Of-Memory (OOM) Killer*: quando la memoria è sovraccarica, questo demone identifica e termina il processo che sta consumando più memoria, liberando risorse e prevenendo il collasso del sistema.
-
-#line()

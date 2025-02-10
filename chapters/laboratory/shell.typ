@@ -1607,5 +1607,3 @@ find . -name '\*.png' | sed -e 's/.\*/mv & &/' -e 's/png$\/jpg/' | bash
   - `s/png\$/jpg/`: Cambia l'estensione .png in .jpg.
 + `bash`
 Esegue i comandi mv generati.
-
-#line()

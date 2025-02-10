@@ -188,5 +188,3 @@ Immaginiamo una write al blocco 1 e una write al blocco 10; verrà tradotta in u
   image("../../images/raid/raid recap.png"),
   caption: [Capacità, affidabilità e performance dei RAID.],
 )
-
-#line()

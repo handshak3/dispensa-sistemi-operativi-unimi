@@ -1206,7 +1206,7 @@ $T_"sector" = (T_"rotation" ("ms")) / ("Numeri settori per traccia") = (6 "ms") 
 
 Tempo totale medio ($T_("I/O")=T_S+T_L+T_T$)
 - $T_"seek" = 4$ ms
-- $T_"rotation" = 1/2 T_"rotation" = 3$ ms 
+- $T_"rotation" = 1/2 T_"rotation" = 3$ ms
 - $T_"transfer" = 8 times 0,012 "ms" = 0,096 "ms"$
 
 $T_("I/O")= 4 "ms" + 3 "ms" + 0,096 "ms" = 7,096 "ms"$
@@ -1303,7 +1303,7 @@ Scegli la risposta corretta e nel caso il codice porti a problemi indicare una p
 - Rilascia sem1 (`sem_post(&sem1);`)
 - Rilascia sem2 (`sem_post(&sem2);`)
 
-Se partono contemporaneamente, Thread 1 attende prima su sem1 e poi su sem2, mentre Thread 2 fa il contrario. Quindi: 
+Se partono contemporaneamente, Thread 1 attende prima su sem1 e poi su sem2, mentre Thread 2 fa il contrario. Quindi:
 1. Thread 1 acquisisce sem1 e aspetta su sem2.
 2. Thread 2 acquisisce sem2 e aspetta su sem1.
 I thread sono bloccati in attesa che l'altro rilasci un semaforo, il che non accadrà mai. Questo è un deadlock.
@@ -1368,11 +1368,11 @@ int main() {
 
 #set enum(numbering: "A.")
 
-+  Entrambi i thread accederanno simultaneamente alla sezione critica.
-+  L'output sarà sempre nell'ordine "Thread 1 in sezione critica" seguito da "Thread 2 in sezione critica".
-+  I thread accederanno alla sezione critica uno alla volta, ma l'ordine non è garantito.
-+  Il programma andrà in deadlock a causa dell'uso improprio del semaforo.
-+  I thread non accederanno mai alla sezione critica a causa di un errore di sincronizzazione.
++ Entrambi i thread accederanno simultaneamente alla sezione critica.
++ L'output sarà sempre nell'ordine "Thread 1 in sezione critica" seguito da "Thread 2 in sezione critica".
++ I thread accederanno alla sezione critica uno alla volta, ma l'ordine non è garantito.
++ Il programma andrà in deadlock a causa dell'uso improprio del semaforo.
++ I thread non accederanno mai alla sezione critica a causa di un errore di sincronizzazione.
 
 Dare la risposta corretta e giustificarla.
 
@@ -1385,12 +1385,67 @@ Analizziamo il comportamento del codice:
   Il semaforo è inizializzato a 1, il che significa che solo un thread alla volta può entrare nella sezione critica.
 
 2. Esecuzione dei thread:\
-   Entrambi i thread vengono creati con pthread_create. Ogni thread chiama `sem_wait(&semaphore)`, bloccandosi se il semaforo è già occupato.  Quando un thread termina la sezione critica, chiama `sem_post(&semaphore)`, permettendo all'altro thread di procedere.
+  Entrambi i thread vengono creati con pthread_create. Ogni thread chiama `sem_wait(&semaphore)`, bloccandosi se il semaforo è già occupato. Quando un thread termina la sezione critica, chiama `sem_post(&semaphore)`, permettendo all'altro thread di procedere.
 
 3. Conseguenze:\ Poiché il semaforo ha valore iniziale 1, solo un thread alla volta può accedere alla sezione critica. L'ordine di esecuzione dei thread non è garantito e dipende dalla schedulazione del sistema operativo. Non si verifica deadlock perché ogni thread rilascia il semaforo dopo l'uso.
 
 *Risposta corretta*: C. I thread accederanno alla sezione critica uno alla volta, ma l'ordine non è garantito.
 
+=== Esercizio 3
+Riportare un esempio di codice di un semaforo usato per determinare l'ordine di esecuzione tra padre e figlio.
 
+*Soluzione*: Per garantire che il processo padre esegua un'operazione solo dopo che il processo figlio ha completato una determinata azione, possiamo usare un semaforo inizializzato a 0. Il padre eseguirà una `sem_wait()` per attendere il figlio, mentre il figlio eseguirà `sem_post()` per segnalare al padre che può procedere.
 
-#line()
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <semaphore.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+sem_t semaphore;
+
+int main() {
+    sem_init(&semaphore, 1, 0); // Semaforo inizializzato a 0 (bloccante)
+
+    pid_t pid = fork(); // Creazione del processo figlio
+
+    if (pid < 0) {
+        perror("Errore nella fork");
+        exit(1);
+    }
+
+    if (pid == 0) {
+        // Processo FIGLIO
+        printf("Figlio: sto eseguendo il mio compito\n");
+        sleep(2); // Attività del figlio
+        printf("Figlio: ho finito, segnalo al padre\n");
+        sem_post(&semaphore); // Sblocca il padre
+        exit(0);
+    } else {
+        // Processo PADRE
+        sem_wait(&semaphore); // Attende che il figlio completi l'operazione
+        printf("Padre: il figlio ha terminato, ora posso eseguire la mia parte\n");
+        wait(NULL); // Aspetta la terminazione del figlio
+        sem_destroy(&semaphore); // Distrugge il semaforo
+    }
+
+    return 0;
+}
+```
+*Spiegazione:*
+1. Inizializzazione del semaforo a 0: il padre parte in stato di attesa.
+2. Creazione del processo figlio con fork().
+3. Il figlio esegue il suo compito, poi chiama sem_post(&semaphore); per sbloccare il padre.
+4. Il padre attende con sem_wait(&semaphore); finché il figlio non chiama sem_post().
+5. Il padre prosegue l'esecuzione solo dopo il completamento del figlio.
+6. Distruzione del semaforo alla fine del programma.
+
+*Output atteso*
+
++ Figlio: sto eseguendo il mio compito
++ Figlio: ho finito, segnalo al padre
++ Padre: il figlio ha terminato, ora posso eseguire la mia parte
+
+Questo assicura che il padre non esegua la sua parte prima che il figlio abbia completato la sua attività.

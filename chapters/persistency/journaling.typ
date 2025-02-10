@@ -168,5 +168,3 @@ Se si verifica un crash e queste informazioni sono ancora nel log, si crea un gr
 ==== Approcci Alternativi
 
 Esistono anche altri approcci al di fuori del journaling. Uno di questi è *Soft Updates*, che si basa sull'ordinamento accurato delle scritture al file system per garantire che le strutture su disco non vengano mai lasciate in uno stato inconsistente (ad esempio, scrivendo un blocco dati prima che l'inode punti ad esso). Un altro approccio è *Copy-on-Write* (COW), che implica la scrittura di nuove copie di un blocco di dati invece di modificarlo direttamente. Questi sono solo alcuni degli approcci adottati dai file system per garantire la consistenza e l'affidabilità.
-
-#line()

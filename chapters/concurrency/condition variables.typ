@@ -374,5 +374,3 @@ Un produttore dorme solo se tutti i buffer sono attualmente pieni (p2). Un consu
 Il codice non funziona, il thread che sveglia altri thread non sa quale thread svegliare.
 
 Soluzione suggerita da Lampson e Redell (condizione di copertura): \ Sostituire la chiamata `pthread_cond_signal()` con `pthread_cond_broadcast()`, che sveglia tutti i thread in attesa in modo da svegliare tutti thread che dovrebbero essere svegli. Può impattare sulle prestazioni ma i thread si svegliati inutilmente ricontrolleranno la condizione e poi torneranno a dormire.
-
-#line()

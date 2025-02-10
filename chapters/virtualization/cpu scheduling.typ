@@ -242,5 +242,3 @@ $T_"wait"_"avg" = (sum_(i=1)^n T_"wait"_i) / n$
 - Assegna la CPU per un quantum di tempo fisso e poi passa al job successivo.
 - *Vantaggi*: Equo, garantisce un buon response time per processi interattivi.
 - *Svantaggi*: Se il quantum è troppo breve, aumenta il numero di context switch.
-
-#line()

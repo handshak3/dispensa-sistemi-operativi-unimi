@@ -463,5 +463,3 @@ Un semaforo può risolvere questo problema. Inizializzando il valore del semafor
     ```
   ]
 ]
-
-#line()

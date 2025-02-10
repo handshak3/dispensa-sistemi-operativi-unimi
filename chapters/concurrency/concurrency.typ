@@ -152,5 +152,3 @@ Se un thread dopo aver incrementato il contatore viene interrotto e l'OS fa cont
 *Transazione*: raggruppamento di molte azioni in un'unica azione atomica.
 
 *Programma indeterminato:* consiste in una o più race condition; l'output del programma varia da esecuzione a esecuzione, a seconda di quali thread sono stati eseguiti quando. Il risultato non è quindi deterministico.
-
-#line()

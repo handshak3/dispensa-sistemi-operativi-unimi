@@ -17,37 +17,37 @@ Gli argomenti trattati in questa dispensa comprendono tutti quelli affrontati a 
 #grid(
   columns: (1fr, 1fr),
   [
-  - Intro  
-  - Processes  
-  - Processes API  
-  - CPU-Mechanism  
-  - CPU scheduling  
-  - CPU Scheduling MLFQ  
-  - Address Space  
-  - Memory API  
-  - Address translation  
-  - Segmentation  
-  - Paging  
-  - TLB  
-  - Smalltables TLBS  
-  - Swapping: Mechanisms    
+    - Intro
+    - Processes
+    - Processes API
+    - CPU-Mechanism
+    - CPU scheduling
+    - CPU Scheduling MLFQ
+    - Address Space
+    - Memory API
+    - Address translation
+    - Segmentation
+    - Paging
+    - TLB
+    - Smalltables TLBS
+    - Swapping: Mechanisms
   ],
   [
-  - Swapping: Policies
-  - Concurrency  
-  - Thread API  
-  - Locks  
-  - #text(size: 7.9pt)[Lock-based concurrent data structure]  
-  - Condition variables  
-  - Semaphores  
-  - I/O devices  
-  - HD drives  
-  - RAID  
-  - Files and directories  
-  - File system  
-  - FFS  
-  - Journaling
-  ]
+    - Swapping: Policies
+    - Concurrency
+    - Thread API
+    - Locks
+    - #text(size: 7.9pt)[Lock-based concurrent data structure]
+    - Condition variables
+    - Semaphores
+    - I/O devices
+    - HD drives
+    - RAID
+    - Files and directories
+    - File system
+    - FFS
+    - Journaling
+  ],
 )
 
 Per ottenere una copia completa del libro o maggiori dettagli, si invita a visitare il sito ufficiale: #link("http://pages.cs.wisc.edu/~remzi/OSTEP/").

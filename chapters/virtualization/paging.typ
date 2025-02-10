@@ -134,5 +134,3 @@ Una volta che il PA è noto, l'hardware recupera la PTE dalla memoria, estrae il
   image("../../images/paging/paging schema.png"),
   caption: [Come funziona la paginazione. @geeksforgeeks1],
 )
-
-#line()

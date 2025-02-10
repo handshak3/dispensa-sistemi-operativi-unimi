@@ -84,5 +84,3 @@ La *task list* (o *process table*) è una struttura dati che tiene traccia di tu
 
 === Kernel Stack
 Il *kernel stack* è un buffer di memoria allocato dal kernel. Viene utilizzato per memorizzare le informazioni di stato del processo corrente. Spazio di memoria dedicato a ciascun processo quando si trova in modalità kernel, ovvero quando esegue chiamate di sistema o viene gestito direttamente dal sistema operativo.
-
-#line()

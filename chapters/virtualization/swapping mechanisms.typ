@@ -108,5 +108,3 @@ L'OS controlla costantemente il numero di pagine libere in memoria. Quando le pa
 + *Attivazione del Swap Daemon*: lo swap daemon viene attivato per iniziare il processo di liberazione della memoria.
 + *Liberazione della Memoria*: lo swap daemon identifica le pagine meno utilizzate e le trasferisce su disco, liberando spazio in memoria fisica. Questo processo può includere la scrittura di gruppi di pagine sul disco in un'unica operazione, migliorando l'efficienza grazie all'accesso sequenziale al disco.
 + *Conclusione*: quando il numero di pagine libere raggiunge o supera la soglia HW, il swap daemon termina la sua attività e ritorna in stato di inattività, pronto a riattivarsi se necessario.
-
-#line()

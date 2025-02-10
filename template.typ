@@ -12,12 +12,12 @@
     numbering: "I",
     number-align: center,
     margin: (left: 12mm, right: 12mm, top: 5mm, bottom: 8mm),
-    columns: 2
+    columns: 2,
   )
   set text(font: "Libertinus Serif", lang: "it", size: 8.4pt)
   set par(justify: true, leading: 1.2mm)
   show raw: set text(size: 6pt)
-  set line(length: 100%, stroke: .4pt)
+  //set line(length: 100%, stroke: .4pt)
 
   show table.cell.where(y: 0): strong
   set table(
@@ -27,6 +27,15 @@
       if calc.even(row) { rgb("#ddd") } else { white }
     },
   )
+
+  show heading.where(level: 2): it => [
+    #rect(
+      width: 100%,
+      radius: 2pt,
+      fill: rgb("#ddd"),
+      [#it]
+    )
+  ]
 
   // Outline
   show outline.entry.where(level: 1): it => {

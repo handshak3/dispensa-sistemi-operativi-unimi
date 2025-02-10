@@ -145,5 +145,3 @@ Oppure
   strace -f df -h 2>&1 | grep '^s.[aeiou]' | cut -d '(' -f 1 | sort | uniq -c | sort -nr | head -n 1 | awk '{print $1, $2}'
   ```
 ]
-
-#line()

@@ -194,5 +194,3 @@ allora i byte per traccia sono:
 $
   "Byte per traccia" = S times B
 $
-
-#line()

@@ -450,5 +450,3 @@ I Two-Phase Locks sono un meccanismo di sincronizzazione ibrido che combina atte
 Fasi del Two-Phase Lock:
 - *1° fase (spin)*: Il thread tenta di acquisire il lock rimanendo in attesa attiva (spinning). Se il lock è rilasciato rapidamente, il thread lo acquisisce senza dover effettuare un costoso cambio di contesto.
 - *2°fase (sleep)*: se il thread non riesce ad acquisire il lock entro un certo tempo, entra in stato di sospensione (sleep), riducendo il consumo di CPU. Il thread viene riattivato solo quando il lock diventa disponibile.
-
-#line()

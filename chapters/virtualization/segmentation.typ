@@ -160,5 +160,3 @@ Ci sono due approcci principali per gestire la frammentazione esterna:
   image("../../images/segmentation/frammentazione.png", width: 80%),
   caption: [Esempio di come la memoria fisica viene trasformata con la compaction.],
 )
-
-#line()

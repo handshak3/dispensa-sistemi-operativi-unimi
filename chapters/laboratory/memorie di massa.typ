@@ -274,5 +274,3 @@ $3023 / 512 = 5.9$\ Il byte si trova nel sesto blocco fisico, che è indirizzato
 Byte 92151:\
 $92151 / 512 = 179.98$\
 Il byte si trova nell'indirizzamento indiretto doppio. Andiamo sulla prima “Jumper”, che ci porta al blocco 301, ma è un ID (doppio), quindi saltiamo un altra volta il prima possibile finendo nella 800. Partendo dal primo blocco dell'indiretto doppio (indice 175, cosa che sappiamo da calcoli dell'es 2), avendo che 179 - 175 = 4, otteniamo 1024.
-
-#line()

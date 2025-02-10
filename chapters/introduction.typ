@@ -50,5 +50,3 @@ Un modello di protezione implementato dal sistema operativo è quello ad anelli.
   image("../images/introduction/security.png"),
   caption: [Livelli di sicurezza.],
 )
-
-#line()

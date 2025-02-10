@@ -177,5 +177,3 @@ Problema: Può causare attesa attiva prolungata (spin lock inefficiente).
   ```
 ]
 *Vantaggio*: Usato per lock-free synchronization.
-
-#line()

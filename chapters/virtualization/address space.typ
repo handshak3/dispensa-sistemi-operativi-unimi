@@ -54,5 +54,3 @@ Il programma non risiede realmente in memoria dall'indirizzo 0 a 16 KB, sarà in
   - Tempo: la virtualizzazione non deve rallentare il programma in esecuzione.
   - Spazio: l'OS non deve allocare più memoria di quella necessaria per virtualizzare la memoria.
 - *Protezione:* l'OS deve proteggere i processi l'uno dall'altro e l'OS stesso dai processi. Ciò significa che un processo non deve essere in grado di accedere alla memoria o ai dati di un altro processo. l'OS deve proteggere l'OS stesso da processi che potrebbero essere malevoli.
-
-#line()

@@ -78,5 +78,3 @@ Per fare context-switching, l'OS salva alcuni valori dei registri per il process
 
 === Problemi di concorrenza e locking
 Se un altro interrupt si verifica durante il processo di gestione di un interrupt, il kernel deve decidere come gestire la situazione. È possibile disabilitare gli interrupt durante la gestione dell'interrupt impedendo che altri interrupt vengano inviati alla CPU fino a quando l'interrupt corrente non è stato gestito. Disabilitare gli interrupt per un periodo di tempo prolungato può causare la perdita di interrupt. Gli OS hanno sviluppato schemi di *locking* per proteggere l'accesso concorrente alle strutture dati interne. Ciò consente a più attività di essere in esecuzione all'interno del kernel contemporaneamente.
-
-#line()
