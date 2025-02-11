@@ -5,7 +5,10 @@
 == Fast FIle System (FFS)
 
 Il primo file system di UNIX, era molto semplice e organizzava i dati su disco in tre sezioni principali:
-- Super block, inode region e data blocks. Tuttavia, nonostante la sua semplicità e facilità d'uso, soffriva di gravi problemi di prestazioni.
+- Super block
+- Inode region
+- Data blocks
+Tuttavia, nonostante la sua semplicità e facilità d'uso, soffriva di gravi problemi di prestazioni.
 
 === Problema: Scarse Prestazioni
 - Il file system trattava il disco come una memoria ad accesso casuale, ignorando i costi di posizionamento fisico.

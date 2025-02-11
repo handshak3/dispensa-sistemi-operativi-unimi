@@ -1449,3 +1449,23 @@ int main() {
 + Padre: il figlio ha terminato, ora posso eseguire la mia parte
 
 Questo assicura che il padre non esegua la sua parte prima che il figlio abbia completato la sua attività.
+
+== Journaling
+
+=== Esercizio 1
+
+Spiega il funzionamento del data journaling nei file system, descrivendo le diverse fasi del processo di scrittura (write-ahead logging, commit e checkpointing). Quali sono i principali vantaggi e svantaggi dell'approccio del data journaling rispetto al metadata journaling?
+
+Il data journaling nei file system segue tre fasi principali:
+
+1. *Write-Ahead Logging*: Prima di scrivere i dati e i metadati sulla loro destinazione definitiva, il sistema registra nel journal tutte le modifiche necessarie (TxB, dati, bitmap, inode, TxE).
+2. *Commit*: Una volta che tutte le scritture nel journal sono completate, viene scritto un commit-block (TxE), segnando la transazione come completa.
+3. *Checkpointing*: I dati e i metadati vengono trasferiti dalle aree temporanee del journal alle loro posizioni definitive nel file system.
+
+Vantaggi del data journaling rispetto al metadata journaling:
+- *Maggiore consistenza dei dati*: Protegge sia i dati utente che i metadati, evitando file con contenuto corrotto dopo un crash.
+- *Recupero più semplice*: Non si verificano situazioni in cui i metadati puntano a blocchi inesistenti o dati non validi.
+
+*Svantaggi*:
+- *Maggiore overhead I/O*: I dati vengono scritti due volte (prima nel journal, poi nella posizione definitiva), riducendo le prestazioni.
+- *Uso maggiore dello spazio del journal*: I dati utente occupano più spazio rispetto ai soli metadati, riducendo l'efficienza.

@@ -208,6 +208,18 @@ $T_"turnaround"_"avg" = (sum_(i=1)^n T_"turnaround"_i) / n$
 
 $T_"response" = T_"first turn" - T_"arrival"$
 
+*Turnaround Time*
+
+$T_"turnaround" = T_"completion" - T_"arrival"$
+
+*Turnaround Time Medio*
+
+$T_"turnaround"_"avg" = (sum_(i=1)^n T_"turnaround"_i) / n$
+
+*Response Time*
+
+$T_"response" = T_"first turn" - T_"arrival"$
+
 *Response Time Medio*
 
 $T_"response"_"avg" = (sum_(i=1)^n T_"response"_i) / n$

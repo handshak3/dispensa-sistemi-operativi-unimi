@@ -78,7 +78,7 @@
 
 #include "chapters/persistency/file e dir.typ"
 
-#include "chapters/persistency/file system.typ"
+#include "chapters/persistency/fs.typ"
 
 #include "chapters/persistency/ffs.typ"
 

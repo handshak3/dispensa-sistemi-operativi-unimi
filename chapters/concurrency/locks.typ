@@ -111,7 +111,7 @@ Problemi:
 + *Problema di prestazioni*: L'uso dello spin-waiting fa sì che un thread consumi inutilmente tempo CPU controllando continuamente il flag. Questo è particolarmente inefficiente su sistemi monoprocessore, dove il thread bloccante non può avanzare fino al prossimo context switch.
 
 #figure(
-  image("../../images/locks/no mutual exclusion.png"),
+  image("../../images/locks/no mutual exclusion.png", width: 80%),
   caption: [Trace: No Mutual Exclusion.],
 )
 
@@ -423,7 +423,7 @@ Quando un thread non può acquisire il lock, il processo chiamante va in coda (c
   ```
 ]
 
-Vantaggi di questo Approccio:
+Vantaggi di questo approccio:
 - *Evitare lo Spin*: Questo approccio evita l'effetto negativo dello spinning continuo e del context switch costoso. Invece di occupare cicli di CPU inutilmente, i thread dormono e sono risvegliati solo quando necessario.
 
 - *Controllo del Scheduler*: Grazie all'uso delle primitive park e unpark, l'operazione di lock non dipende esclusivamente dalla scelta del sistema operativo su quale thread eseguire. I thread vengono messi in attesa e risvegliati nell'ordine in cui sono arrivati.
@@ -433,7 +433,7 @@ Vantaggi di questo Approccio:
 Problematiche e soluzioni:
 - *Race Condition (Guard e Park)*: Potrebbe esserci un race condition tra il momento in cui un thread verifica che il lock è occupato (dando l'impressione di dover dormire) e il momento in cui un altro thread rilascia il lock. Se il thread che sta per dormire viene interrotto proprio in quel momento, potrebbe rischiare di dormire all'infinito. Per risolvere questo, viene introdotto un meccanismo chiamato setpark() che segnala al sistema operativo che il thread sta per essere messo a dormire. Se il lock viene rilasciato prima che il thread effettivamente si addormenti, questo viene immediatamente svegliato.
 - *Guard Lock e Coda*: L'uso del guard lock è necessario per evitare che altri thread possano manipolare flag e la coda mentre un thread sta tentando di acquisirli. Se un thread viene interrotto mentre acquisisce o rilascia il lock, altri thread dovranno aspettare che il guard lock venga rilasciato.
--
+
 === Futex
 
 *Futex (fast user space mutex)*: primitiva di sincronizzazione in Linux. È associato a un'area di memoria fisica specifica e ha una coda in-kernel dedicata. Ogni futex è associata a una locazione specifica nella coda del kernel.

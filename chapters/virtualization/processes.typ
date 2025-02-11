@@ -36,7 +36,7 @@ La differenza principale è che i meccanismi sono i mezzi per implementare una p
 - Statistiche di utilizzo delle risorse
 
 #figure(
-  image("../../images/processes/pcb2.png"),
+  image("../../images/processes/pcb2.png", width: 80%),
   caption: [Contenuto della PCB. @a2025_process],
 )
 

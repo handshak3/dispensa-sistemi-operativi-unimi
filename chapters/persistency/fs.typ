@@ -41,7 +41,7 @@ Assunzioni:
 - $"SizeOf(inode)" = 512 "byte"$.
 - $"InodeStartAddr" = 12 "Kb"$
 + Calcolare l'offset della regione dell'inode:
-  $ "InodeOffset" = 32 dot "SizeOf(inode)"} = 8192 "byte" $
+  $ "InodeOffset" = 32 dot "SizeOf(inode)" = 8192 "byte" $
 
 + Trova l'indirizzo assoluto del blocco dell'inode cercato:
 
