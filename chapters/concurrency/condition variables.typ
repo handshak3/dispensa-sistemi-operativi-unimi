@@ -282,16 +282,18 @@ Con un solo produttore e consumatore, questo approccio è più efficiente in qua
     int fill_ptr = 0;
     int use_ptr = 0;
     int count = 0;
+
     void put(int value) {
-    buffer[fill_ptr] = value;
-    fill_ptr = (fill_ptr + 1) % MAX;
-    count++;
+      buffer[fill_ptr] = value;
+      fill_ptr = (fill_ptr + 1) % MAX;
+      count++;
     }
+
     int get() {
-    int tmp = buffer[use_ptr];
-    use_ptr = (use_ptr + 1) % MAX;
-    count--;
-    return tmp;
+      int tmp = buffer[use_ptr];
+      use_ptr = (use_ptr + 1) % MAX;
+      count--;
+      return tmp;
     }
     ```
   ]
@@ -306,24 +308,24 @@ Con un solo produttore e consumatore, questo approccio è più efficiente in qua
     void * producer(void * arg) {
        int i;
        for (i = 0; i < loops; i++) {
-          Pthread_mutex_lock( & mutex); // p1
+          Pthread_mutex_lock(&mutex); // p1
           while (count == MAX) // p2
-             Pthread_cond_wait( & empty, & mutex); // p3
+             Pthread_cond_wait(&empty, & mutex); // p3
           put(i); // p4
-          Pthread_cond_signal( & fill); // p5
-          Pthread_mutex_unlock( & mutex); // p6
+          Pthread_cond_signal(&fill); // p5
+          Pthread_mutex_unlock(&mutex); // p6
        }
     }
 
     void * consumer(void * arg) {
        int i;
        for (i = 0; i < loops; i++) {
-          Pthread_mutex_lock( & mutex); // c1
+          Pthread_mutex_lock(&mutex); // c1
           while (count == 0) // c2
              Pthread_cond_wait( & fill, & mutex); // c3
           int tmp = get(); // c4
-          Pthread_cond_signal( & empty); // c5
-          Pthread_mutex_unlock( & mutex); // c6
+          Pthread_cond_signal(&empty); // c5
+          Pthread_mutex_unlock(&mutex); // c6
           printf("%d\n", tmp);
        }
     }
@@ -344,20 +346,20 @@ Un produttore dorme solo se tutti i buffer sono attualmente pieni (p2). Un consu
     mutex_t m;
 
     void allocate(int size) {
-          Pthread_mutex_lock( & m);
+          Pthread_mutex_lock(&m);
           while (bytesLeft < size)
-             Pthread_cond_wait( & c, & m);
+             Pthread_cond_wait(&c, &m);
           void  ptr = ...; // get mem from heap
           bytesLeft -= size;
-          Pthread_mutex_unlock( & m);
+          Pthread_mutex_unlock(&m);
           return (tr;
     )
 
     void free(void  ptr, int size) {
-       Pthread_mutex_lock( & m);
+       Pthread_mutex_lock(&m);
        bytesLeft += size;
-       Pthread_cond_signal( & c); // whom to signal??
-       Pthread_mutex_unlock( &(m);
+       Pthread_cond_signal(&c); // whom to signal??
+       Pthread_mutex_unlock(&m);
     )
     ```
   ]

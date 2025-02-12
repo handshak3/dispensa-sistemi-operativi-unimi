@@ -49,8 +49,8 @@
 
 === Semafori binari
 È un semaforo che può assumere solo due valori:
-- 0 (libero)
-- 1 (occupato)
+- 0 (occupato)
+- 1 (libero)
 
 Possono essere utilizzati come lock, è necessario circondare la sezione critica di interesse con una coppia `sem_wait()`/`sem_post()`.
 
