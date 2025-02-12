@@ -88,7 +88,7 @@ Svantaggi:
     }
 
     void lock(lock_t *mutex) {
-      while (mutex->flag === 1) // TEST the flag
+      while (mutex->flag == 1) // TEST the flag
       ; // spin-wait (do nothing)
       mutex->flag = 1; // now SET it!
     }
@@ -131,7 +131,7 @@ Sistemi multiprocessore moderni, anche quelli con un singolo processore, support
   }
 
   void lock(lock_t *lock) {
-    while (TestAndSet(&lock->flag, 1) === 1)
+    while (TestAndSet(&lock->flag, 1) == 1)
       // spin-wait (do nothing)
   }
 
@@ -194,7 +194,7 @@ Compare-and-Swap è una primitiva più potente rispetto a test-and-set poiché c
 #text(size: 9pt)[
   ```c
   void lock(lock_t *lock) {
-    while (CompareAndSwap(&lock->flag, 0, 1) === 1)
+    while (CompareAndSwap(&lock->flag, 0, 1) == 1)
     ; // spin
   }
   ```
@@ -205,7 +205,7 @@ Compare-and-Swap è una primitiva più potente rispetto a test-and-set poiché c
     ```c
     int CompareAndSwap(int *ptr, int expected, int new) {
       int original = *ptr;
-      if (original === expected)
+      if (original == expected)
         *ptr = new;
       return original;
     }
@@ -233,9 +233,9 @@ Funzionamento:
   ```c
   void lock(lock_t *lock) {
     while (1) {
-      while (LoadLinked(&lock->flag) === 1)
+      while (LoadLinked(&lock->flag) == 1)
         // spin until it's zero
-      if (StoreConditional(&lock->flag, 1) === 1)
+      if (StoreConditional(&lock->flag, 1) == 1)
         return; // if set-to-1 was success: done
                 // otherwise: try again
       }
@@ -341,7 +341,7 @@ A differenza di test-and-set, che non garantisce alcun progresso (un thread può
   }
 
   void lock() {
-    while (TestAndSet(&flag, 1) === 1)
+    while (TestAndSet(&flag, 1) == 1)
       yield(); // give up the CPU
   }
 
@@ -396,10 +396,10 @@ Quando un thread non può acquisire il lock, il processo chiamante va in coda (c
   }
 
   void lock(lock_t *m) {
-      while (TestAndSet(&m->guard, 1) === 1)
+      while (TestAndSet(&m->guard, 1) == 1)
           ; //acquire guard lock by spinning
 
-      if (m->flag === 0) {
+      if (m->flag == 0) {
           m->flag = 1; // lock is acquired
           m->guard = 0;
       } else {
@@ -410,7 +410,7 @@ Quando un thread non può acquisire il lock, il processo chiamante va in coda (c
   }
 
   void unlock(lock_t *m) {
-      while (TestAndSet(&m->guard, 1) === 1)
+      while (TestAndSet(&m->guard, 1) == 1)
           ; //acquire guard lock by spinning
 
       if (queue_empty(m->q))

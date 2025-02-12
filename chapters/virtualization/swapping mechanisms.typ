@@ -36,8 +36,8 @@ La memoria potrebbe essere piena e l'OS potrebbe aver bisogno di una pagina o pi
     ```c
     VPN = (VirtualAddress & VPN_MASK) >> SHIFT
     (Success, TlbEntry) = TLB_Lookup(VPN)
-    if (Success === True) // TLB Hit
-      if (CanAccess(TlbEntry.ProtectBits) === True)
+    if (Success == True) // TLB Hit
+      if (CanAccess(TlbEntry.ProtectBits) == True)
         Offset = VirtualAddress & OFFSET_MASK
         PhysAddr = (TlbEntry.PFN << SHIFT) | Offset
         Register = AccessMemory(PhysAddr)
@@ -46,16 +46,16 @@ La memoria potrebbe essere piena e l'OS potrebbe aver bisogno di una pagina o pi
     else // TLB Miss
       PTEAddr = PTBR + (VPN * sizeof(PTE))
       PTE = AccessMemory(PTEAddr)
-      if (PTE.Valid === False)
+      if (PTE.Valid == False)
         RaiseException(SEGMENTATION_FAULT)
       else
-        if (CanAccess(PTE.ProtectBits) === False)
+        if (CanAccess(PTE.ProtectBits) == False)
           RaiseException(PROTECTION_FAULT)
-        else if (PTE.Present === True)
+        else if (PTE.Present == True)
           // assuming hardware-managed TLB
           TLB_Insert(VPN, PTE.PFN, PTE.ProtectBits)
           RetryInstruction()
-        else if (PTE.Present === False)
+        else if (PTE.Present == False)
           RaiseException(PAGE_FAULT)
     ```
   ]
@@ -70,7 +70,7 @@ Quando si verifica un TLB MISS, ci sono tre casi:
   #text(size: 9pt)[
     ```c
     PFN = FindFreePhysicalPage()
-    if (PFN === -1) // no free page found
+    if (PFN == -1) // no free page found
       PFN = EvictPage() // replacement algorithm
     DiskRead(PTE.DiskAddr, PFN) // sleep (wait for I/O)
     PTE.present = True // update page table:

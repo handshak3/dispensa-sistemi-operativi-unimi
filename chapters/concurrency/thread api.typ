@@ -67,7 +67,7 @@ Per inizializzare il lock ci sono 2 modi:
   #text(9pt)[
     ```c
     int rc = pthread_mutex_init(&lock, NULL);
-    assert(rc === 0); // always check success!
+    assert(rc == 0); // always check success!
     ```
   ]
 

@@ -116,7 +116,7 @@ Una volta che il PA è noto, l'hardware recupera la PTE dalla memoria, estrae il
     PTE = AccessMemory(PTEAddr)
 
     // Check if process can access the page
-    if (PTE.Valid === False)
+    if (PTE.Valid == False)
     RaiseException(SEGMENTATION_FAULT)
     else if (CanAccess(PTE.ProtectBits) === False)
     RaiseException(PROTECTION_FAULT)

@@ -26,8 +26,8 @@ L'obiettivo è snellire la tecnica introdotta, cercando di diminuire il numero d
     ```c
     VPN = (VirtualAddress & VPN_MASK) >> SHIFT
     (Success, TlbEntry) = TLB_Lookup(VPN)
-    if (Success === True) // TLB Hit
-    		if (CanAccess(TlbEntry.ProtectBits) === True)
+    if (Success == True) // TLB Hit
+    		if (CanAccess(TlbEntry.ProtectBits) == True)
     			Offset = VirtualAddress & OFFSET_MASK
     			PhysAddr = (TlbEntry.PFN << SHIFT) | Offset
     			Register = AccessMemory(PhysAddr)
@@ -36,7 +36,7 @@ L'obiettivo è snellire la tecnica introdotta, cercando di diminuire il numero d
     else // TLB Miss
     	PTEAddr = PTBR + (VPN * sizeof(PTE))
     	PTE = AccessMemory(PTEAddr)
-    	if (PTE.Valid === False)
+    	if (PTE.Valid == False)
     		RaiseException(SEGMENTATION_FAULT)
     	else if (CanAccess(PTE.ProtectBits) === False)
     		RaiseException(PROTECTION_FAULT)

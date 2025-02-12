@@ -23,7 +23,7 @@ Il processo figlio non ha il main come entry point ma la stringa successiva alla
   text(9pt)[
     ```c
     process = fork();
-    if (process === 0) {
+    if (process == 0) {
     	// Processo creato (codice eseguito solamente dal figlio)
     } else if (process < 0) {
     	// Errore (processo non creato)

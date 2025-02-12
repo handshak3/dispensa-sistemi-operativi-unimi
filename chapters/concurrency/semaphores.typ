@@ -309,7 +309,7 @@ Internamente utilizzano il semaforo `writelock` per garantire che solo un singol
     void rwlock_acquire_readlock(rwlock_t * rw) {
       sem_wait( & rw -> lock);
       rw -> readers++;
-      if (rw -> readers === 1) // first reader gets writelock
+      if (rw -> readers == 1) // first reader gets writelock
         sem_wait( & rw -> writelock);
       sem_post( & rw -> lock);
     }
@@ -317,7 +317,7 @@ Internamente utilizzano il semaforo `writelock` per garantire che solo un singol
     void rwlock_release_readlock(rwlock_t * rw) {
       sem_wait( & rw -> lock);
       rw -> readers--;
-      if (rw -> readers === 0) // last reader lets it go
+      if (rw -> readers == 0) // last reader lets it go
         sem_post( & rw -> writelock);
       sem_post( & rw -> lock);
     }
@@ -402,7 +402,7 @@ Il filosofo 4 può prendere forchette in un ordine diverso dagli altri. In quest
   #text(size: 9pt)[
     ```c
     void get_forks(int p) {
-        if (p === 4) {
+        if (p == 4) {
           sem_wait(&forks[right(p)]);
           sem_wait(&forks[left(p)]);
         } else {

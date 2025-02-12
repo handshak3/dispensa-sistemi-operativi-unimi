@@ -42,13 +42,13 @@ Il buffer è una risorsa condivisa, quindi è necessario sincronizzare l'accesso
     int count = 0; // initially, empty
 
     void put(int value) {
-       assert(count === 0);
+       assert(count == 0);
        count = 1;
        buffer = value(
     )
 
     int get() {
-       assert(count === 1);
+       assert(count == 1);
        count = 0;
        return buffer(
     )
@@ -92,7 +92,7 @@ Occorrono routine che sappiano quando è possibile accedere al buffer per inseri
        int i;
        for (i = 0; i < loops; i++) {
           Pthread_mutex_lock(&mutex); // p1
-          if (count === 1) // p2
+          if (count == 1) // p2
              Pthread_cond_wait(&cond, &mutex); // p3
           put(i); // p4
           Pthread_cond_signal(&cond); // p5
@@ -104,7 +104,7 @@ Occorrono routine che sappiano quando è possibile accedere al buffer per inseri
        int i;
        for (i = 0; i < loops; i++) {
           Pthread_mutex_lock(&mutex); // c1
-          if (count === 0) // c2
+          if (count == 0) // c2
              Pthread_cond_wait(&cond, &mutex); // c3
           int tmp = get(); // c4
           Pthread_cond_signal(&cond); // c5
@@ -163,7 +163,7 @@ Il problema si verifica perché il consumatore $T_("c1")$ non è stato in grado 
        int i;
        for (i = 0; i < loops; i++) {
           Pthread_mutex_lock(&mutex); // p1
-          while (count === 1) // p2
+          while (count == 1) // p2
              Pthread_cond_wait(&cond, &mutex); // p3
           put(i); // p4
           Pthread_cond_signal(&cond); // p5
@@ -175,7 +175,7 @@ Il problema si verifica perché il consumatore $T_("c1")$ non è stato in grado 
        int i;
        for (i = 0; i < loops; i++) {
           Pthread_mutex_lock(&mutex); // c1
-          while (count === 0) // c2
+          while (count == 0) // c2
              Pthread_cond_wait(&cond, &mutex); // c3
           int tmp = get(); // c4
           Pthread_cond_signal(&cond); // c5
@@ -239,7 +239,7 @@ Tutti e tre i thread rimangono inattivi.
        int i;
        for (i = 0; i < loops; i++) {
           Pthread_mutex_lock(&mutex);
-          while (count === 1)
+          while (count == 1)
              Pthread_cond_wait(&empty, &mutex);
           put(i);
           Pthread_cond_signal(&fill);
@@ -251,7 +251,7 @@ Tutti e tre i thread rimangono inattivi.
        int i;
        for (i = 0; i < loops; i++) {
           Pthread_mutex_lock(&mutex);
-          while (count === 0)
+          while (count == 0)
              Pthread_cond_wait(&fill, &mutex);
           int tmp = get();
           Pthread_cond_signal(&empty);
@@ -307,7 +307,7 @@ Con un solo produttore e consumatore, questo approccio è più efficiente in qua
        int i;
        for (i = 0; i < loops; i++) {
           Pthread_mutex_lock( & mutex); // p1
-          while (count === MAX) // p2
+          while (count == MAX) // p2
              Pthread_cond_wait( & empty, & mutex); // p3
           put(i); // p4
           Pthread_cond_signal( & fill); // p5
@@ -319,7 +319,7 @@ Con un solo produttore e consumatore, questo approccio è più efficiente in qua
        int i;
        for (i = 0; i < loops; i++) {
           Pthread_mutex_lock( & mutex); // c1
-          while (count === 0) // c2
+          while (count == 0) // c2
              Pthread_cond_wait( & fill, & mutex); // c3
           int tmp = get(); // c4
           Pthread_cond_signal( & empty); // c5
