@@ -28,7 +28,7 @@ Il file PDF di questa dispensa è stato ottimizzato per ridurre al minimo il con
 
 Senza queste ottimizzazioni, il documento supererebbe abbondantemente le 170 pagine.
 
-📄 [**Scarica la versione PDF ottimizzata!**](main.pdf)  
+📄 [**Scarica la versione PDF ottimizzata!**](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/handshak3/dispensa-sistemi-operativi-unimi/blob/main/main.pdf)  
 
 ## Dichiarazione sui Diritti ⚖️  
 Tutti i diritti sul contenuto originale appartengono agli autori del libro di riferimento. L’utilizzo del materiale in questa dispensa rientra nell’ambito delle normative sul Fair Use, in quanto destinato esclusivamente a scopi didattici e non commerciali. Si ringrazia Remzi H. Arpaci-Dusseau e Andrea C. Arpaci-Dusseau per aver reso disponibile il materiale sotto queste condizioni.  
