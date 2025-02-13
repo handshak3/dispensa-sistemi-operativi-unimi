@@ -64,7 +64,7 @@ Utilizzo:
   caption: [Singolo thread che utilizza il semaforo.],
 )
 
-Un caso più interessante si verifica quando il Thread 0 ha il lock (ovvero ha chiamato `sem_ wait()` ma non ha ancora chiamato `sem_post()`), e un altro thread (Thread 1) tenta di accedere alla sezione critica chiamando `sem_wait()`.
+Un caso più interessante si verifica quando il Thread 0 ha il lock (ovvero ha chiamato `sem_wait()` ma non ha ancora chiamato `sem_post()`) e un altro thread (Thread 1) tenta di accedere alla sezione critica chiamando `sem_wait()`.
 
 - Thread 1 decrementerà il valore del semaforo a -1 e quindi attenderà (metterà se stesso a dormire e rilascerà il processore).
 - Quando Thread 0 viene eseguito di nuovo, alla fine chiamerà `sem_post()`, incrementando il valore del semaforo a zero e quindi risvegliando il thread in attesa (Thread 1), che potrà quindi acquisire il blocco per sé.

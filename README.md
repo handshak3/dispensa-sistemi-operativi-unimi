@@ -28,38 +28,7 @@ Il file PDF di questa dispensa è stato ottimizzato per ridurre al minimo il con
 
 Senza queste ottimizzazioni, il documento supererebbe abbondantemente le 170 pagine.
 
----  
-
-## Indice 🗋  
-1. **Virtualizzazione**  
-   - Gestione dei processi  
-   - CPU Mechanism  
-   - CPU Scheduling (FIFO, SJF, RR, MLFQ)  
-   - Address Space  
-   - Memory API  
-   - Paging e Segmentation  
-   - TLB (Translation Lookaside Buffer)  
-
-2. **Concorrenza** 👥  
-   - Thread API  
-   - Locks e Condition Variables  
-   - Semaphores  
-   - Strutture Dati Concorrenti  
-
-3. **Persistenza** 📂  
-   - I/O Devices  
-   - Hard Disk Drives (HDD)  
-   - RAID (Redundant Array of Independent Disks)  
-   - File System  
-   - Journaling  
-
-4. **Laboratorio** 🧩  
-   - Memorie di massa  
-   - Assembly x86  
-   - Shell Scripting e Pipeline  
-   - Esercizi pratici  
-
----  
+📄 **Scarica la versione PDF ottimizzata**: [dispensa.pdf](main.pdf)  
 
 ## Dichiarazione sui Diritti ⚖️  
 Tutti i diritti sul contenuto originale appartengono agli autori del libro di riferimento. L’utilizzo del materiale in questa dispensa rientra nell’ambito delle normative sul Fair Use, in quanto destinato esclusivamente a scopi didattici e non commerciali. Si ringrazia Remzi H. Arpaci-Dusseau e Andrea C. Arpaci-Dusseau per aver reso disponibile il materiale sotto queste condizioni.  
