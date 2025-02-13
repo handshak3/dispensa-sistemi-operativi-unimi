@@ -187,7 +187,7 @@ Svantaggi:
 - *Performance*: su sistemi a singola CPU i costi sono molto alti. Per sistemi multi processore i costi sono sostenibili finché il numero dei thread non supera quello delle CPU.
 
 ==== Compare-and-swap
-Primitiva hardware alternativa al Test-And-Compare. Viene confrontato il valore del puntatore (`*ptr`) con quello aspettato (expected), se questi risultano uguali il valore del puntatore viene aggiornato con uno nuovo.
+Primitiva hardware alternativa al Test-And-Set. Viene confrontato il valore del puntatore (`*ptr`) con quello aspettato (expected), se questi risultano uguali il valore del puntatore viene aggiornato con uno nuovo.
 
 Compare-and-Swap è una primitiva più potente rispetto a test-and-set poiché consente di confrontare il valore e aggiornarlo solo se corrisponde a un valore atteso. Entrambi i metodi usano un ciclo di spin, ma CAS offre maggiore flessibilità per altre applicazioni come la sincronizzazione lock-free.
 

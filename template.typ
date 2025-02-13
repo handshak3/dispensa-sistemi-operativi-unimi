@@ -15,7 +15,7 @@
     columns: 2,
   )
   set text(font: "Libertinus Serif", lang: "it", size: 8pt)
-  set par(justify: true, leading: 1.2mm)
+  set par(justify: true, leading: 1mm)
   show raw: set text(size: 6pt)
 
   show table.cell.where(y: 0): strong
@@ -30,7 +30,7 @@
   show heading.where(level: 2): it => [
     #rect(
       width: 100%,
-      radius: 2pt,
+      radius: 1pt,
       fill: rgb("#ddd"),
       [#it],
     )
@@ -38,15 +38,11 @@
 
   // Outline
   show outline.entry.where(level: 1): it => {
-    v(20pt, weak: true)
+    v(10pt, weak: true)
     show repeat: none
     text(size: 1.2em, weight: 700, it.body)
     h(1fr)
     it.page
-  }
-
-  show outline.entry.where(level: 2): it => {
-    strong(it)
   }
 
   // Title
@@ -74,6 +70,7 @@
     indent: 1.2em,
     fill: box(repeat[$. space$]),
     title: box(width: 1fr)[#align(right)[#text(size: 1.1em)[Contents]]],
+    depth: 3
   )
 
   body

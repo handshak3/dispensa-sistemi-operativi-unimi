@@ -24,7 +24,7 @@ In un processo multithread, ogni thread viene eseguito in modo indipendente e ha
 
 Perché usare i thread:
 - *Parallelismo:* i thread possono essere utilizzati per eseguire più attività contemporaneamente, il che può migliorare le prestazioni del programma se il sistema ha più di un processore.
-- *Evitare il blocco del programma a causa di I/O lente:* i thread possono essere utilizzati per eseguire altre attività mentre un thread è bloccato in attesa di un'operazione di I/O lenta. (overlap)
+- *Evitare il blocco del programma a causa di I/O lente:* i thread possono essere utilizzati per eseguire altre attività mentre un thread è bloccato in attesa di un'operazione di I/O lenta.
 - *Facile condivisione dei dati:* I thread condividono lo stesso spazio di memoria, il che rende facile la condivisione dei dati tra di loro.
 
 === Creazione dei thread
@@ -79,7 +79,7 @@ Ecco i possibili ordini di esecuzione del programma:
 - Thread 1 viene eseguito prima, seguito dal thread principale e Thread 2.
 - Thread 2 viene eseguito prima, seguito dal thread principale e Thread 1.
 
-Non è possibile sapere in anticipo quale ordine di esecuzione si verificherà, poiché dipende dal programma di schedulazione dell?OS.
+Non è possibile sapere in anticipo quale ordine di esecuzione si verificherà, poiché dipende dal programma di schedulazione dell'OS.
 
 Questo esempio mostra che i thread possono rendere difficile prevedere il comportamento di un programma. È importante essere consapevoli di questo quando si scrive codice multithread.
 
@@ -137,7 +137,7 @@ Il programma crea due thread che tentano di aggiornare una variabile condivisa, 
 
 I thread eseguono un loop in cui incrementano counter di 1. Il numero di volte che il loop viene eseguito è 10 milioni (1e7). Il risultato desiderato è che counter sia impostata a 20 milioni (20000000) alla fine del programma. Tuttavia, il programma non sempre produce il risultato desiderato. A volte, il valore finale di counter è diverso da 20 milioni. Ad esempio, il valore finale può essere 19345221 o 19221041. Il motivo di questo comportamento è che i thread accedono alla variabile counter contemporaneamente. Quando due o più thread accedono alla stessa variabile condivisa, si verifica una condizione nota come *race condition*. In una race condition, il risultato dell'esecuzione del programma dipende dall'ordine in cui i thread accedono alla variabile condivisa.
 
-In questo caso, il risultato dell'esecuzione del programma dipende dall'ordine in cui i thread incrementano counter nel loop. Se il thread A incrementa counter prima del thread B, il valore finale di counter sarà maggiore di 20 milioni. Se il thread B incrementa counter prima del thread A, il valore finale di counter sarà minore di 20 milioni. Per evitare le race condition, è necessario utilizzare meccanismi di sincronizzazione. I meccanismi di sincronizzazione consentono di coordinare l'accesso dei thread alle variabili condivise.
+In questo caso, il risultato dell'esecuzione del programma dipende dall'ordine in cui i thread incrementano counter nel loop. Per evitare le race condition, è necessario utilizzare meccanismi di sincronizzazione. I meccanismi di sincronizzazione consentono di coordinare l'accesso dei thread alle variabili condivise.
 
 Se un thread dopo aver incrementato il contatore viene interrotto e l'OS fa context switching, parte il secondo thread ed esegue le tre istruzioni salvando l'incremento in memoria. T2 viene interrotto, T1 riprende il controllo ed esegue l'ultima istruzione rimanente ma nel suo stato il contatore vale uno in meno e salva quest'ultimo. In sostanza il codice viene eseguito due volte ma il contatore definitivamente è incrementato solamente di un'unità.
 

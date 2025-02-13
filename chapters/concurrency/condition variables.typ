@@ -190,7 +190,7 @@ Il problema si verifica perché il consumatore $T_("c1")$ non è stato in grado 
 Cambiando l'`if` con il `while`:
 
 Il thread $T_("c1")$:
-+ Si sveglia e (con il lock acquisito).
++ Si sveglia (con il lock acquisito).
 + Controlla lo stato della cv (c2).
 + Se il buffer è vuoto, il consumatore torna semplicemente a dormire (c3).
 
