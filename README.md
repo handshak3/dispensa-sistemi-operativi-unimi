@@ -26,7 +26,7 @@ Il file PDF di questa dispensa è stato ottimizzato per ridurre al minimo il con
 - Interlinea minima
 - Doppia colonna
 
-Senza queste ottimizzazioni, il documento supererebbe abbondantemente le 170 pagine.
+Senza queste ottimizzazioni, il documento supererebbe abbondantemente le 200 pagine.
 
 📄 [**Scarica la versione PDF ottimizzata!**](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/handshak3/dispensa-sistemi-operativi-unimi/blob/main/main.pdf)  
 
