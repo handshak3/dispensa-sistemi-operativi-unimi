@@ -89,11 +89,12 @@
 
 = Laboratorio
 
-#include "chapters/laboratory/memorie di massa.typ"
 
 #include "chapters/laboratory/assembly.typ"
 
 #include "chapters/laboratory/shell.typ"
+
+#include "chapters/laboratory/memorie di massa.typ"
 
 #include "chapters/laboratory/simulation.typ"
 

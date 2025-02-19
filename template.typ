@@ -15,7 +15,7 @@
     columns: 2,
   )
   set text(font: "Libertinus Serif", lang: "it", size: 8pt)
-  set par(justify: true, leading: 1mm)
+  set par(justify: true, leading: 1.2mm)
   show raw: set text(size: 6pt)
 
   show table.cell.where(y: 0): strong
