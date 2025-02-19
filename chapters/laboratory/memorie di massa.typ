@@ -110,10 +110,10 @@ Salvare un file di 20000 record su un disco con le seguenti caratteristiche:
 + Qual è la capacità totale del disco?
 
 Calcolo dei settori necessari:\
-  Ogni settore può contenere:\
-  $512 / 256 = 2 "record per settore"$\
-  Quindi, il numero totale di settori necessari per memorizzare 20.000 record è:
-  $20000 / 2 = 10.000 "settori"$
+Ogni settore può contenere:\
+$512 / 256 = 2 "record per settore"$\
+Quindi, il numero totale di settori necessari per memorizzare 20.000 record è:
+$20000 / 2 = 10.000 "settori"$
 
 + Calcolo dei cilindri richiesti:
 
@@ -294,22 +294,24 @@ mount /dev/sda1 /mnt/disksda1
 === Metodo per risolvere esercizi sugli inode
 Per risolvere problemi sugli inode e l'allocazione della memoria nei filesystem, segui questi passi:
 
-1. Calcola il numero di puntatori per blocco  
-   $ "Puntatori per blocco" = "Dimensione del blocco"/"Dimensione del puntatore" $
+1. Calcola il numero di puntatori per blocco
+  $
+    "Puntatori per blocco" = "Dimensione del blocco" / "Dimensione del puntatore"
+  $
 
-2. Determina il range di blocchi indirizzati da ciascun metodo di indirizzamento  
-   - *Blocchi diretti*: Sono i primi ad essere usati. Il numero è dato dai puntatori diretti nell'inode.  
-   - *Indiretto semplice*: Indirizza un blocco contenente puntatori a blocchi dati.  
-   - *Indiretto doppio*: Contiene puntatori a blocchi che a loro volta contengono puntatori a blocchi dati.
+2. Determina il range di blocchi indirizzati da ciascun metodo di indirizzamento
+  - *Blocchi diretti*: Sono i primi ad essere usati. Il numero è dato dai puntatori diretti nell'inode.
+  - *Indiretto semplice*: Indirizza un blocco contenente puntatori a blocchi dati.
+  - *Indiretto doppio*: Contiene puntatori a blocchi che a loro volta contengono puntatori a blocchi dati.
 
-3. Trova la posizione del blocco richiesto  
-   - Se il blocco è nei diretti, usa direttamente l'indice.  
-   - Se è nell'indiretto semplice, sottrai il numero di blocchi diretti e usa il puntatore nel blocco indiretto.  
-   - Se è nell'indiretto doppio, calcola la posizione nei due livelli di indirizzamento.
+3. Trova la posizione del blocco richiesto
+  - Se il blocco è nei diretti, usa direttamente l'indice.
+  - Se è nell'indiretto semplice, sottrai il numero di blocchi diretti e usa il puntatore nel blocco indiretto.
+  - Se è nell'indiretto doppio, calcola la posizione nei due livelli di indirizzamento.
 
-4. Converti un byte in un blocco  
-   - Dividi la posizione del byte per la dimensione del blocco per ottenere l'indice del blocco.  
-   - Trova il blocco fisico seguendo la tabella dei puntatori.
+4. Converti un byte in un blocco
+  - Dividi la posizione del byte per la dimensione del blocco per ottenere l'indice del blocco.
+  - Trova il blocco fisico seguendo la tabella dei puntatori.
 
 === Esercizi sugli inode
 ==== Esercizio: Esempio esame completo
@@ -349,7 +351,7 @@ Il primo blocco ha indice logico 0.
   - I blocchi diretti vanno da 0 a 4.
   - Il primo blocco indiretto semplice inizia a indice 5.
   - Può contenere 170 blocchi, quindi:
-    - Ultimo blocco:  
+    - Ultimo blocco:
       $5 + 170 - 1 = 174$
 
 + Indirizzamento indiretto doppio:
@@ -367,11 +369,11 @@ Il primo blocco ha indice logico 0.
 + Posizione di un byte nel file system\
   Per determinare in quale blocco si trova un byte:
 
-  $"posizione del byte"/"dimensione del blocco" = "indice del blocco"$
+  $"posizione del byte" / "dimensione del blocco" = "indice del blocco"$
 
   - Byte 1980\
     $floor(1980/512) = 3$
-    - Indice blocco: 3 (blocco diretto)  
+    - Indice blocco: 3 (blocco diretto)
 
   - Byte 3023\
     $floor(3023/512) = 5$
@@ -399,9 +401,9 @@ Il primo blocco ha indice logico 0.
 #table(
   columns: 4,
   [Byte], [Indice Blocco Logico], [Tipo di Indirizzamento], [Blocco Fisico],
-  [1980], [3], [Diretto], [120], 
+  [1980], [3], [Diretto], [120],
   [3023], [5], [Indiretto Semplice], [304],
-  [92151], [179], [Indiretto Doppio], [1024]
+  [92151], [179], [Indiretto Doppio], [1024],
 )
 
 ==== Esercizio: Calcolo dei blocchi indirizzabili
@@ -413,43 +415,43 @@ Un i-node contiene:
 
 Se la dimensione del blocco è 1024 byte e ogni puntatore occupa 4 byte:
 1. Quanti blocchi dati possono essere indirizzati direttamente?
-   - Ogni puntatore diretto indirizza un blocco dati.
-   - Totale: 10 blocchi.
+  - Ogni puntatore diretto indirizza un blocco dati.
+  - Totale: 10 blocchi.
 
 2. Quanti blocchi possono essere indirizzati attraverso il puntatore indiretto singolo?
-   - Il blocco indiretto contiene solo puntatori.
-   - Ogni blocco ha 1024/4 = 256 puntatori.
-   - Totale: 256 blocchi.
+  - Il blocco indiretto contiene solo puntatori.
+  - Ogni blocco ha 1024/4 = 256 puntatori.
+  - Totale: 256 blocchi.
 
 3. Quanti blocchi possono essere indirizzati attraverso il puntatore indiretto doppio?
-   - Ogni puntatore nel blocco di primo livello punta a un blocco con 256 puntatori.
-   - Totale: 256 $times$ 256 = 65.536 blocchi.
+  - Ogni puntatore nel blocco di primo livello punta a un blocco con 256 puntatori.
+  - Totale: 256 $times$ 256 = 65.536 blocchi.
 
 4. Quanti blocchi possono essere indirizzati attraverso il puntatore indiretto triplo?
-   - Ogni puntatore di primo livello punta a un blocco con 256 puntatori di secondo livello.
-   - Totale: 256 $times$ 256 $times$ 256 = 16.777.216 blocchi.
+  - Ogni puntatore di primo livello punta a un blocco con 256 puntatori di secondo livello.
+  - Totale: 256 $times$ 256 $times$ 256 = 16.777.216 blocchi.
 
 5. Qual è la dimensione massima di un file?
-   - (10 + 256 + 65.536 + 16.777.216) $times$ 1024 byte = ~17 GB.
+  - (10 + 256 + 65.536 + 16.777.216) $times$ 1024 byte = ~17 GB.
 
 
 ==== Esercizio: Allocazione e utilizzo dei blocchi
 1. Se un file di 15 KB viene scritto, quanti blocchi vengono utilizzati e quali tipi di indirizzamento vengono impiegati?
-   - 15 KB = 15 blocchi (1 KB per blocco).
-   - I primi 10 blocchi sono indirizzati direttamente.
-   - Gli altri 5 blocchi usano un blocco indiretto singolo.
-   - Totale: 16 blocchi (15 dati + 1 indiretto singolo).
+  - 15 KB = 15 blocchi (1 KB per blocco).
+  - I primi 10 blocchi sono indirizzati direttamente.
+  - Gli altri 5 blocchi usano un blocco indiretto singolo.
+  - Totale: 16 blocchi (15 dati + 1 indiretto singolo).
 
 2. Se un file di 500 KB viene scritto, quali puntatori vengono utilizzati?
-   - 500 KB = 500 blocchi.
-   - 10 diretti, 256 indiretti singoli.
-   - Rimangono 234 blocchi, quindi viene usato un blocco indiretto doppio.
-   - Totale: 10 + 256 + 234 + 1 (doppio indiretto) = 502 blocchi.
+  - 500 KB = 500 blocchi.
+  - 10 diretti, 256 indiretti singoli.
+  - Rimangono 234 blocchi, quindi viene usato un blocco indiretto doppio.
+  - Totale: 10 + 256 + 234 + 1 (doppio indiretto) = 502 blocchi.
 
 3. Determinare quanti blocchi servono per archiviare un file di 5 GB.
-   - 5 GB = 5 $times$ 1024 $times$ 1024 KB / 1 KB = 5.242.880 blocchi.
-   - Necessari blocchi tripli indiretti.
-   - Struttura usata: 10 diretti, 256 singoli, 65.536 doppi, e il resto tripli.
+  - 5 GB = 5 $times$ 1024 $times$ 1024 KB / 1 KB = 5.242.880 blocchi.
+  - Necessari blocchi tripli indiretti.
+  - Struttura usata: 10 diretti, 256 singoli, 65.536 doppi, e il resto tripli.
 
 ==== Esercizio: Simulazione di lettura e scrittura
 Dati i seguenti comandi:
@@ -463,29 +465,29 @@ sync
 ls -i file1
 ```
 1. Quali informazioni vengono salvate nell'i-node del file `file1`?
-   - ID dell'i-node.
-   - Permessi, proprietario, dimensioni.
-   - Timestamp di creazione e modifica.
-   - Puntatori ai blocchi.
+  - ID dell'i-node.
+  - Permessi, proprietario, dimensioni.
+  - Timestamp di creazione e modifica.
+  - Puntatori ai blocchi.
 
 2. Come verificare quali blocchi sono stati allocati per il file?
-   - Usare `ls -l file1` e `stat file1`.
-   - Usare `debugfs` e `dumpe2fs`.
+  - Usare `ls -l file1` e `stat file1`.
+  - Usare `debugfs` e `dumpe2fs`.
 
 3. Dopo la rimozione di `file1`, lo spazio su disco viene immediatamente liberato?
-   - No, i blocchi sono marcati come liberi ma non vengono sovrascritti immediatamente.
-   - Il recupero può avvenire finché non vengono riutilizzati.
+  - No, i blocchi sono marcati come liberi ma non vengono sovrascritti immediatamente.
+  - Il recupero può avvenire finché non vengono riutilizzati.
 
 ==== Esercizio: Recupero dati e check di consistenza
 1. Simulare la cancellazione di un file e provare a recuperarlo leggendo la tabella degli i-node.
-   - Cancellare con `rm file1`.
-   - Usare `debugfs` per esplorare i blocchi dell'i-node.
+  - Cancellare con `rm file1`.
+  - Usare `debugfs` per esplorare i blocchi dell'i-node.
 
 2. Usare `fsck` per verificare la consistenza del file system e interpretare il risultato.
-   - Eseguire `fsck /dev/sda1`.
-   - Controllare errori come blocchi persi o riferimenti inconsistenti.
+  - Eseguire `fsck /dev/sda1`.
+  - Controllare errori come blocchi persi o riferimenti inconsistenti.
 
 3. Quali problemi possono emergere se un i-node viene danneggiato?
-   - Perdita di metadati del file.
-   - Corruzione dei puntatori ai blocchi dati.
-   - File che appaiono come "fantasma" nel file system.
+  - Perdita di metadati del file.
+  - Corruzione dei puntatori ai blocchi dati.
+  - File che appaiono come "fantasma" nel file system.

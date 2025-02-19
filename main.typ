@@ -88,8 +88,6 @@
 #include "chapters/exercises.typ"
 
 = Laboratorio
-
-
 #include "chapters/laboratory/assembly.typ"
 
 #include "chapters/laboratory/shell.typ"

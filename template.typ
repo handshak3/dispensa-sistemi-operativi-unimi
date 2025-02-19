@@ -70,7 +70,7 @@
     indent: 1.2em,
     fill: box(repeat[$. space$]),
     title: box(width: 1fr)[#align(right)[#text(size: 1.1em)[Contents]]],
-    depth: 3
+    depth: 3,
   )
 
   body
