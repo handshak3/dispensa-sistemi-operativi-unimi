@@ -64,5 +64,3 @@ Le domande degli esami si ispirano in parte a quelle presenti in questo document
 Il materiale è destinato esclusivamente agli studenti dell'Università degli Studi di Milano iscritti al corso di *Sicurezza dei Sistemi e delle Reti Informatiche*.
 
 Se riscontrate errori o avete suggerimenti per migliorare il contenuto, vi invitiamo ad aprire una *Issue* o una *Pull Request* nel #link("https://github.com/handshak3/dispensa-sistemi-operativi-unimi")[repository GitHub] all'indirizzo: "https://github.com/handshak3/dispensa-sistemi-operativi-unimi". Questo ci aiuterà a mantenere il materiale aggiornato e di qualità.
-
-#colbreak()

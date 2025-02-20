@@ -6,9 +6,7 @@ Anno Accademico 2024/2025
 - **Autore**: Nicola Iantomasi  
 - **Email**: nicola.iantomasi2020@gmail.com  
 
----  
-🚧 La dispensa è ancora in aggiornamento 🚧  
----  
+---
 
 ### Introduzione 🌟  
 Questa dispensa è stata realizzata per supportare lo studio e la preparazione al corso di **Sicurezza dei Sistemi e Reti Informatiche** presso l'Università degli Studi di Milano. Il materiale si basa principalmente sul libro **"Operating Systems: Three Easy Pieces"** scritto da Remzi H. Arpaci-Dusseau e Andrea C. Arpaci-Dusseau, pubblicato da Arpaci-Dusseau Books, LLC nel 2018.  
